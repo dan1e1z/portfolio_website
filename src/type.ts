@@ -1,0 +1,12 @@
+export interface FileType {
+  name: string;
+  type: "file";
+  icon: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
+}
+
+export interface Directory {
+  name: string;
+  type: "directory";
+  contents: (FileType | Directory)[];
+  icon: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
+}

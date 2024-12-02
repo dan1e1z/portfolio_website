@@ -56,7 +56,9 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* --sidebar-background: 0 0% 98%; */ /* original */
+    /* NOTE: testing opacity*/
+    --sidebar-background: hsla(0, 0%, 98%, 1); /* 100% opacity */
 
     --sidebar-foreground: 240 5.3% 26.1%;
 

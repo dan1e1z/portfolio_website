@@ -1,11 +1,4 @@
-import {
-  Calendar,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  Terminal,
-} from "lucide-react";
+import { Terminal } from "lucide-react";
 
 import {
   Sidebar,
@@ -19,37 +12,10 @@ import {
 } from "@/components/ui/sidebar";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
 import TerminalWindow from "@/components/TerminalWindow";
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import { items } from "@/data/menu";
 
 export function AppSidebar() {
   const [isTerminalVisible, setIsTerminalVisible] = useState(false);
@@ -71,15 +37,24 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <button
-                onClick={() => {
-                  setIsTerminalVisible(!isTerminalVisible);
-                }}
-              >
-                <Terminal />
-              </button>
-              {/* Terminal */}
-              {isTerminalVisible && <TerminalWindow />}
+
+              {/* Terminal Button as SidebarMenuItem */}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <button
+                    onClick={() => {
+                      setIsTerminalVisible(!isTerminalVisible);
+                    }}
+                  >
+                    <Terminal />
+                    <span>Terminal</span>
+                  </button>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              {/* Render TerminalWindow Outside Sidebar */}
+              {isTerminalVisible &&
+                createPortal(<TerminalWindow />, document.body)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
