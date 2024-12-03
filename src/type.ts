@@ -10,3 +10,5 @@ export interface Directory {
   contents: (FileType | Directory)[];
   icon: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
 }
+
+export type FileSystemItem = File | Directory;

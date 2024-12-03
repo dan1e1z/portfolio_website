@@ -1,5 +1,5 @@
 import { Folder, FileType2, House } from "lucide-react";
-
+import { Directory } from "@/type";
 export const fileSystem: Directory = {
   name: "home",
   type: "directory",

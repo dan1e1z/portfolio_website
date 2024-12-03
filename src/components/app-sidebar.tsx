@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 
 import { useState } from "react";
@@ -37,6 +38,8 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+
+              <SidebarSeparator />
 
               {/* Terminal Button as SidebarMenuItem */}
               <SidebarMenuItem>
