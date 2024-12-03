@@ -11,8 +11,21 @@ import { useState, useEffect, useRef } from "react";
 import { fileSystem } from "@/data/filesystem";
 import { Directory } from "@/type";
 import { Telescope } from "@/components/Telescope";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
-const TerminalWindow = () => {
+interface TerminalWindowProps {
+  setIsTerminalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSplit: React.Dispatch<React.SetStateAction<boolean>>;
+  setSplitDirectory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const TerminalWindow: React.FC<TerminalWindowProps> = ({
+  setIsTerminalVisible,
+  setIsSplit,
+  setSplitDirectory,
+}) => {
   const [cmd, setCmd] = useState<string>("");
   const [currentDirectory, setCurrentDirectory] =
     useState<Directory>(fileSystem);
@@ -21,12 +34,20 @@ const TerminalWindow = () => {
   const [messageType, setMessageType] = useState<string | null>(null);
   const [isTelescope, setIsTelescope] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, []);
+
+  const handleSplitCommand = (dirName: string) => {
+    console.log(`split screen: ${dirName}`);
+    setIsSplit(true);
+    setSplitDirectory(dirName);
+    setIsTerminalVisible(false);
+  };
 
   const submitCommand = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,15 +59,23 @@ const TerminalWindow = () => {
     } else if (input === "fzf") {
       setIsTelescope(true);
     } else if (input.startsWith("split ")) {
-      // handleSplitCommand(input.slice(6).trim());
+      // TODO: comeplete split
+      handleSplitCommand(input.slice(6).trim());
     } else if (input.startsWith("go ")) {
-      // handleGoCommand(input.slice(3).trim());
+      // TODO: complete go command
+      handleGoCommand(input.slice(3).trim());
     } else if (input.startsWith("help")) {
       handleHelpCommand(input.slice(4).trim());
     } else if (input) {
       displayMessage(`bash: command not found: ${input}`, "error");
     }
     setCmd("");
+  };
+
+  const handleGoCommand = (dirName: string) => {
+    navigate(`/${dirName}`);
+    // NOTE: if Terminal should be removed after going to another *
+    setIsTerminalVisible(false);
   };
 
   const handleCdCommand = (dirName: string) => {
@@ -127,13 +156,6 @@ const TerminalWindow = () => {
     return searchDirectory(dir);
   };
 
-  // Render directory contents
-  // const renderDirectoryContents = (): string[] => {
-  //   return currentDirectory.contents.map((item) =>
-  //     item.type === "directory" ? `${item.name}/` : `${item.name}`,
-  //   );
-  // };
-  //
   const renderDirectoryContents = (): JSX.Element[] => {
     return currentDirectory.contents.map((item, index) => {
       if (item.type === "directory") {
@@ -162,9 +184,18 @@ const TerminalWindow = () => {
         fileSystem={fileSystem}
       />
       <Card className="w-[650px] h-[350px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center gap-4">
           <CardTitle>Terminal</CardTitle>
-          <CardDescription>Navigate Through Portfolio</CardDescription>
+          <CardDescription className="flex-grow">
+            Navigate Through Portfolio
+          </CardDescription>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsTerminalVisible(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
         </CardHeader>
         <CardContent>
           <div className="output">
