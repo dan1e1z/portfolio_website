@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Terminal } from "lucide-react";
+import { Terminal, Instagram, Linkedin, Github } from "lucide-react";
 
 import {
   Sidebar,
@@ -12,6 +12,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 import TerminalWindow from "@/components/TerminalWindow";
 import { items } from "@/data/menu";
 
@@ -47,7 +48,45 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
       <Sidebar collapsible="icon">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Application</SidebarGroupLabel>
+            <SidebarGroupLabel>Contact Me</SidebarGroupLabel>
+
+            <div className="flex justify-center items-center gap-6 py-4">
+              <a
+                href="https://www.instagram.com/daniel_lindsayshad/"
+                target="_blank"
+              >
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="rounded-ss bg-gradient-to-br from-purple-600 to-pink-500 text-white hover:from-purple-700 hover:to-pink-600"
+                >
+                  <Instagram className="h-5 w-5" />
+                </Button>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/daniel-lindsay-shad-148073224/"
+                target="_blank"
+              >
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="rounded-ss bg-blue-600 text-white hover:bg-blue-700"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="https://github.com/dan1e1z" target="_blank">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="rounded-ss bg-gray-700 text-white hover:bg-gray-800"
+                >
+                  <Github className="h-5 w-5" />
+                </Button>
+              </a>
+            </div>
+
+            <SidebarSeparator />
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => (
