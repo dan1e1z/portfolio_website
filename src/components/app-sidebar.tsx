@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Terminal, Instagram, Linkedin, Github } from "lucide-react";
 
 import {
+  SidebarTrigger,
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import TerminalWindow from "@/components/TerminalWindow";
+import { ModeToggle } from "@/components/mode-toggle";
 import { items } from "@/data/menu";
 
 interface AppSidebarProps {
@@ -45,7 +47,9 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
 
   return (
     <>
-      <Sidebar collapsible="icon">
+      <Sidebar collapsible="icon" variant="inset">
+        <SidebarTrigger className="flex w-full items-center gap-2 overflow-hidden rounded-md p-2" />
+
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>Contact Me</SidebarGroupLabel>
@@ -60,7 +64,7 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
                   variant="ghost"
                   className="rounded-ss bg-gradient-to-br from-purple-600 to-pink-500 text-white hover:from-purple-700 hover:to-pink-600"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-5 w-5 text-white" />
                 </Button>
               </a>
               <a
@@ -72,7 +76,7 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
                   variant="ghost"
                   className="rounded-ss bg-blue-600 text-white hover:bg-blue-700"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-5 w-5 text-white" />
                 </Button>
               </a>
               <a href="https://github.com/dan1e1z" target="_blank">
@@ -81,12 +85,13 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
                   variant="ghost"
                   className="rounded-ss bg-gray-700 text-white hover:bg-gray-800"
                 >
-                  <Github className="h-5 w-5" />
+                  <Github className="h-5 w-5 text-white" />
                 </Button>
               </a>
             </div>
 
             <SidebarSeparator />
+
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => (
@@ -95,6 +100,9 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
                       <a href={item.url} className="flex items-center gap-2">
                         <item.icon className="h-4 w-4" />
                         <span>{item.title}</span>
+                        <span className="ml-auto text-xs tracking-widest text-muted-foreground rounded-md border w-5 h-6 flex items-center justify-center">
+                          {item.keyShortcut}
+                        </span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -115,6 +123,7 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
                     )}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
+                <ModeToggle />
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

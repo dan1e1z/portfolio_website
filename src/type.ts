@@ -2,6 +2,8 @@ export interface FileType {
   name: string;
   type: "file";
   icon: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
+  parnet: string;
+  index: string;
 }
 
 export interface Directory {

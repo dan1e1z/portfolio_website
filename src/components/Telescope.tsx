@@ -13,21 +13,26 @@ import { Directory, FileSystemItem } from "@/type";
 import { X, ChevronUp, ChevronDown } from "lucide-react";
 import Fuse from "fuse.js";
 
+import { useNavigate } from "react-router-dom";
+
 interface TelescopeProps {
   isOpen: boolean;
   onClose: () => void;
   fileSystem: Directory;
+  setIsTerminalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Telescope: React.FC<TelescopeProps> = ({
   isOpen,
   onClose,
   fileSystem,
+  setIsTerminalVisible,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<FileSystemItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   // Memoised Fuse options
   const fuseOptions = useMemo(
@@ -105,6 +110,20 @@ export const Telescope: React.FC<TelescopeProps> = ({
         case "Enter":
           if (results[selectedIndex]) {
             console.log("Selected:", results[selectedIndex]);
+            const found = results[selectedIndex];
+
+            if (found.type === "file") {
+              navigate(`/${found.parent}/?project=project${found.index}`);
+            } else if (found.type === "directory") {
+              navigate(`/${found.name}`);
+            }
+
+            //   navigate(`/projects/?project=project${fileFound.index}`);
+            //   setIsTerminalVisible(false);
+            // } else if (fileFound?.file.type === "directory") {
+            //   navigate(`/${dirName}`);
+
+            setIsTerminalVisible(false);
             onClose();
           }
           break;

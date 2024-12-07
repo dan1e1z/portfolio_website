@@ -1,39 +1,46 @@
-import { Moon, Sun } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/components/theme-provider";
+import { Square } from "lucide-react";
+import { SidebarMenuItem } from "@/components/ui/sidebar";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
-    <div className="absolute right-4 top-4">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            Light
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            Dark
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("system")}>
-            System
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <>
+      <SidebarMenuItem>
+        <div className="flex flex-col w-full items-start justify-between space-y-8">
+          {/* Light Mode Toggle */}
+          <div className="flex flex-col items-start space-y-1 translate-y-3">
+            <span className="-rotate-90 text-xs pl-0.5">Light</span>
+            <div className="flex items-center">
+              <button
+                onClick={() => setTheme("light")}
+                className="text-lg leading-none h-6 w-6 flex items-center justify-center"
+              >
+                <Square
+                  className={`h-4 w-4 ${theme === "light" ? "fill-current" : ""}`}
+                  strokeWidth={theme === "light" ? 0 : 2}
+                />
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-start space-y-1">
+            <span className="-rotate-90 text-xs">Dark</span>
+            <div className="flex items-center">
+              <button
+                onClick={() => setTheme("dark")}
+                className="text-lg leading-none h-6 w-6 flex items-center justify-center"
+              >
+                <Square
+                  className={`h-4 w-4 ${theme === "dark" ? "fill-current" : ""}`}
+                  strokeWidth={theme === "dark" ? 0 : 2}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </SidebarMenuItem>
+    </>
   );
 }

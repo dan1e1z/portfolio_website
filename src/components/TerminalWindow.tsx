@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState, useEffect, useRef } from "react";
 import { fileSystem } from "@/data/filesystem";
-import { Directory } from "@/type";
+import { Directory, FileSystemItem } from "@/type";
 import { Telescope } from "@/components/Telescope";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -59,10 +59,8 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
     } else if (input === "fzf") {
       setIsTelescope(true);
     } else if (input.startsWith("split ")) {
-      // TODO: comeplete split
       handleSplitCommand(input.slice(6).trim());
     } else if (input.startsWith("go ")) {
-      // TODO: complete go command
       handleGoCommand(input.slice(3).trim());
     } else if (input.startsWith("help")) {
       handleHelpCommand(input.slice(4).trim());
@@ -72,10 +70,33 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
     setCmd("");
   };
 
+  function findFileWithIndex(targetName: string) {
+    const index =
+      currentDirectory.contents.findIndex(
+        (item: FileSystemItem) =>
+          item.name.toLowerCase() === targetName.toLowerCase(),
+      ) + 1;
+    console.log(`contents: ${index}`);
+    return index !== -1
+      ? { index, file: currentDirectory.contents[index - 1] }
+      : null;
+  }
+
   const handleGoCommand = (dirName: string) => {
-    navigate(`/${dirName}`);
-    // NOTE: if Terminal should be removed after going to another *
-    setIsTerminalVisible(false);
+    const fileFound = findFileWithIndex(dirName);
+    console.log(fileFound);
+
+    if (fileFound?.file.type === "file") {
+      navigate(`/projects/?project=project${fileFound.index}`);
+      setIsTerminalVisible(false);
+    } else if (fileFound?.file.type === "directory") {
+      navigate(`/${dirName}`);
+      setIsTerminalVisible(false);
+    } else {
+      displayMessage(`Error: ${dirName} not found`, "error");
+      console.log(currentDirectory.contents);
+      console.log(dirName);
+    }
   };
 
   const handleCdCommand = (dirName: string) => {
@@ -88,7 +109,10 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
         displayMessage(`bash: cd: ..: Already at root directory`, "error");
       }
     } else {
-      const targetDir = findDirectory(currentDirectory, dirName);
+      const targetDir = findDirectoryInCurrentDirectory(
+        currentDirectory,
+        dirName,
+      );
       if (targetDir) {
         setDirectoryStack([...directoryStack, currentDirectory]);
         setCurrentDirectory(targetDir);
@@ -126,47 +150,35 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
     displayMessage(message, "success");
   };
 
-  // Display an error message
   const displayMessage = (message: string, type: string) => {
     setMessageType(type);
     setMessage(message);
     setTimeout(() => setMessage(null), 5000);
   };
 
-  // find Directory
-  const findDirectory = (
+  // Find directory only within the current directory's contents
+  const findDirectoryInCurrentDirectory = (
     dir: Directory,
     name: string,
   ): Directory | undefined => {
-    const searchDirectory = (currentDir: Directory): Directory | undefined => {
-      if (currentDir.name.toLowerCase() === name.toLowerCase()) {
-        return currentDir;
-      }
+    const foundDir = dir.contents.find(
+      (item) =>
+        item.type === "directory" &&
+        item.name.toLowerCase() === name.toLowerCase(),
+    ) as Directory | undefined;
 
-      for (const item of currentDir.contents) {
-        if (item.type === "directory") {
-          const found = searchDirectory(item as Directory);
-          if (found) return found;
-        }
-      }
-
-      return undefined;
-    };
-
-    return searchDirectory(dir);
+    return foundDir;
   };
 
   const renderDirectoryContents = (): JSX.Element[] => {
     return currentDirectory.contents.map((item, index) => {
       if (item.type === "directory") {
-        // For directories, include the icon and name with a trailing slash
         return (
           <ul key={index} className="directory-item flex items-center gap-2">
             {item.icon && <item.icon />} {item.name}
           </ul>
         );
       } else {
-        // For files, include the icon and name
         return (
           <ul key={index} className="file-item flex items-center gap-2">
             {item.icon && <item.icon />} {item.name}
@@ -182,6 +194,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
         isOpen={isTelescope}
         onClose={() => setIsTelescope(false)}
         fileSystem={fileSystem}
+        setIsTerminalVisible={setIsTerminalVisible}
       />
       <Card className="w-[650px] h-[350px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <CardHeader className="flex flex-row items-center gap-4">
@@ -200,7 +213,6 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
         <CardContent>
           <div className="output">
             <div className="font-bold mb-2">Directory Contents:</div>
-            {/* CHECK: remove flex */}
             <ul className="flex gap-4">
               {renderDirectoryContents().map((line, index) => (
                 <li key={index}>{line}</li>
@@ -211,7 +223,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
             onSubmit={submitCommand}
             className="relative mt-4 flex items-center"
           >
-            <span>ask@daniel:~$ </span>
+            <span>ask@daniel:~$</span>
             <Input
               type="text"
               value={cmd}
