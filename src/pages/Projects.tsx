@@ -1,115 +1,372 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+// TEST 1
+// import { useRef, useEffect } from "react";
+// import { ProjectItem } from "@/components/ProjectItem";
+// import { projects } from "@/data/projects";
+// import { ScrollArea } from "@/components/ui/scroll-area";
+// import { useLocation } from "react-router-dom";
+//
+// export default function Projects() {
+//   const scrollRef = useRef<HTMLDivElement>(null);
+//   const location = useLocation();
+//
+//   useEffect(() => {
+//     const scrollToProject = () => {
+//       const params = new URLSearchParams(location.search);
+//       const projectParam = params.get("project");
+//
+//     };
+//     scrollToProject();
+//   }, [location.search]);
+//
+//   return (
+//     <ScrollArea className="h-full w-full bg-neutral-200 rounded-lg">
+//       <div
+//         ref={scrollRef}
+//         className="flex flex-col w-full max-w-full items-stretch gap-6 p-6"
+//       >
+//         {projects.map((item) => (
+//           <ProjectItem
+//             key={item.id}
+//             title={item.title}
+//             img={item.img}
+//             desc={item.desc}
+//             link={item.link}
+//             id={`project-${item.id}`}
+//           />
+//         ))}
+//       </div>
+//     </ScrollArea>
+//   );
+// }
+//
+//
+// TEST 2
+// import { useRef, useEffect } from "react";
+// import { ProjectItem } from "@/components/ProjectItem";
+// import { projects } from "@/data/projects";
+// import { ScrollArea } from "@/components/ui/scroll-area";
+// import { useLocation } from "react-router-dom";
+//
+// export default function Projects() {
+//   const scrollRef = useRef<HTMLDivElement>(null); // Ref for ScrollArea container
+//   const location = useLocation();
+//
+//   useEffect(() => {
+//     const scrollToProject = () => {
+//       const params = new URLSearchParams(location.search);
+//       const projectParam = params.get("project"); // Extract "project3" from the URL
+//
+//       if (projectParam && scrollRef.current) {
+//         const targetElement = document.getElementById(projectParam); // Match "project3" directly
+//         if (targetElement) {
+//           // Scroll to the target element within the scrollable area
+//           scrollRef.current.scrollTo({
+//             top: targetElement.offsetTop, // Scroll vertically to the project
+//             behavior: "smooth", // Smooth scrolling
+//           });
+//         }
+//       }
+//     };
+//
+//     scrollToProject();
+//   }, [location.search]);
+//
+//   // Scroll to the top when the button is clicked
+//   const onClickHandler = () => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollTop = 0; // Scroll to the top of the container
+//     }
+//   };
+//
+//   return (
+//     <>
+//       <ScrollArea
+//         className="h-full w-full bg-neutral-200 rounded-lg overflow-y-auto" // Ensure vertical scroll
+//         viewportRef={scrollRef} // Pass ref to the ScrollArea's viewport
+//       >
+//         <div className="flex flex-col w-full items-stretch gap-6 p-6">
+//           {/* Use flex-col for vertical layout */}
+//           {projects.map((item) => (
+//             <ProjectItem
+//               key={item.id}
+//               title={item.title}
+//               img={item.img}
+//               desc={item.desc}
+//               link={item.link}
+//               id={item.id} // Ensure the project id matches the URL query
+//             />
+//           ))}
+//           <button onClick={onClickHandler}>Scroll To Top</button>
+//         </div>
+//       </ScrollArea>
+//     </>
+//   );
+// }
+// TEST 3 - Works
+// import { useRef, useEffect } from "react";
+// import { ProjectItem } from "@/components/ProjectItem";
+// import { projects } from "@/data/projects";
+// import { ScrollArea } from "@/components/ui/scroll-area";
+// import { useLocation } from "react-router-dom";
+//
+// export default function Projects() {
+//   const scrollRef = useRef<HTMLDivElement>(null); // Ref for the ScrollArea container
+//   const location = useLocation();
+//
+//   useEffect(() => {
+//     const scrollToProject = () => {
+//       const params = new URLSearchParams(location.search);
+//       const projectParam = params.get("project"); // Extract "project3" from the URL
+//
+//       console.log("URL Params:", projectParam); // Debug: Check if the "project" query exists in the URL
+//
+//       if (projectParam && scrollRef.current) {
+//         console.log("Scroll Ref:", scrollRef.current); // Debug: Check the current ref of ScrollArea
+//
+//         const targetElement = document.getElementById(projectParam); // Match "project3" directly
+//         console.log("Target Element:", targetElement); // Debug: Check if the target element is found
+//
+//         if (targetElement) {
+//           // Scroll to the target element within the scrollable area
+//           console.log("Scrolling to:", targetElement.offsetTop); // Debug: Check the target's offsetTop
+//           scrollRef.current.scrollTo({
+//             top: targetElement.offsetTop, // Scroll vertically to the project
+//             behavior: "smooth", // Smooth scrolling
+//           });
+//         } else {
+//           console.log("Target element not found"); // Debug: Target element not found
+//         }
+//       } else {
+//         console.log("No project parameter found or scrollRef is null"); // Debug: URL parameter not found or scrollRef issue
+//       }
+//     };
+//
+//     scrollToProject();
+//   }, [location.search]); // Only trigger when the URL search params change
+//
+//   // Scroll to the top when the button is clicked
+//   const onClickHandler = () => {
+//     if (scrollRef.current) {
+//       console.log("Scrolling to top"); // Debug: Check if we are scrolling to top
+//       scrollRef.current.scrollTop = 0; // Scroll to the top of the container
+//     } else {
+//       console.log("Scroll ref is null on button click"); // Debug: Check if scrollRef is null
+//     }
+//   };
+//
+//   return (
+//     <>
+//       <ScrollArea
+//         className="h-full w-full bg-neutral-200 rounded-lg overflow-y-auto" // Ensure vertical scroll
+//         viewportRef={scrollRef} // Correctly passing viewportRef to ScrollArea
+//       >
+//         <div className="flex flex-col w-full items-stretch gap-6 p-6">
+//           {/* Use flex-col for vertical layout */}
+//           {projects.map((item) => (
+//             <ProjectItem
+//               key={item.id}
+//               id={item.id} // Ensure the project id matches the URL query
+//               title={item.title}
+//               img={item.img}
+//               desc={item.desc}
+//               link={item.link}
+//             />
+//           ))}
+//           <button onClick={onClickHandler}>Scroll To Top</button>
+//         </div>
+//       </ScrollArea>
+//     </>
+//   );
+// }
+// TEST 4
+import React, { useRef, useEffect, useState } from "react";
 import { ProjectItem } from "@/components/ProjectItem";
+import { projects } from "@/data/projects";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
-
-const items = [
-  {
-    id: 1,
-    title: "Next.js Blog",
-    img: "https://images.pexels.com/photos/18023772/pexels-photo-18023772/free-photo-of-close-up-of-a-person-holding-a-wristwatch.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    desc: "A modern blog built with Next.js, featuring server-side rendering and a sleek design for optimal performance and user experience.",
-    link: "https://example.com/nextjs-blog",
-  },
-  {
-    id: 2,
-    title: "Vanilla JS App",
-    img: "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    desc: "A lightweight and fast web application built with pure JavaScript, showcasing the power of vanilla JS in modern web development.",
-    link: "https://example.com/vanilla-js-app",
-  },
-  {
-    id: 3,
-    title: "Music App",
-    img: "https://images.pexels.com/photos/18540208/pexels-photo-18540208/free-photo-of-wood-landscape-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    desc: "An interactive music player app with a beautiful UI, supporting playlist creation, equalizer settings, and seamless audio playback.",
-    link: "https://example.com/music-app",
-  },
-];
 
 export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [headerHeight, setHeaderHeight] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
 
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start start", "end start"],
-  });
+  // Debugging function
+  const debugLog = (message: string, ...args: any[]) => {
+    console.log(`[Projects Debug] ${message}`, ...args);
+  };
 
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-  });
-
+  // Update progress bar based on scroll position
   useEffect(() => {
-    const updateHeaderHeight = () => {
-      const header = document.querySelector(".sticky-header");
-      if (header) {
-        setHeaderHeight(header.getBoundingClientRect().height);
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const scrollableHeight =
+          scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+        const scrollPosition = scrollRef.current.scrollTop;
+        const progress =
+          scrollableHeight > 0 ? (scrollPosition / scrollableHeight) * 100 : 0;
+        setScrollProgress(Math.min(100, Math.max(0, progress)));
       }
     };
 
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
-
-    return () => {
-      window.removeEventListener("resize", updateHeaderHeight);
-    };
+    const currentScrollRef = scrollRef.current;
+    if (currentScrollRef) {
+      currentScrollRef.addEventListener("scroll", handleScroll);
+      return () => {
+        currentScrollRef.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, []);
 
+  // Scroll to the specific project based on the URL parameter
   useEffect(() => {
     const scrollToProject = () => {
+      // Debug: Log all current information
+      debugLog("Current Location Search", location.search);
+
+      // Parse URL parameters
       const params = new URLSearchParams(location.search);
       const projectParam = params.get("project");
 
-      if (projectParam === "top" || !projectParam) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        const projectNumber = parseInt(projectParam.replace("project", ""), 10);
-        const projectElement = document.getElementById(
-          `project-${projectNumber}`,
-        );
-        if (projectElement) {
-          const yOffset = -headerHeight - 20; // Additional offset for visual comfort
-          const y =
-            projectElement.getBoundingClientRect().top +
-            window.pageYOffset +
-            yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
+      debugLog("Project Parameter", projectParam);
+
+      // Debug: Log all project IDs
+      const allProjectIds = projects.map((p) => `project-${p.id}`);
+      debugLog("All Project IDs", allProjectIds);
+
+      if (projectParam && scrollRef.current) {
+        // Try multiple potential element IDs
+        const possibleIds = [
+          projectParam, // exact match
+          `project-${projectParam}`, // with project- prefix
+          projectParam.replace("project-", ""), // without prefix
+        ];
+
+        debugLog("Checking Possible IDs", possibleIds);
+
+        // Try to find the element using multiple strategies
+        let targetElement: HTMLElement | null = null;
+
+        possibleIds.forEach((id) => {
+          if (!targetElement) {
+            targetElement = document.getElementById(id);
+            if (targetElement) {
+              debugLog(`Found element with ID: ${id}`);
+            }
+          }
+        });
+
+        if (targetElement) {
+          debugLog("Target Element Found", {
+            id: targetElement.id,
+            offsetTop: targetElement.offsetTop,
+          });
+
+          // Multiple scrolling attempts for robustness
+          const scrollAttempts = [
+            () =>
+              targetElement?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              }),
+            () => {
+              if (scrollRef.current && targetElement) {
+                scrollRef.current.scrollTo({
+                  top: targetElement.offsetTop,
+                  behavior: "smooth",
+                });
+              }
+            },
+            () => {
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: "auto",
+                  block: "start",
+                });
+              }
+            },
+          ];
+
+          // Try multiple scrolling strategies
+          scrollAttempts.some((attempt) => {
+            try {
+              attempt();
+              return true; // Stop after first successful attempt
+            } catch (error) {
+              debugLog("Scroll Attempt Failed", error);
+              return false;
+            }
+          });
+        } else {
+          debugLog("No matching element found", {
+            searchParam: projectParam,
+            documentQueryResult: document.getElementById(projectParam),
+          });
         }
+      } else {
+        debugLog("Missing project parameter or scroll ref", {
+          projectParam,
+          scrollRefCurrent: !!scrollRef.current,
+        });
       }
     };
 
-    scrollToProject();
-  }, [location, headerHeight]);
+    // Delay to ensure DOM is ready
+    const timeoutId = setTimeout(scrollToProject, 300);
+
+    // Cleanup timeout
+    return () => clearTimeout(timeoutId);
+  }, [location.search]);
+
+  // Scroll to the top when the button is clicked
+  const handleScrollToTop = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <div className="min-h-screen relative" ref={scrollRef}>
+    <ScrollArea
+      className="h-full w-full bg-neutral-200 rounded-lg overflow-y-auto"
+      viewportRef={scrollRef}
+    >
+      {/* Sticky Header inside Scrollable Content */}
       <div
-        className="sticky-header sticky left-0 right-0 z-50 bg-background/80 backdrop-blur-sm"
-        style={{ top: 0 }}
+        id="sticky-header"
+        className="sticky top-0 z-50 bg-white shadow-md p-4"
       >
-        <div className="max-w-4xl mx-auto px-4 pt-8 pb-4 sm:pt-16">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4">
-            Featured Works
-          </h1>
-          <motion.div
-            className="h-1 bg-primary"
-            style={{ scaleX, transformOrigin: "left" }}
-          ></motion.div>
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Projects</h1>
+          <div className="relative w-full max-w-md h-2 bg-gray-300 rounded-lg">
+            <div
+              className="absolute top-0 left-0 h-full bg-blue-500 rounded-lg"
+              style={{ width: `${scrollProgress}%` }}
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="px-4 py-8 max-w-4xl mx-auto"
-        style={{ paddingTop: `${headerHeight}px` }}
-      >
-        {items.map((item) => (
-          <div key={item.id} id={`project-${item.id}`}>
-            <ProjectItem {...item} />
-          </div>
+
+      {/* Project List */}
+      <div className="flex flex-col w-full items-stretch gap-6 p-6">
+        {projects.map((item) => (
+          <ProjectItem
+            key={item.id}
+            id={`project${item.id}`}
+            title={item.title}
+            img={item.img}
+            desc={item.desc}
+            link={item.link}
+          />
         ))}
+        <button
+          onClick={handleScrollToTop}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Scroll To Top
+        </button>
       </div>
-    </div>
+    </ScrollArea>
   );
 }

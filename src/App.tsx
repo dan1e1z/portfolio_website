@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -39,31 +39,26 @@ const PAGE_COMPONENTS: PageComponentMap = {
   settings: Settings,
 };
 
-// Reusable panel content wrapper
-const PanelContent: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className="h-full bg-neutral-200 rounded-lg">{children}</div>
-);
-
 const KeyPressNavigation: React.FC = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       switch (event.key) {
         case "1":
-          navigate("/"); // Navigate to Home
+          navigate("/");
           break;
         case "2":
-          navigate("/about"); // Navigate to About
+          navigate("/about");
           break;
         case "3":
-          navigate("/projects"); // Navigate to Projects
+          navigate("/projects");
           break;
         case "4":
-          navigate("/contacts"); // Navigate to Contacts
+          navigate("/contacts");
           break;
         case "5":
-          navigate("/settings"); // Navigate to Settings
+          navigate("/settings");
           break;
         default:
           break;
@@ -76,11 +71,10 @@ const KeyPressNavigation: React.FC = () => {
     };
   }, [navigate]);
 
-  return null; // This component only adds a side effect
+  return null;
 };
 
-// Main App component
-const App: React.FC<React.PropsWithChildren> = ({ children }) => {
+const App: React.FC = () => {
   const [isSplit, setIsSplit] = useState(false);
   const [splitDirectory, setSplitDirectory] = useState("");
 
@@ -101,14 +95,14 @@ const App: React.FC<React.PropsWithChildren> = ({ children }) => {
 
     return (
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={50}>
-          <PanelContent>{renderRoutes()}</PanelContent>
+        <ResizablePanel defaultSize={50} minSize={30}>
+          <div className="h-full w-full">{renderRoutes()}</div>
         </ResizablePanel>
-        <ResizableHandle withHandle className="w-1 bg-background" />
-        <ResizablePanel defaultSize={50}>
-          <PanelContent>
+        <ResizableHandle className="w-2.5" />
+        <ResizablePanel defaultSize={50} minSize={30}>
+          <div className="h-full w-full">
             {SplitComponent ? <SplitComponent /> : null}
-          </PanelContent>
+          </div>
         </ResizablePanel>
         <Button
           variant="ghost"
@@ -126,15 +120,24 @@ const App: React.FC<React.PropsWithChildren> = ({ children }) => {
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SidebarProvider>
-          <KeyPressNavigation />
-          <AppSidebar
-            setIsSplit={setIsSplit}
-            setSplitDirectory={setSplitDirectory}
-          />
-          <SidebarInset className="bg-background">
-            <main>{children}</main>
-            {isSplit ? renderSplitView() : renderRoutes()}
-          </SidebarInset>
+          <div className="flex h-screen overflow-hidden w-screen">
+            <KeyPressNavigation />
+            <AppSidebar
+              setIsSplit={setIsSplit}
+              setSplitDirectory={setSplitDirectory}
+            />
+            <SidebarInset className="flex-1 overflow-hidden">
+              <main className="h-full w-full">
+                {isSplit ? (
+                  renderSplitView()
+                ) : (
+                  <div className="h-full w-full max-w-full">
+                    {renderRoutes()}
+                  </div>
+                )}
+              </main>
+            </SidebarInset>
+          </div>
         </SidebarProvider>
       </ThemeProvider>
     </Router>
