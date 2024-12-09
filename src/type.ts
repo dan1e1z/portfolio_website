@@ -1,8 +1,9 @@
+import { FC } from "react";
 export interface FileType {
   name: string;
   type: "file";
   icon: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
-  parnet: string;
+  parent: string;
   index: string;
 }
 
@@ -14,3 +15,13 @@ export interface Directory {
 }
 
 export type FileSystemItem = File | Directory;
+
+export interface IconProps {
+  className?: string;
+}
+
+export interface Skill {
+  name: string;
+  icon: FC<IconProps>;
+  description: string;
+}

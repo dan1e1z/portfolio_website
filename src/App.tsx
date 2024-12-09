@@ -5,7 +5,7 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import { X } from "lucide-react";
+import { X, Ellipsis } from "lucide-react";
 
 // UI Components
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
@@ -23,7 +23,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Projects from "@/pages/Projects";
 import Contacts from "@/pages/Contacts";
-import Settings from "@/pages/Settings";
+import Skills from "@/pages/Skills";
 
 // Types
 interface PageComponentMap {
@@ -36,7 +36,7 @@ const PAGE_COMPONENTS: PageComponentMap = {
   about: About,
   projects: Projects,
   contacts: Contacts,
-  settings: Settings,
+  skills: Skills,
 };
 
 const KeyPressNavigation: React.FC = () => {
@@ -58,7 +58,7 @@ const KeyPressNavigation: React.FC = () => {
           navigate("/contacts");
           break;
         case "5":
-          navigate("/settings");
+          navigate("/skills");
           break;
         default:
           break;
@@ -84,7 +84,7 @@ const App: React.FC = () => {
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/contacts" element={<Contacts />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/skills" element={<Skills />} />
     </Routes>
   );
 
@@ -98,29 +98,68 @@ const App: React.FC = () => {
         <ResizablePanel defaultSize={50} minSize={30}>
           <div className="h-full w-full">{renderRoutes()}</div>
         </ResizablePanel>
-        <ResizableHandle className="w-2.5" />
+        <ResizableHandle className="w-2.5 bg-sidebar" />
         <ResizablePanel defaultSize={50} minSize={30}>
           <div className="h-full w-full">
             {SplitComponent ? <SplitComponent /> : null}
           </div>
         </ResizablePanel>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-5 top-5 z-10"
+        {/* Adjusted Button */}
+        <button
+          className="fixed right-0 top-3 z-[100000] p-0 flex items-center justify-center overflow-hidden h-5 w-3"
           onClick={() => setIsSplit(false)}
         >
-          <X className="h-4 w-4" />
-        </Button>
+          <div className="transform -rotate-90">
+            <Ellipsis className="h-5 w-5 block" />
+          </div>
+        </button>
       </ResizablePanelGroup>
     );
   };
+
+  // TEST 1
+  // return (
+  //   <Router>
+  //     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+  //       <SidebarProvider>
+  //         <div className="flex h-screen overflow-hidden w-screen">
+  //           <KeyPressNavigation />
+  //           <AppSidebar
+  //             setIsSplit={setIsSplit}
+  //             setSplitDirectory={setSplitDirectory}
+  //           />
+  //           <SidebarInset className="flex-1 overflow-hidden">
+  //             <main className="h-full w-full">
+  //               {isSplit ? (
+  //                 renderSplitView()
+  //               ) : (
+  //                 <div className="h-full w-full max-w-full">
+  //                   {renderRoutes()}
+  //                 </div>
+  //               )}
+  //             </main>
+  //           </SidebarInset>
+  //         </div>
+  //
+  //         <Button
+  //           variant="ghost"
+  //           size="icon"
+  //           className="absolute right-0.5 p-0 m-0 top-0.5 z-100"
+  //           onClick={() => setIsSplit(false)}
+  //         >
+  //           <Ellipsis className="h-2 w-2 transform -rotate-90" />
+  //         </Button>
+  //       </SidebarProvider>
+  //     </ThemeProvider>
+  //   </Router>
+  // );
+  // Test 2
 
   return (
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SidebarProvider>
-          <div className="flex h-screen overflow-hidden w-screen">
+          <div className="flex h-screen overflow-hidden w-screen relative">
             <KeyPressNavigation />
             <AppSidebar
               setIsSplit={setIsSplit}

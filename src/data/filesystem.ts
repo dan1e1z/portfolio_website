@@ -8,8 +8,20 @@ export const fileSystem: Directory = {
       name: "about",
       type: "directory",
       contents: [
-        { name: "bio.txt", type: "file", icon: FileType2 },
-        { name: "team.txt", type: "file", icon: FileType2 },
+        {
+          name: "bio.txt",
+          type: "file",
+          icon: FileType2,
+          parent: "about",
+          index: "1",
+        },
+        {
+          name: "team.txt",
+          type: "file",
+          icon: FileType2,
+          parent: "about",
+          index: "1",
+        },
       ],
       icon: Folder,
     },
@@ -44,7 +56,15 @@ export const fileSystem: Directory = {
     {
       name: "contact",
       type: "directory",
-      contents: [{ name: "contact.txt", type: "file", icon: FileType2 }],
+      contents: [
+        {
+          name: "contact.txt",
+          type: "file",
+          icon: FileType2,
+          parent: "contact",
+          index: "1",
+        },
+      ],
       icon: Folder,
     },
   ],

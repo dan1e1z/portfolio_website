@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home, Inbox, Search, Layers2 } from "lucide-react";
 
 export const items = [
   {
@@ -26,11 +26,9 @@ export const items = [
     keyShortcut: "4",
   },
   {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings,
+    title: "Skills",
+    url: "/skills",
+    icon: Layers2,
     keyShortcut: "5",
   },
 ];
-
-// keyShortcut: "⌘4",
