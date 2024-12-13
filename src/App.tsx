@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/resizable";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/toaster";
 import { AppSidebar } from "@/components/app-sidebar";
 
 // Page Components
@@ -174,6 +175,8 @@ const App: React.FC = () => {
                     {renderRoutes()}
                   </div>
                 )}
+
+                <Toaster />
               </main>
             </SidebarInset>
           </div>
