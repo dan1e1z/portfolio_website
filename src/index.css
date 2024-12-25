@@ -56,9 +56,15 @@
 
     --radius: 0.5rem;
 
-    /* --sidebar-background: 0 0% 98%;  */
+    /* grey */
+    /* --sidebar-background: 0 0% 98%; */
     /* NOTE: testing opacity*/
-    --sidebar-background: hsla(0, 0%, 98%, 1); /* 100% opacity */
+    /* --sidebar-background: hsla(0, 0%, 100%, 1); */
+
+    --sidebar-background: 0 0% 100%;
+    /* hsl(223, 16%, 9%) */
+    /* purple */
+    /* --sidebar-background: 237, 100%, 89%; */
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
@@ -73,6 +79,10 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* white */
+    --page-background: 0 0% 100%;
+    /* --page-background: 0 0% 0%; */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -123,7 +133,13 @@
 
     --chart-5: 340 75% 55%;
 
-    --sidebar-background: 240 5.9% 10%;
+    /* blue */
+    /* --sidebar-background: 235, 41%, 22%; */
+    /* purple */
+    /* --sidebar-background: 252, 22%, 18%; */
+    /* black */
+    /* --sidebar-background: 240 5.9% 10%; */
+    --sidebar-background: 0 0% 0%;
 
     --sidebar-foreground: 240 4.8% 95.9%;
 
@@ -138,6 +154,12 @@
     --sidebar-border: 240 3.7% 15.9%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* black */
+    /* --page-background: 0 0% 0%; */
+    /* white */
+    --page-background: 0 0% 100%;
+    /* --page-background: 218 18% 9%; */
   }
 }
 

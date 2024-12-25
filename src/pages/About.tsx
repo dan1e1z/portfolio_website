@@ -17,7 +17,7 @@ export default function About() {
   const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
+    <div className="h-full w-full bg-background flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="md:col-span-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="bg-secondary/50 rounded-t-lg">

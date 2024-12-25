@@ -96,12 +96,16 @@ const App: React.FC = () => {
 
     return (
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={50} minSize={30}>
-          <div className="h-full w-full">{renderRoutes()}</div>
+        <ResizablePanel
+          defaultSize={50}
+          minSize={30}
+          className="bg-transparent"
+        >
+          <div className="h-full w-full  bg-transparent">{renderRoutes()}</div>
         </ResizablePanel>
-        <ResizableHandle className="w-2.5 bg-sidebar" />
+        <ResizableHandle className="w-2.5" />
         <ResizablePanel defaultSize={50} minSize={30}>
-          <div className="h-full w-full">
+          <div className="h-full w-full bg-transparent">
             {SplitComponent ? <SplitComponent /> : null}
           </div>
         </ResizablePanel>
@@ -118,67 +122,33 @@ const App: React.FC = () => {
     );
   };
 
-  // TEST 1
-  // return (
-  //   <Router>
-  //     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-  //       <SidebarProvider>
-  //         <div className="flex h-screen overflow-hidden w-screen">
-  //           <KeyPressNavigation />
-  //           <AppSidebar
-  //             setIsSplit={setIsSplit}
-  //             setSplitDirectory={setSplitDirectory}
-  //           />
-  //           <SidebarInset className="flex-1 overflow-hidden">
-  //             <main className="h-full w-full">
-  //               {isSplit ? (
-  //                 renderSplitView()
-  //               ) : (
-  //                 <div className="h-full w-full max-w-full">
-  //                   {renderRoutes()}
-  //                 </div>
-  //               )}
-  //             </main>
-  //           </SidebarInset>
-  //         </div>
-  //
-  //         <Button
-  //           variant="ghost"
-  //           size="icon"
-  //           className="absolute right-0.5 p-0 m-0 top-0.5 z-100"
-  //           onClick={() => setIsSplit(false)}
-  //         >
-  //           <Ellipsis className="h-2 w-2 transform -rotate-90" />
-  //         </Button>
-  //       </SidebarProvider>
-  //     </ThemeProvider>
-  //   </Router>
-  // );
-  // Test 2
-
   return (
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SidebarProvider>
-          <div className="flex h-screen overflow-hidden w-screen relative">
-            <KeyPressNavigation />
-            <AppSidebar
-              setIsSplit={setIsSplit}
-              setSplitDirectory={setSplitDirectory}
-            />
-            <SidebarInset className="flex-1 overflow-hidden">
-              <main className="h-full w-full">
-                {isSplit ? (
-                  renderSplitView()
-                ) : (
-                  <div className="h-full w-full max-w-full">
-                    {renderRoutes()}
-                  </div>
-                )}
-
-                <Toaster />
-              </main>
-            </SidebarInset>
+          <div className="bg-[url('/SequoiaLight.png')] dark:bg-[url('/SequoiaDark.png')] bg-cover h-screen w-screen">
+            {/* Add a separate background overlay div */}
+            <div className="absolute inset-0 bg-sidebar opacity-80" />
+            {/* Move the content into a separate div without opacity */}
+            <div className="relative z-10 flex h-screen w-screen backdrop-blur-2xl">
+              <KeyPressNavigation />
+              <AppSidebar
+                setIsSplit={setIsSplit}
+                setSplitDirectory={setSplitDirectory}
+              />
+              <SidebarInset className="flex-1 overflow-hidden">
+                <main className="h-full w-full bg-transparent">
+                  {isSplit ? (
+                    renderSplitView()
+                  ) : (
+                    <div className="h-full w-full bg-transparent">
+                      {renderRoutes()}
+                    </div>
+                  )}
+                  <Toaster />
+                </main>
+              </SidebarInset>
+            </div>
           </div>
         </SidebarProvider>
       </ThemeProvider>

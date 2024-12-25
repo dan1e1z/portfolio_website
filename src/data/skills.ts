@@ -1,52 +1,44 @@
 import { Skill } from "@/types";
-import TypescriptIcon from "@/components/icons/TypescriptIcon";
-import ReactIcon from "@/components/icons/ReactIcon";
-import TailwindIcon from "@/components/icons/TailwindIcon";
-import MongodbIcon from "@/components/icons/MongodbIcon";
-import PythonIcon from "@/components/icons/PythonIcon";
-import GitIcon from "@/components/icons/GitIcon";
-import JavaIcon from "@/components/icons/JavaIcon";
-import GoIcon from "@/components/icons/GoIcon";
+
+import { FaGithub, FaReact, FaJava, FaPython, FaCss3Alt } from "react-icons/fa";
+import { SiTailwindcss, SiTypescript, SiMongodb } from "react-icons/si";
+import { FaGolang } from "react-icons/fa6";
 
 export const skills: Skill[] = [
-  {
-    name: "TypeScript",
-    icon: TypescriptIcon,
-    level: "Advanced",
-  },
+  { name: "TypeScript", icon: SiTypescript, level: "Advanced" },
   {
     name: "React",
-    icon: ReactIcon,
+    icon: FaReact,
     level: "Advanced",
   },
   {
     name: "Tailwind CSS",
-    icon: TailwindIcon,
+    icon: SiTailwindcss,
     level: "Advanced",
   },
   {
     name: "MongoDB",
-    icon: MongodbIcon,
+    icon: SiMongodb,
     level: "Intermediate",
   },
   {
     name: "Python",
-    icon: PythonIcon,
+    icon: FaPython,
     level: "Advanced",
   },
   {
     name: "Git",
-    icon: GitIcon,
+    icon: FaGithub,
     level: "Advanced",
   },
   {
     name: "Java",
-    icon: JavaIcon,
+    icon: FaJava,
     level: "Intermediate",
   },
   {
     name: "Go",
-    icon: GoIcon,
+    icon: FaGolang,
     level: "Beginner",
   },
 ];

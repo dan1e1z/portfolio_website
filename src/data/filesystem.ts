@@ -54,7 +54,7 @@ export const fileSystem: Directory = {
       icon: Folder,
     },
     {
-      name: "contact",
+      name: "contacts",
       type: "directory",
       contents: [
         {

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { IconType } from "react-icons";
 export interface FileType {
   name: string;
   type: "file";
@@ -22,6 +22,6 @@ export interface IconProps {
 
 export interface Skill {
   name: string;
-  icon: FC<IconProps>;
+  icon: IconType;
   description: string;
 }

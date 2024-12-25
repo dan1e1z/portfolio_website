@@ -10,6 +10,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        page: "hsl(var(--page-background))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
