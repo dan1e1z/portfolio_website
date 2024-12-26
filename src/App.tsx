@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/resizable";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 // Page Components
 import Home from "@/pages/Home";

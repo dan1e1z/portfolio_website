@@ -557,7 +557,12 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
     const fileFound = findFileWithIndex(dirName);
 
     if (fileFound?.file?.type === "file") {
-      navigate(`/projects/?project=project${fileFound.index}`);
+      navigate(
+        `/projects/?project=project${fileFound.index}&timestamp=${Date.now()}`,
+      );
+      // navigate(`/projects/?project=project${fileFound.index}`, {
+      //   replace: true,
+      // });
       setIsTerminalVisible(false);
     } else if (fileFound?.file?.type === "directory") {
       navigate(`/${dirName}`);
