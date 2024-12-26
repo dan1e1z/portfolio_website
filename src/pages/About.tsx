@@ -185,16 +185,14 @@ const About = () => {
                       Bachelor of Science in Computer Science
                     </h3>
                     <p className="text-muted-foreground">
-                      University of Technology, 2018-2022
+                      University of Sydney
                     </p>
                   </div>
                   <div>
                     <h3 className="text-lg font-medium text-card-foreground">
-                      Master of Science in Artificial Intelligence
+                      test
                     </h3>
-                    <p className="text-muted-foreground">
-                      Tech Institute, 2022-2024
-                    </p>
+                    <p className="text-muted-foreground">test</p>
                   </div>
                 </div>
               </TabsContent>
@@ -225,16 +223,23 @@ const About = () => {
               <TabsContent value="about">
                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
                   About Me
-                </h2>
-                <p className="text-card-foreground">
-                  I'm a passionate software developer with a keen interest in
-                  artificial intelligence and web technologies. With a strong
-                  foundation in computer science and specialized knowledge in
-                  AI, I strive to create innovative solutions that push the
-                  boundaries of what's possible in tech. When I'm not coding,
-                  you can find me exploring nature through hiking, capturing
-                  moments with my camera, or engaged in a challenging game of
-                  chess.
+                </h2>{" "}
+                <p className="text-muted-foreground leading-relaxed">
+                  A passionate{" "}
+                  <strong className="text-primary">web developer</strong>
+                  specializing in creating{" "}
+                  <strong className="text-primary">
+                    intuitive and visually appealing interfaces{" "}
+                  </strong>
+                  . Proficient in{" "}
+                  <strong className="text-primary">
+                    full-stack development{" "}
+                  </strong>{" "}
+                  with expertise in{" "}
+                  <strong className="text-primary">
+                    Python, TypeScript, React{" "}
+                  </strong>
+                  , and modern web technologies.{" "}
                 </p>
               </TabsContent>
             </div>
