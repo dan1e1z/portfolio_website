@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -43,7 +43,7 @@ const PAGE_COMPONENTS: PageComponentMap = {
 const KeyPressNavigation: React.FC = () => {
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       switch (event.key) {
         case "1":
@@ -126,7 +126,7 @@ const App: React.FC = () => {
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SidebarProvider>
-          <div className="bg-[url('/SequoiaLight.png')] dark:bg-[url('/SequoiaDark.png')] bg-cover h-screen w-screen">
+          <div className="bg-sequoia-light dark:bg-sequoia-dark bg-cover h-screen w-screen">
             {/* Add a separate background overlay div */}
             <div className="absolute inset-0 bg-sidebar opacity-80" />
             {/* Move the content into a separate div without opacity */}

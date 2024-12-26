@@ -156,9 +156,9 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* black */
-    /* --page-background: 0 0% 0%; */
+    --page-background: 0 0% 0%;
     /* white */
-    --page-background: 0 0% 100%;
+    /* --page-background: 0 0% 100%; */
     /* --page-background: 218 18% 9%; */
   }
 }
@@ -169,5 +169,14 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-sequoia-light {
+    background-image: url("/SequoiaLight.png");
+  }
+  .bg-sequoia-dark {
+    background-image: url("/SequoiaDark.png");
   }
 }
