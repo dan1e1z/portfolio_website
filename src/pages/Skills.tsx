@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { skills } from "@/data/skills";
-import { Skill } from "@/types";
+// import { Skill } from "@/types";
 
 const Skills = () => {
   return (
@@ -19,7 +19,7 @@ const Skills = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {skills.map((skill: Skill) => (
+            {skills.map((skill) => (
               <div
                 key={skill.name}
                 className="group flex flex-col items-center p-4 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors duration-200"

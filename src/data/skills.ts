@@ -1,10 +1,8 @@
-import { Skill } from "@/types";
-
-import { FaGithub, FaReact, FaJava, FaPython, FaCss3Alt } from "react-icons/fa";
+import { FaGithub, FaReact, FaJava, FaPython } from "react-icons/fa";
 import { SiTailwindcss, SiTypescript, SiMongodb } from "react-icons/si";
 import { FaGolang } from "react-icons/fa6";
 
-export const skills: Skill[] = [
+export const skills = [
   { name: "TypeScript", icon: SiTypescript, level: "Advanced" },
   {
     name: "React",
