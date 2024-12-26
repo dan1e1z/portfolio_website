@@ -315,7 +315,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import TerminalWindow from "@/components/TerminalWindow";
@@ -330,7 +329,6 @@ interface AppSidebarProps {
 export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
   const [isTerminalVisible, setIsTerminalVisible] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
-  const { state } = useSidebar();
 
   const toggleTerminal = useCallback(() => {
     setIsTerminalVisible((prev) => !prev);

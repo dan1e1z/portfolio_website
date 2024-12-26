@@ -5,7 +5,7 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import { X, Ellipsis } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 // UI Components
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
@@ -15,7 +15,6 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/toaster";
 import { AppSidebar } from "@/components/app-sidebar";
 
