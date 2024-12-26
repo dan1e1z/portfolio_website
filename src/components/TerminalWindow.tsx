@@ -560,9 +560,6 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
       navigate(
         `/projects/?project=project${fileFound.index}&timestamp=${Date.now()}`,
       );
-      // navigate(`/projects/?project=project${fileFound.index}`, {
-      //   replace: true,
-      // });
       setIsTerminalVisible(false);
     } else if (fileFound?.file?.type === "directory") {
       navigate(`/${dirName}`);
@@ -626,7 +623,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
   const displayMessage = (message: string, type: string) => {
     setMessageType(type);
     setMessage(message);
-    setTimeout(() => setMessage(null), 5000);
+    setTimeout(() => setMessage(null), 10000);
   };
 
   const findDirectoryInCurrentDirectory = (
