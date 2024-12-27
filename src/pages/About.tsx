@@ -139,8 +139,651 @@
 // Hobbies
 
 // TEST1
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Badge } from "@/components/ui/badge";
+// import ComputerModelContainer from "@/components/services/ComputerModelContainer";
+//
+// const interests = [
+//   "Web Development",
+//   "UI/UX Design",
+//   "Machine Learning",
+//   "Open Source",
+// ];
+//
+// const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
+//
+// const About = () => {
+//   return (
+//     <div className="min-h-screen bg-background p-6 flex items-center justify-center">
+//       <div className="w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden">
+//         <div className="p-6">
+//           <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+//             About Me
+//           </h1>
+//           <Tabs defaultValue="education" className="w-full">
+//             <TabsList className="flex flex-col sm:flex-row w-full mb-8">
+//               <TabsTrigger value="education" className="flex-1">
+//                 Education
+//               </TabsTrigger>
+//               <TabsTrigger value="interests" className="flex-1">
+//                 Interests
+//               </TabsTrigger>
+//               <TabsTrigger value="hobbies" className="flex-1">
+//                 Hobbies
+//               </TabsTrigger>
+//               <TabsTrigger value="about" className="flex-1">
+//                 About
+//               </TabsTrigger>
+//             </TabsList>
+//             <div className="mt-6">
+//               <TabsContent value="education">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Education
+//                 </h2>
+//                 <div className="space-y-4">
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       Bachelor of Science in Computer Science
+//                     </h3>
+//                     <p className="text-muted-foreground">
+//                       University of Sydney
+//                     </p>
+//                   </div>
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       test
+//                     </h3>
+//                     <p className="text-muted-foreground">test</p>
+//                   </div>
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="interests">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Interests
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {interests.map((interest, index) => (
+//                     <Badge key={index} variant="secondary">
+//                       {interest}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="hobbies">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Hobbies
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {hobbies.map((hobby, index) => (
+//                     <Badge key={index} variant="outline">
+//                       {hobby}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="about">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   About Me
+//                 </h2>{" "}
+//                 <p className="text-muted-foreground leading-relaxed">
+//                   A passionate{" "}
+//                   <strong className="text-primary">web developer</strong>
+//                   specializing in creating{" "}
+//                   <strong className="text-primary">
+//                     intuitive and visually appealing interfaces{" "}
+//                   </strong>
+//                   . Proficient in{" "}
+//                   <strong className="text-primary">
+//                     full-stack development{" "}
+//                   </strong>{" "}
+//                   with expertise in{" "}
+//                   <strong className="text-primary">
+//                     Python, TypeScript, React{" "}
+//                   </strong>
+//                   , and modern web technologies.{" "}
+//                 </p>
+//               </TabsContent>
+//             </div>
+//           </Tabs>
+//         </div>
+//         <ComputerModelContainer />
+//       </div>
+//     </div>
+//   );
+// };
+//
+// export default About;
+
+// TEST2 - WORKING
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Badge } from "@/components/ui/badge";
+// import ComputerModelContainer from "@/components/services/ComputerModelContainer";
+//
+// const interests = [
+//   "Web Development",
+//   "UI/UX Design",
+//   "Machine Learning",
+//   "Open Source",
+// ];
+//
+// const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
+//
+// const About = () => {
+//   return (
+//     <div className="min-h-screen bg-background p-6 flex items-center justify-center">
+//       <div className="w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden flex">
+//         <div className="p-6">
+//           <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+//             About Me
+//           </h1>
+//           <Tabs defaultValue="education" className="w-full">
+//             <TabsList className="flex flex-col sm:flex-row w-full mb-8">
+//               <TabsTrigger value="education" className="flex-1">
+//                 Education
+//               </TabsTrigger>
+//               <TabsTrigger value="interests" className="flex-1">
+//                 Interests
+//               </TabsTrigger>
+//               <TabsTrigger value="hobbies" className="flex-1">
+//                 Hobbies
+//               </TabsTrigger>
+//               <TabsTrigger value="about" className="flex-1">
+//                 About
+//               </TabsTrigger>
+//             </TabsList>
+//             <div className="mt-6">
+//               <TabsContent value="education">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Education
+//                 </h2>
+//                 <div className="space-y-4">
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       Bachelor of Science in Computer Science
+//                     </h3>
+//                     <p className="text-muted-foreground">
+//                       University of Sydney
+//                     </p>
+//                   </div>
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       test
+//                     </h3>
+//                     <p className="text-muted-foreground">test</p>
+//                   </div>
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="interests">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Interests
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {interests.map((interest, index) => (
+//                     <Badge key={index} variant="secondary">
+//                       {interest}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="hobbies">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Hobbies
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {hobbies.map((hobby, index) => (
+//                     <Badge key={index} variant="outline">
+//                       {hobby}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="about">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   About Me
+//                 </h2>
+//                 <p className="text-muted-foreground leading-relaxed">
+//                   A passionate{" "}
+//                   <strong className="text-primary">web developer</strong>{" "}
+//                   specializing in creating{" "}
+//                   <strong className="text-primary">
+//                     intuitive and visually appealing interfaces
+//                   </strong>
+//                   . Proficient in{" "}
+//                   <strong className="text-primary">
+//                     full-stack development
+//                   </strong>{" "}
+//                   with expertise in{" "}
+//                   <strong className="text-primary">
+//                     Python, TypeScript, React
+//                   </strong>
+//                   , and modern web technologies.
+//                 </p>
+//               </TabsContent>
+//             </div>
+//           </Tabs>
+//         </div>
+//         <div className="w-full">
+//           <ComputerModelContainer />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+//
+// export default About;
+
+// TEST3 - SEMI-WORKING
+
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Badge } from "@/components/ui/badge";
+// import ComputerModelContainer from "@/components/services/ComputerModelContainer";
+//
+// const interests = [
+//   "Web Development",
+//   "UI/UX Design",
+//   "Machine Learning",
+//   "Open Source",
+// ];
+//
+// const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
+//
+// const About = () => {
+//   return (
+//     <div className="min-h-screen bg-background p-6 flex items-center justify-center">
+//       <div className="w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden flex flex-col lg:flex-row">
+//         <div className="p-6 flex-1">
+//           <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+//             About Me
+//           </h1>
+//           <Tabs defaultValue="education" className="w-full">
+//             <TabsList className="flex flex-col sm:flex-row w-full mb-8">
+//               <TabsTrigger value="education" className="flex-1">
+//                 Education
+//               </TabsTrigger>
+//               <TabsTrigger value="interests" className="flex-1">
+//                 Interests
+//               </TabsTrigger>
+//               <TabsTrigger value="hobbies" className="flex-1">
+//                 Hobbies
+//               </TabsTrigger>
+//               <TabsTrigger value="about" className="flex-1">
+//                 About
+//               </TabsTrigger>
+//             </TabsList>
+//             <div className="mt-6">
+//               <TabsContent value="education">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Education
+//                 </h2>
+//                 <div className="space-y-4">
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       Bachelor of Science in Computer Science
+//                     </h3>
+//                     <p className="text-muted-foreground">
+//                       University of Sydney
+//                     </p>
+//                   </div>
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       test
+//                     </h3>
+//                     <p className="text-muted-foreground">test</p>
+//                   </div>
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="interests">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Interests
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {interests.map((interest, index) => (
+//                     <Badge key={index} variant="secondary">
+//                       {interest}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="hobbies">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Hobbies
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {hobbies.map((hobby, index) => (
+//                     <Badge key={index} variant="outline">
+//                       {hobby}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="about">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   About Me
+//                 </h2>
+//                 <p className="text-muted-foreground leading-relaxed">
+//                   A passionate{" "}
+//                   <strong className="text-primary">web developer</strong>{" "}
+//                   specializing in creating{" "}
+//                   <strong className="text-primary">
+//                     intuitive and visually appealing interfaces
+//                   </strong>
+//                   . Proficient in{" "}
+//                   <strong className="text-primary">
+//                     full-stack development
+//                   </strong>{" "}
+//                   with expertise in{" "}
+//                   <strong className="text-primary">
+//                     Python, TypeScript, React
+//                   </strong>
+//                   , and modern web technologies.
+//                 </p>
+//               </TabsContent>
+//             </div>
+//           </Tabs>
+//         </div>
+//         <div className="w-full lg:w-1/2 h-[300px] lg:h-auto">
+//           <ComputerModelContainer />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+//
+// export default About;
+
+// TEST4
+
+// import { useState, useEffect, useRef } from "react";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Badge } from "@/components/ui/badge";
+// import ComputerModelContainer from "@/components/services/ComputerModelContainer";
+//
+// const interests = [
+//   "Web Development",
+//   "UI/UX Design",
+//   "Machine Learning",
+//   "Open Source",
+// ];
+//
+// const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
+//
+// const About = () => {
+//   const [containerWidth, setContainerWidth] = useState(0);
+//   const containerRef = useRef<HTMLDivElement>(null);
+//
+//   useEffect(() => {
+//     const updateWidth = () => {
+//       if (containerRef.current) {
+//         setContainerWidth(containerRef.current.offsetWidth);
+//       }
+//     };
+//
+//     updateWidth();
+//     window.addEventListener("resize", updateWidth);
+//
+//     return () => window.removeEventListener("resize", updateWidth);
+//   }, []);
+//
+//   const isLargeScreen = containerWidth >= 1024; // 1024px is typically the 'lg' breakpoint
+//
+//   return (
+//     <div
+//       className="min-h-screen bg-background p-6 flex items-center justify-center"
+//       ref={containerRef}
+//     >
+//       <div
+//         className={`w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden flex ${isLargeScreen ? "flex-row" : "flex-col"}`}
+//       >
+//         <div className="p-6 flex-1">
+//           <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+//             About Me
+//           </h1>
+//           <Tabs defaultValue="education" className="w-full">
+//             <TabsList
+//               className={`flex ${containerWidth >= 640 ? "flex-row" : "flex-col"} w-full mb-8`}
+//             >
+//               <TabsTrigger value="education" className="flex-1">
+//                 Education
+//               </TabsTrigger>
+//               <TabsTrigger value="interests" className="flex-1">
+//                 Interests
+//               </TabsTrigger>
+//               <TabsTrigger value="hobbies" className="flex-1">
+//                 Hobbies
+//               </TabsTrigger>
+//               <TabsTrigger value="about" className="flex-1">
+//                 About
+//               </TabsTrigger>
+//             </TabsList>
+//             <div className="mt-6">
+//               <TabsContent value="education">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Education
+//                 </h2>
+//                 <div className="space-y-4">
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       Bachelor of Science in Computer Science
+//                     </h3>
+//                     <p className="text-muted-foreground">
+//                       University of Sydney
+//                     </p>
+//                   </div>
+//                   <div>
+//                     <h3 className="text-lg font-medium text-card-foreground">
+//                       test
+//                     </h3>
+//                     <p className="text-muted-foreground">test</p>
+//                   </div>
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="interests">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Interests
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {interests.map((interest, index) => (
+//                     <Badge key={index} variant="secondary">
+//                       {interest}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="hobbies">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   Hobbies
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2">
+//                   {hobbies.map((hobby, index) => (
+//                     <Badge key={index} variant="outline">
+//                       {hobby}
+//                     </Badge>
+//                   ))}
+//                 </div>
+//               </TabsContent>
+//               <TabsContent value="about">
+//                 <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                   About Me
+//                 </h2>
+//                 <p className="text-muted-foreground leading-relaxed">
+//                   A passionate{" "}
+//                   <strong className="text-primary">web developer</strong>{" "}
+//                   specializing in creating{" "}
+//                   <strong className="text-primary">
+//                     intuitive and visually appealing interfaces
+//                   </strong>
+//                   . Proficient in{" "}
+//                   <strong className="text-primary">
+//                     full-stack development
+//                   </strong>{" "}
+//                   with expertise in{" "}
+//                   <strong className="text-primary">
+//                     Python, TypeScript, React
+//                   </strong>
+//                   , and modern web technologies.
+//                 </p>
+//               </TabsContent>
+//             </div>
+//           </Tabs>
+//         </div>
+//         <div
+//           className={`${isLargeScreen ? "w-1/2" : "w-full"} h-[300px] ${isLargeScreen ? "h-auto" : ""}`}
+//         >
+//           <ComputerModelContainer />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+//
+// export default About;
+
+// TEST5 - WORKING (UP_2-DATE)
+// import { useState, useEffect, useRef } from "react";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Badge } from "@/components/ui/badge";
+// import { Card } from "@/components/ui/card";
+// import ComputerModelContainer from "@/components/services/ComputerModelContainer";
+//
+// const interests = [
+//   "Web Development",
+//   "UI/UX Design",
+//   "Machine Learning",
+//   "Open Source",
+// ];
+//
+// const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
+//
+// const About = () => {
+//   const [isScreenVisible, setIsScreenVisible] = useState<boolean>(false);
+//   const [containerWidth, setContainerWidth] = useState(0);
+//   const containerRef = useRef<HTMLDivElement>(null);
+//
+//   useEffect(() => {
+//     const updateWidth = () => {
+//       if (containerRef.current)
+//         setContainerWidth(containerRef.current.offsetWidth);
+//     };
+//
+//     updateWidth();
+//     window.addEventListener("resize", updateWidth);
+//     return () => window.removeEventListener("resize", updateWidth);
+//   }, []);
+//
+//   const isLargeScreen = containerWidth >= 1024;
+//
+//   return (
+//     <div
+//       className="min-h-screen bg-background p-6 flex items-center justify-center"
+//       ref={containerRef}
+//     >
+//       {/* <div */}
+//       {/*   className={`w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden flex ${isLargeScreen ? "flex-row" : "flex-col"}`} */}
+//       {/* > */}
+//       <Card
+//         className={`w-full  p-10 flex max-w-4xl ${isLargeScreen ? "flex-row" : "flex-col"}`}
+//       >
+//         <div className="p-6 flex-1">
+//           <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+//             About Me
+//           </h1>
+//           <Tabs defaultValue="education" className="w-full">
+//             <TabsList className={`flex w-full mb-8`}>
+//               {["education", "interests", "hobbies", "about"].map((value) => (
+//                 <TabsTrigger key={value} value={value} className="flex-1">
+//                   {value.charAt(0).toUpperCase() + value.slice(1)}
+//                 </TabsTrigger>
+//               ))}
+//             </TabsList>
+//             <div className="mt-6">
+//               {["education", "interests", "hobbies", "about"].map((tab) => (
+//                 <TabsContent key={tab} value={tab}>
+//                   <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+//                     {tab.charAt(0).toUpperCase() + tab.slice(1)}
+//                   </h2>
+//                   {tab === "education" && (
+//                     <div className="space-y-4">
+//                       <div>
+//                         <h3 className="text-lg font-medium text-card-foreground">
+//                           Bachelor of Science in Computer Science
+//                         </h3>
+//                         <p className="text-muted-foreground">
+//                           University of Sydney
+//                         </p>
+//                       </div>
+//                     </div>
+//                   )}
+//                   {tab === "interests" && (
+//                     <div className="flex flex-wrap gap-2">
+//                       {interests.map((interest, index) => (
+//                         <Badge key={index} variant="secondary">
+//                           {interest}
+//                         </Badge>
+//                       ))}
+//                     </div>
+//                   )}
+//                   {tab === "hobbies" && (
+//                     <div className="flex flex-wrap gap-2">
+//                       {hobbies.map((hobby, index) => (
+//                         <Badge key={index} variant="outline">
+//                           {hobby}
+//                         </Badge>
+//                       ))}
+//                     </div>
+//                   )}
+//                   {tab === "about" && (
+//                     <p className="text-muted-foreground leading-relaxed">
+//                       A passionate{" "}
+//                       <strong className="text-primary">web developer</strong>{" "}
+//                       specialising in creating{" "}
+//                       <strong className="text-primary">
+//                         intuitive and visually appealing interfaces
+//                       </strong>
+//                       . Proficient in{" "}
+//                       <strong className="text-primary">
+//                         full-stack development
+//                       </strong>{" "}
+//                       with expertise in{" "}
+//                       <strong className="text-primary">
+//                         Python, TypeScript, React
+//                       </strong>
+//                       , and modern web technologies.
+//                     </p>
+//                   )}
+//                 </TabsContent>
+//               ))}
+//             </div>
+//           </Tabs>
+//         </div>
+//         <div
+//           className={`${isLargeScreen ? "w-1/2" : "w-full"} ${isLargeScreen ? "h-auto" : "max-h-[400px] overflow-hidden"}`}
+//         >
+//           <ComputerModelContainer
+//             isScreenVisible={isScreenVisible}
+//             setIsScreenVisible={setIsScreenVisible}
+//           />
+//         </div>
+//       </Card>
+//       {/* </div> */}
+//       <button
+//         onClick={() => {
+//           setIsScreenVisible(!isScreenVisible);
+//         }}
+//       >
+//         click me
+//       </button>
+//     </div>
+//   );
+// };
+//
+// export default About;
+
+// TEST6 - CURRENT TEST
+import { useState, useEffect, useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import ComputerModelContainer from "@/components/services/ComputerModelContainer";
 
 const interests = [
   "Web Development",
@@ -152,100 +795,129 @@ const interests = [
 const hobbies = ["Photography", "Hiking", "Reading", "Chess"];
 
 const About = () => {
+  const [isScreenVisible, setIsScreenVisible] = useState<boolean>(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current)
+        setContainerWidth(containerRef.current.offsetWidth);
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const isLargeScreen = containerWidth >= 1024;
+
   return (
-    <div className="min-h-screen bg-background p-6 flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-card rounded-lg shadow-lg overflow-hidden">
-        <div className="p-6">
-          <h1 className="text-3xl font-bold mb-6 text-card-foreground">
-            About Me
-          </h1>
-          <Tabs defaultValue="education" className="w-full">
-            <TabsList className="flex flex-col sm:flex-row w-full mb-8">
-              <TabsTrigger value="education" className="flex-1">
-                Education
-              </TabsTrigger>
-              <TabsTrigger value="interests" className="flex-1">
-                Interests
-              </TabsTrigger>
-              <TabsTrigger value="hobbies" className="flex-1">
-                Hobbies
-              </TabsTrigger>
-              <TabsTrigger value="about" className="flex-1">
-                About
-              </TabsTrigger>
-            </TabsList>
-            <div className="mt-6">
-              <TabsContent value="education">
-                <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
-                  Education
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-lg font-medium text-card-foreground">
-                      Bachelor of Science in Computer Science
-                    </h3>
-                    <p className="text-muted-foreground">
-                      University of Sydney
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-medium text-card-foreground">
-                      test
-                    </h3>
-                    <p className="text-muted-foreground">test</p>
-                  </div>
-                </div>
-              </TabsContent>
-              <TabsContent value="interests">
-                <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
-                  Interests
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {interests.map((interest, index) => (
-                    <Badge key={index} variant="secondary">
-                      {interest}
-                    </Badge>
-                  ))}
-                </div>
-              </TabsContent>
-              <TabsContent value="hobbies">
-                <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
-                  Hobbies
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {hobbies.map((hobby, index) => (
-                    <Badge key={index} variant="outline">
-                      {hobby}
-                    </Badge>
-                  ))}
-                </div>
-              </TabsContent>
-              <TabsContent value="about">
-                <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
-                  About Me
-                </h2>{" "}
-                <p className="text-muted-foreground leading-relaxed">
-                  A passionate{" "}
-                  <strong className="text-primary">web developer</strong>
-                  specializing in creating{" "}
-                  <strong className="text-primary">
-                    intuitive and visually appealing interfaces{" "}
-                  </strong>
-                  . Proficient in{" "}
-                  <strong className="text-primary">
-                    full-stack development{" "}
-                  </strong>{" "}
-                  with expertise in{" "}
-                  <strong className="text-primary">
-                    Python, TypeScript, React{" "}
-                  </strong>
-                  , and modern web technologies.{" "}
-                </p>
-              </TabsContent>
-            </div>
-          </Tabs>
+    <div
+      className="min-h-screen bg-background p-6 flex items-center justify-center"
+      ref={containerRef}
+    >
+      {isScreenVisible ? (
+        <div className="absolute inset-0">
+          <ComputerModelContainer
+            isScreenVisible={isScreenVisible}
+            setIsScreenVisible={setIsScreenVisible}
+          />
         </div>
-      </div>
+      ) : (
+        <Card
+          className={`w-full p-10 flex max-w-4xl ${isLargeScreen ? "flex-row" : "flex-col"}`}
+        >
+          <div className="p-6 flex-1">
+            <h1 className="text-3xl font-bold mb-6 text-card-foreground">
+              About Me
+            </h1>
+            <Tabs defaultValue="education" className="w-full">
+              <TabsList className={`flex w-full mb-8`}>
+                {["education", "interests", "hobbies", "about"].map((value) => (
+                  <TabsTrigger key={value} value={value} className="flex-1">
+                    {value.charAt(0).toUpperCase() + value.slice(1)}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              <div className="mt-6">
+                {["education", "interests", "hobbies", "about"].map((tab) => (
+                  <TabsContent key={tab} value={tab}>
+                    <h2 className="text-2xl font-semibold mb-4 text-card-foreground">
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </h2>
+                    {tab === "education" && (
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="text-lg font-medium text-card-foreground">
+                            Bachelor of Science in Computer Science
+                          </h3>
+                          <p className="text-muted-foreground">
+                            University of Sydney
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    {tab === "interests" && (
+                      <div className="flex flex-wrap gap-2">
+                        {interests.map((interest, index) => (
+                          <Badge key={index} variant="secondary">
+                            {interest}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                    {tab === "hobbies" && (
+                      <div className="flex flex-wrap gap-2">
+                        {hobbies.map((hobby, index) => (
+                          <Badge key={index} variant="outline">
+                            {hobby}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                    {tab === "about" && (
+                      <p className="text-muted-foreground leading-relaxed">
+                        A passionate{" "}
+                        <strong className="text-primary">web developer</strong>{" "}
+                        specialising in creating{" "}
+                        <strong className="text-primary">
+                          intuitive and visually appealing interfaces
+                        </strong>
+                        . Proficient in{" "}
+                        <strong className="text-primary">
+                          full-stack development
+                        </strong>{" "}
+                        with expertise in{" "}
+                        <strong className="text-primary">
+                          Python, TypeScript, React
+                        </strong>
+                        , and modern web technologies.
+                      </p>
+                    )}
+                  </TabsContent>
+                ))}
+              </div>
+            </Tabs>
+          </div>
+          <div
+            className={`${isLargeScreen ? "w-1/2" : "w-full"} ${isLargeScreen ? "h-auto" : "max-h-[400px] overflow-hidden"}`}
+          >
+            <ComputerModelContainer
+              isScreenVisible={isScreenVisible}
+              setIsScreenVisible={setIsScreenVisible}
+            />
+          </div>
+        </Card>
+      )}
+      <button
+        onClick={() => {
+          setIsScreenVisible(!isScreenVisible);
+        }}
+        className="absolute bottom-4 right-4 z-50"
+      >
+        click me
+      </button>
     </div>
   );
 };
