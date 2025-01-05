@@ -1,0 +1,80 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+const RectangleAnimation = ({ rotate = 0 }) => {
+  return (
+    <motion.div
+      className="w-64 h-64 border-2 border-[#ede9cb] p-2"
+      style={{ rotate: rotate }}
+    >
+      <motion.div
+        className="relative w-full bg-[#ede9cb]"
+        initial={{ height: "30%", bottom: "0%" }}
+        animate={{
+          height: ["30%", "0%", "100%", "30%"],
+          bottom: ["0%", "0%", "0%", "0%"],
+        }}
+        transition={{
+          duration: 6,
+          times: [0, 0.33, 0.66, 1],
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+      />
+    </motion.div>
+  );
+};
+
+const AboutSection = () => {
+  return (
+    <div className="relative h-[50vh] overflow-hidden">
+      {/* Parent container for background and text */}
+      <div className="relative h-full w-full">
+        {/* Background with animation */}
+        <div
+          id="background-area"
+          className="flex h-full border border-b-[#EEE9CC] items-center bg-[#1d1915]"
+        >
+          <div className="p-4 flex-1">
+            <RectangleAnimation rotate={270} />
+          </div>
+          <div className="p-4 flex-1">
+            <RectangleAnimation rotate={180} />
+          </div>
+          <div className="p-4 flex-1">
+            <RectangleAnimation rotate={0} />
+          </div>
+          <div className="p-4 flex-1">
+            <RectangleAnimation rotate={90} />
+          </div>
+        </div>
+
+        {/* Overlay text */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div
+            className="text"
+            animate={{
+              x: [0, -400, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          >
+            {/* Text with dynamic colour change based on overlap */}
+            <p
+              id="about-text"
+              className="text-[50vh] leading-[1] font-neueMontreal"
+            >
+              About
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutSection;

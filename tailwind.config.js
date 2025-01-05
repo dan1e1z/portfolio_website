@@ -63,7 +63,26 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+        neueMontreal: ["NeueMontreal", "sans-serif"], // Add your custom font
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(100%)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards",
+      },
     },
   },
+
   // plugins: [require("tailwindcss-animate")],
 };
