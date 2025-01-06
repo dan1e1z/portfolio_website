@@ -58,7 +58,6 @@
 
     /* grey */
     /* --sidebar-background: 0 0% 98%; */
-    /* NOTE: testing opacity*/
     /* --sidebar-background: hsla(0, 0%, 100%, 1); */
 
     --sidebar-background: 0 0% 100%;
@@ -81,7 +80,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* white */
-    --page-background: 0 0% 100%;
+    --page-background: 0 0% 96%;
     /* --page-background: 0 0% 0%; */
   }
   .dark {
@@ -156,7 +155,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* black */
-    --page-background: 0 0% 0%;
+    --page-background: 220 12% 9%;
     /* white */
     /* --page-background: 0 0% 100%; */
     /* --page-background: 218 18% 9%; */

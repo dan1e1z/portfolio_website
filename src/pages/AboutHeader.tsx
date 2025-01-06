@@ -53,286 +53,76 @@
 //
 // export default AboutHeader;
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
+
+// CURRENT
+import { motion, MotionProps } from "framer-motion";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const AboutHeader = () => {
-  const rectWidth = 252;
-  const numRects = 4;
-  const svgWidth = 2000; // Or use `window.innerWidth` if you want it to be dynamic.
-  const padding = (svgWidth - rectWidth * numRects) / (numRects + 1);
+  const animation: MotionProps["animate"] = {
+    // x: [100, -300, 200],
+    x: [-1000, 0],
+    transition: {
+      duration: 4,
+      // repeat: Infinity,
+      // repeatType: "reverse", // This matches the allowed values
+      ease: "easeInOut",
+    },
+  };
 
-  // Calculate the vertical middle of the rectangles
-  const rectMiddleY = 176 + 76 / 2; // Vertical position of the middle of the animated rectangles
+  const [setContainerRef, dimensions] = useContainerDimensions();
+  console.log(dimensions);
 
   return (
-    <svg
-      id="demo"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="400"
-      viewBox="0 0 2000 280"
-    >
-      <defs>
-        {/* Clip Path Definitions for Each Animated Rectangle */}
-        <clipPath id="clipPath1">
-          <rect
-            x={padding}
-            y="176"
-            width={rectWidth}
-            height="76"
-            fill="#ede9cb"
-            rx="0"
-            className="animated-shape"
-          />
-        </clipPath>
-        <clipPath id="clipPath2">
-          <rect
-            x={padding * 2 + rectWidth}
-            y="176"
-            width={rectWidth}
-            height="76"
-            fill="#ede9cb"
-            rx="0"
-            className="animated-shape"
-          />
-        </clipPath>
-        <clipPath id="clipPath3">
-          <rect
-            x={padding * 3 + rectWidth * 2}
-            y="176"
-            width={rectWidth}
-            height="76"
-            fill="#ede9cb"
-            rx="0"
-            className="animated-shape"
-          />
-        </clipPath>
-        <clipPath id="clipPath4">
-          <rect
-            x={padding * 4 + rectWidth * 3}
-            y="176"
-            width={rectWidth}
-            height="76"
-            fill="#ede9cb"
-            rx="0"
-            className="animated-shape"
-          />
-        </clipPath>
-      </defs>
+    <div ref={setContainerRef} className="relative h-screen">
+      {/* Inline Animated SVG Mask */}
 
-      {/* Outer Rectangles (Static) */}
-      <rect
-        x={padding}
-        y="2"
-        width={rectWidth}
-        height="252"
-        fill="#1e1915"
-        stroke="#ede9cb"
-        strokeWidth="2"
-      />
-      <rect
-        x={padding * 2 + rectWidth}
-        y="2"
-        width={rectWidth}
-        height="252"
-        fill="#1e1915"
-        stroke="#ede9cb"
-        strokeWidth="2"
-      />
-      <rect
-        x={padding * 3 + rectWidth * 2}
-        y="2"
-        width={rectWidth}
-        height="252"
-        fill="#1e1915"
-        stroke="#ede9cb"
-        strokeWidth="2"
-      />
-      <rect
-        x={padding * 4 + rectWidth * 3}
-        y="2"
-        width={rectWidth}
-        height="252"
-        fill="#1e1915"
-        stroke="#ede9cb"
-        strokeWidth="2"
-      />
-
-      {/* Animated Rectangles with CSS Keyframe Animations */}
-      <motion.rect
-        x={padding}
-        y="178"
-        width={rectWidth}
-        height="76"
-        fill="#ede9cb"
-        rx="0"
-        className="animated-shape"
-        clipPath="url(#clipPath1)" // Apply clipPath to the animated rectangle
-        transform={`rotate(90, ${padding + rectWidth / 2}, ${178 + 76 / 2}) translate(${-87}, ${87})`}
-      />
-      <motion.rect
-        x={padding * 2 + rectWidth}
-        y="176"
-        width={rectWidth}
-        height="76"
-        fill="#ede9cb"
-        rx="0"
-        className="animated-shape"
-        clipPath="url(#clipPath2)" // Apply clipPath to the animated rectangle
-      />
-      <motion.rect
-        x={padding * 3 + rectWidth * 2}
-        y="176"
-        width={rectWidth}
-        height="76"
-        fill="#ede9cb"
-        rx="0"
-        className="animated-shape"
-        clipPath="url(#clipPath3)" // Apply clipPath to the animated rectangle
-        transform={`rotate(270, ${padding * 3 + rectWidth * 2 + rectWidth / 2}, ${176 + 76 / 2}) translate(87, 87)`}
-      />
-      <motion.rect
-        x={padding * 4 + rectWidth * 3}
-        y="176"
-        width={rectWidth}
-        height="76"
-        fill="#ede9cb"
-        rx="0"
-        className="animated-shape"
-        clipPath="url(#clipPath4)" // Apply clipPath to the animated rectangle
-        transform={`rotate(180, ${padding * 4 + rectWidth * 3 + rectWidth / 2}, ${176 + 76 / 2}) translate(0, 174)`}
-      />
-
-      {/* Static Text */}
-      <motion.text
-        x="50%" // Center text horizontally
-        y={rectMiddleY} // Set vertical position at the middle of the rectangles
-        textAnchor="middle"
-        fontSize="400"
-        fill="#ede9cb" // Updated fill to match the background
-        animate={{
-          x: [200, -400, 200], // Animate the x position of the text
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
+      {/* Masked Content */}
+      <div
+        className="absolute w-full h-full flex items-center justify-center text-[#1e1915] text-[30vh] leading-tight cursor-default z-10"
+        style={{
+          background: "#EEE9CC",
+          maskRepeat: "no-repeat",
+          maskSize: "256", // Adjust mask size as needed
+          maskImage: `
+            url(/AnimatedRectangleRight.svg),
+            url(/AnimatedRectangleDown.svg),
+            url(/AnimatedRectangleUp.svg),
+            url(/AnimatedRectangleLeft.svg)
+         `,
+          maskPosition: `
+            2% 50%,
+            33% 50%,
+            66% 50%,
+            98% 50%
+          `,
         }}
       >
-        About
-      </motion.text>
-
-      {/* Apply the clip path to the animated text and animate its fill */}
-      <motion.g clipPath="url(#clipPath1)">
-        <motion.text
-          x="50%" // Center text horizontally
-          y={rectMiddleY} // Set vertical position at the middle of the rectangles
-          textAnchor="middle"
-          fontSize="400"
-          fill="#1e1915"
-          animate={{
-            x: [200, -400, 200], // Animate the x position of the text
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        >
+        <motion.p className="" animate={animation}>
           About
-        </motion.text>
-      </motion.g>
+          <br />
+          <span>Me</span>
+        </motion.p>
+      </div>
 
-      {/* Apply the clip path to the animated text for other rectangles */}
-      <motion.g clipPath="url(#clipPath2)">
-        <motion.text
-          x="50%" // Center text horizontally
-          y={rectMiddleY} // Set vertical position at the middle of the rectangles
-          textAnchor="middle"
-          fontSize="400"
-          fill="#1e1915"
-          animate={{
-            x: [200, -400, 200], // Animate the x position of the text
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        >
+      {/* Default Content */}
+      <div className="body w-full h-full flex items-center justify-center text-[#eee9cc] text-[30vh] leading-tight cursor-default">
+        <motion.p className="" animate={animation}>
           About
-        </motion.text>
-      </motion.g>
+          <br />
+          <span>Me</span>
+        </motion.p>
+      </div>
 
-      <motion.g clipPath="url(#clipPath3)">
-        <motion.text
-          x="50%" // Center text horizontally
-          y={rectMiddleY} // Set vertical position at the middle of the rectangles
-          textAnchor="middle"
-          fontSize="400"
-          fill="#1e1915"
-          animate={{
-            x: [200, -400, 200], // Animate the x position of the text
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        >
-          About
-        </motion.text>
-      </motion.g>
-
-      <motion.g clipPath="url(#clipPath4)">
-        <motion.text
-          x="50%" // Center text horizontally
-          y={rectMiddleY} // Set vertical position at the middle of the rectangles
-          textAnchor="middle"
-          fontSize="400"
-          fill="#1e1915"
-          animate={{
-            x: [200, -400, 200], // Animate the x position of the text
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        >
-          About
-        </motion.text>
-      </motion.g>
-
-      {/* CSS for the animation */}
-      <style>
-        {`
-          .animated-shape {
-            animation: shape-animation 6s ease-in-out infinite;
-          }
-          
-          @keyframes shape-animation {
-            0%, 100% {
-              height: 76px;
-              y: 176px;
-            }
-            33% {
-              height: 0;
-              y: 252px;
-            }
-            66% {
-              height: 252px;
-              y: 0;
-            }
-          }
-        `}
-      </style>
-    </svg>
+      {/* overlay */}
+      {/* 
+      <div className="absolute h-[288px] w-[288px] border-2 border-[#EEE9CC] top-[29.5%] left-[0%]" />
+      <div className="absolute h-[288px] w-[288px] border-2 border-[#EEE9CC] top-[29.5%] left-[25%]" />
+      <div className="absolute h-[288px] w-[288px] border-2 border-[#EEE9CC] top-[29.5%] left-[51.5%]" />
+      <div className="absolute h-[288px] w-[288px] border-2 border-[#EEE9CC] top-[29.5%] left-[77%]" />
+      */}
+    </div>
   );
 };
 

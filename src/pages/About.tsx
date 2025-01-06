@@ -1368,6 +1368,7 @@ import {
 import AboutHeader from "./AboutHeader";
 import VerticalSwiper from "./VerticalSwiper";
 import Swiper from "./Swiper";
+import Interests from "./Interests";
 
 const sliderItems = [
   // {
@@ -1578,23 +1579,15 @@ const About: React.FC = () => {
             <VerticalSwiper />
           </section>
 
-          {/* Hobbies Section */}
-          <section className="mt-8">
-            <Swiper scrollRef={containerRef} />
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">Hobbies</h2>
-            <p className="text-gray-300">
-              Include details about activities you enjoy in your free time or
-              passionate interests.
-            </p>
-          </section>
-
           {/* Interests Section */}
           <section className="mt-8">
             <h2 className="text-3xl font-bold text-gray-100 mb-4">Interests</h2>
-            <p className="text-gray-300">
-              Discuss subjects, topics, or areas that capture your curiosity and
-              enthusiasm.
-            </p>
+            <Interests containerRef={containerRef} />
+          </section>
+
+          {/* Hobbies Section */}
+          <section className="mt-8 border-t border-t-[#eee9cc]">
+            {/* <Swiper scrollRef={containerRef} /> */}
           </section>
         </section>
       </ScrollArea>

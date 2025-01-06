@@ -145,7 +145,7 @@ const SidebarProvider = React.forwardRef<
                 ...style,
               } as React.CSSProperties
             }
-            // TEST: ADDED pr-1 padding
+            // ADDED pr-1 padding
             // "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar pr-1",
             //  opacity-80 backdrop-blur-2xl
             className={cn(
