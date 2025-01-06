@@ -1369,6 +1369,8 @@ import AboutHeader from "./AboutHeader";
 import VerticalSwiper from "./VerticalSwiper";
 import Swiper from "./Swiper";
 import Interests from "./Interests";
+import AboutSectionTitle from "@/components/aboutSection/AboutSectionTitle";
+import Lenis from "lenis";
 
 const sliderItems = [
   // {
@@ -1418,6 +1420,21 @@ const About: React.FC = () => {
     mass: 1, // Balanced mass for natural momentum
     restDelta: 0.001, // Small value for smooth finish
   });
+
+  useEffect(() => {
+    const lenis = new Lenis({});
+
+    lenis.on("scroll", (e) => {
+      console.log("scroll", e);
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -1535,14 +1552,18 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        <section className="border-t border-t-[#EEE9CC] font-neueMontreal">
-          {/* About Section */}
-          <div className="relative border border-b-[#EEE9CC]">
-            <AboutHeader />
-            {/* overlay */}
-            <div className="absolute top-0 bottom-0 left-[60%] transform -translate-x-1/2 bg-[#EEE9CC] w-0.5 z-0" />
+        <section className="border-t border-t-[#EEE9CC]   font-neueMontreal text-[#EEE9CC]">
+          <AboutSectionTitle containerRef={containerRef} />
 
-            <p className=" pb-4 pl-4 text-muted-foreground leading-relaxed font-neueMontreal">
+          {/* About Section */}
+          {/* <div className="p-4 relative border-b border-b-[#EEE9CC]"> */}
+          <div className="relative min-h-[100dvh]  border-b border-b-[#EEE9CC] bg-[#1d1915] content-center p-4">
+            <AboutHeader />
+
+            {/* vertical line overlay */}
+            {/* <div className="absolute top-0 bottom-0 left-[60%] transform -translate-x-1/2 bg-[#EEE9CC] w-0.5 z-0" /> */}
+
+            <p className="text-muted-foreground leading-relaxed font-neueMontreal">
               A passionate{" "}
               <strong className="font-neueMontreal text-[#EEE9CC] text-xl">
                 web developer
@@ -1580,14 +1601,14 @@ const About: React.FC = () => {
           </section>
 
           {/* Interests Section */}
-          <section className="mt-8">
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">Interests</h2>
+          <section className="p-4 mt-8">
+            <h2 className="text-8xl text-[#EEE9CC] mb-4">Interests</h2>
             <Interests containerRef={containerRef} />
           </section>
 
           {/* Hobbies Section */}
-          <section className="mt-8 border-t border-t-[#eee9cc]">
-            {/* <Swiper scrollRef={containerRef} /> */}
+          <section className="mt-8 border-t border-t-[#eee9cc] h-screen">
+            <Swiper containerRef={containerRef} />
           </section>
         </section>
       </ScrollArea>
