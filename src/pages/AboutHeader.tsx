@@ -12,7 +12,7 @@ const AboutHeader = () => {
   };
 
   const [setContainerRef, dimensions] = useContainerDimensions();
-  console.log(dimensions);
+  // console.log(dimensions);
 
   return (
     <div ref={setContainerRef} className="">

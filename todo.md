@@ -1,3 +1,7 @@
+<!-- FIX: -->
+- [ ]  placement of Education & Hobbies dissapearing
+
+
 <!-- TODO: -->
 
 
@@ -28,3 +32,6 @@ THOUGHTS:
 - sidebar on bottom
 - remove sidebar
 - rethink how to interact with terminal
+
+const lenis = new Lenis({ lerp: 0.15 });
+
