@@ -13,7 +13,7 @@ export default function Paragraph({ paragraph, containerRef }) {
   return (
     <p
       ref={scrollRef}
-      className="flex text-4xl leader-1 text-[#EEE9CC] flex-wrap"
+      className="flex text-4xl leader-1 text-[#EEE9CC] flex-wrap justify-center"
     >
       {words.map((word, i) => {
         const start = i / words.length;

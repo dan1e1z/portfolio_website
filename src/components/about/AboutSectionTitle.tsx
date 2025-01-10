@@ -20,12 +20,12 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
     scrollYProgress,
     [0, 1],
     ["brightness(100%)", "brightness(30%)"],
-  ); // Filter transition
+  );
   const xPercent = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
     <motion.div
-      className="uppercase relative leading-1 text-[#1e1915] bg-[#eee9cc] h-screen flex flex-col justify-end"
+      className="relative h-screen w-full overflow-hidden flex flex-col justify-end bg-[#eee9cc]"
       style={{
         y: yPercent,
         scale,
@@ -34,7 +34,7 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
       ref={scrollRef}
     >
       <motion.h2
-        className="whitespace-nowrap text-[clamp(2rem,20vw,20rem)] m-0 tracking-[-0.05em] p-[0.15em] font-normal leading-[0.55] indent-[-0.065em] word-spacing-[0.15em] font-neueMontreal"
+        className="absolute w-full text-[20rem] leading-none text-center whitespace-nowrap text-[#1c1915]"
         style={{
           x: xPercent,
         }}
