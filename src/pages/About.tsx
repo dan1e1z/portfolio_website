@@ -81,10 +81,10 @@ const About: React.FC = () => {
         <div className="border-b border-b-[#EEE9CC] bg-[#1d1915] p-4">
           <EducationContent />
         </div>
-        <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915] p-4">
+        <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915] ">
           <InterestsContent containerRef={containerRef} />
         </div>
-        <div className="h-screen bg-[#1d1915] p-4">
+        <div className="">
           <HobbiesContent containerRef={containerRef} />
         </div>
       </div>

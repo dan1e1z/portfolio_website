@@ -10,10 +10,10 @@ CURRENT:
 - [x] use section transition for my About from: https://tympanus.net/Development/OnScrollLayoutFormations/ 
 - [x] gather 40 webp images. preferably own image, but copyright free images are fine.
 - [x] change About section title animation to occur on scroll
-- [ ] use photo slide animation from: https://tympanus.net/Development/OnScrollLayoutFormations/
+- [ ] use photo slide animation from: https://tympanus.net/Development/OnScrollLayoutFormations/ - attempted still needs tweaking
 - [ ] add vertical overlay line on About Me Section
 - [ ] add box animations on the RHS of the About Me Section
-- [ ] adjust visuals of Interests component - add blur v4 to text
+- [x] adjust visuals of Interests component - add blur v4 to text
 
 
 
@@ -30,6 +30,7 @@ MISCELLANEOUS:
 - [ ] fix visuals of contact page
 - [ ] fix visuals of skills page - svg mask gowey 
 - [ ] replace projects page slider with: https://motion.dev/docs/react-scroll-animations#parallax
+- [ ] dynamic text size on small container - Interests
 
 
 THOUGHTS:
