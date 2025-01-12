@@ -10,9 +10,8 @@ CURRENT:
 - [x] use section transition for my About from: https://tympanus.net/Development/OnScrollLayoutFormations/ 
 - [x] gather 40 webp images. preferably own image, but copyright free images are fine.
 - [x] change About section title animation to occur on scroll
-- [ ] use photo slide animation from: https://tympanus.net/Development/OnScrollLayoutFormations/ - attempted still needs tweaking
-- [ ] add vertical overlay line on About Me Section
-- [ ] add box animations on the RHS of the About Me Section
+- [x] use photo slide animation from: https://tympanus.net/Development/OnScrollLayoutFormations/ - attempted still needs tweaking
+- [x] add vertical overlay line on About Me Section
 - [x] adjust visuals of Interests component - add blur v4 to text
 
 

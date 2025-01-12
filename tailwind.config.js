@@ -65,6 +65,7 @@ export default {
       },
       fontFamily: {
         neueMontreal: ["NeueMontreal", "sans-serif"], // Add your custom font
+        sometimesTimes: ["Sometimes Times", "serif"],
       },
       keyframes: {
         fadeIn: {

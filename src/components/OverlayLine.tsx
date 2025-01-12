@@ -14,8 +14,8 @@ interface DiagonalLineProps {
 }
 
 const OverlayLine: React.FC<DiagonalLineProps> = ({
-  top,
-  bottom,
+  top = 0,
+  bottom = 0,
   colour = "#eee9cc",
   thickness = "1px",
   style = {},

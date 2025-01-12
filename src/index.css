@@ -80,7 +80,9 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* white */
-    --page-background: 0 0% 96%;
+    /* --page-background: 0 0% 96%; */
+    --page-background: 150 7% 95%;
+
     /* --page-background: 0 0% 0%; */
   }
   .dark {
