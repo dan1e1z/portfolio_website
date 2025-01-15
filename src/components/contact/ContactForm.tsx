@@ -4,6 +4,7 @@ import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Textarea } from "@/components/ui/textarea";
+import OverlayLine from "@/components/OverlayLine";
 
 const initialFormData: FormData = {
   name: "",
@@ -190,7 +191,7 @@ const ContactForm = () => {
           name="privacy"
           checked={formData.privacy}
           onChange={handleChange}
-          className="w-4 h-4 rounded non-checked:bg-[#eee9cc]"
+          className="w-4 h-4 rounded"
           required
         />
         <span className="text-sm">
@@ -203,7 +204,7 @@ const ContactForm = () => {
 
       {/* Submit Button */}
       <button type="submit" className="text-left text-4xl">
-        {isSubmitting ? "( sending... )" : "( send )"}
+        {isSubmitting ? "[ sending... ]" : "[ send ]"}
       </button>
     </form>
   );
