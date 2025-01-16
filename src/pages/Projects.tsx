@@ -905,12 +905,12 @@ export default function Projects() {
   const { theme } = useTheme();
 
   return (
-    <div className="w-full h-full bg-page relative rounded-lg">
+    <div className="w-full h-full bg-[#1c1915] relative rounded-lg">
       <ScrollArea className="h-full w-full rounded-lg" viewportRef={scrollRef}>
-        <div className="sticky top-0 z-10 shadow-md p-4 bg-background/60 backdrop-blur-2xl rounded-lg">
-          <div className="w-full h-2 bg-secondary rounded-lg overflow-hidden">
+        <div className="sticky top-0 z-10 shadow-md p-4 bg-[#1c1915]/60 backdrop-blur-2xl rounded-lg">
+          <div className="w-full h-2 bg-[#1c1915] rounded-lg overflow-hidden">
             <div
-              className="h-full bg-primary rounded-lg transition-all duration-200"
+              className="h-full bg-[#eee9cc] rounded-lg transition-all duration-200"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>

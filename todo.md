@@ -13,13 +13,14 @@ CURRENT:
 - [x] use photo slide animation from: https://tympanus.net/Development/OnScrollLayoutFormations/ - attempted still needs tweaking
 - [x] add vertical overlay line on About Me Section
 - [x] adjust visuals of Interests component - add blur v4 to text
-- [ ] contact page - change checkbox color to #eee9cc
-- [ ] add contact page animation, which drags form from right to left
+- [x] contact page - change checkbox color to #eee9cc
+- [x] add contact page animation, which drags form from right to left
 
 
 
 HOME  PAGE:
 - [ ] Home/Navigation Page Hero section: https://tympanus.net/Tutorials/BreathingDots/#/demo1
+- [ ] add mouse animation onto home page
 
 GENERIC:
 - [ ] add page transition to every page

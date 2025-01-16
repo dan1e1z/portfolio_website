@@ -104,57 +104,26 @@
 
 // TEST2
 import { useRef } from "react";
-import SplitTextAnimation from "@/animations/SplitTextAnimation";
-import OverlayLine from "@/components/OverlayLine";
-import AnimatedText from "@/animations/AnimatedText";
-import Arrow from "@/animations/Arrow";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import SkillHero from "@/components/skills/SkillHero";
+import SkillContent from "@/components/skills/SkillContent";
+import SkillTransition from "@/components/skills/SkillTransition";
 
 const Skills = () => {
-  const scrollRef = useRef(null);
+  const containerRef = useRef(null);
 
   return (
-    <ScrollArea viewportRef={scrollRef} className="w-full h-full bg-[#1c1915]">
-      <div className="relative w-full h-screen">
-        {" "}
-        {/* Make the parent relative */}
-        <div className="absolute w-24 top-[10%] right-[30%] rotate-90">
-          <Arrow />
-        </div>
-        <div className="h-full w-[30%]">
-          <AnimatedText /> {/* Animated Text component */}
-        </div>
-        <div className="absolute bottom-0 left-[20%]">
-          <SplitTextAnimation
-            text="SKILL"
-            direction="up"
-            className="text-[#eee9cc] text-8xl font-neueMontreal"
-            scalingFactor={2}
-            overallDelay={0}
-          />
-          <SplitTextAnimation
-            text="EXPERTISE"
-            direction="down"
-            className="text-[#eee9cc] text-8xl font-neueMontreal mt-[-0.1em]"
-            overallDelay={0.6}
-          />
-        </div>
-        <div className="absolute inset-0 -z-1">
-          <OverlayLine
-            top={{ x: "70%", y: "0%" }}
-            bottom={{ x: "70%", y: "100%" }}
-            colour="#eee9cc"
-            thickness="1px"
-          />
-          <OverlayLine
-            top={{ x: "50%", y: "100%" }}
-            bottom={{ x: "90%", y: "0%" }}
-            colour="#eee9cc"
-            thickness="1px"
-          />
-        </div>
+    <ScrollArea
+      viewportRef={containerRef}
+      className="w-full h-full bg-[#1c1915]"
+    >
+      <div className="relative w-full h-screen border-b border-b-[#eee9cc]">
+        <SkillHero />
       </div>
-      <div className="h-screen w-full border-t border-t-[#eee9cc]">hello</div>{" "}
+      <SkillTransition containerRef={containerRef} />
+      <div className="h-screen w-full border-t border-t-[#eee9cc] bg-[#eee9cc]">
+        <SkillContent />
+      </div>
     </ScrollArea>
   );
 };

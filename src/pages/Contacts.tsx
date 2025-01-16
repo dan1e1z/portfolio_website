@@ -25,7 +25,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="h-full w-full bg-[#1c1915] p-12">
+    <div className="h-full w-full bg-[#1c1915] p-12 items-center justify-center">
       <div className="flex flex-row">
         {/* Left Column - Contact Info */}
         <div className="flex flex-col gap-12 text-[#eee9cc] ">
@@ -50,7 +50,7 @@ const ContactPage = () => {
                 Me
               </span>
             </h1>
-            <p className="text-lg">
+            <p className="text-lg font-neueMontreal">
               I am here to connect,{" "}
               <motion.span
                 initial={{ opacity: 0 }}

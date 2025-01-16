@@ -120,12 +120,14 @@ export function ProjectItem({ id, title, img, desc, link }: ProjectItemProps) {
             </motion.div>
           </a>
         </div>
-        <div className="w-full p-6 bg-background">
+        <div className="w-full p-6 bg-[#1c1915]">
           <CardHeader className="p-0 mb-4">
-            <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+            <CardTitle className="text-[#eee9cc] text-2xl font-bold">
+              {title}
+            </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <p className="text-muted-foreground">{desc}</p>
+            <p className="text-[#eee9cc] ">{desc}</p>
           </CardContent>
         </div>
       </div>

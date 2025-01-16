@@ -187,18 +187,20 @@
 //
 // export default AnimatedText;
 
-// TEST3
+// TEST3 - WORKING
 import React from "react";
 import { motion } from "framer-motion";
 
 interface AnimatedTextProps {
   isAnimated?: boolean;
   className?: string;
+  text: string;
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
   isAnimated = true,
   className = "",
+  text = "",
 }) => {
   const cubicBezier = [0.65, 0, 0.35, 1];
 
@@ -238,12 +240,12 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
             }}
             preserveAspectRatio="xMidYMid meet"
           >
-            <use href="#letter-e" />
+            <use href={`#letter-${text}`} />
           </motion.svg>
         ))}
 
         <svg width="0" height="0" className="absolute">
-          <symbol id="letter-e" viewBox="0 0 631 1042" fill="none">
+          <symbol id={`letter-${text}`} viewBox="0 0 631 1042" fill="none">
             {/* E-acent */}
             {/* <path */}
             {/*   d="M396.784 176.16 518.421 8H289.925l-61.387 168.16h168.246ZM8 1034h615V864.703H203.527V714.721h395.601V545.424H203.527V407.941h410.379V238.644H8V1034Z" */}
@@ -282,7 +284,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
               stroke="currentColor"
               strokeWidth="16"
             >
-              Ḿ
+              {text}
             </text>
           </symbol>
         </svg>
@@ -292,3 +294,5 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
 };
 
 export default AnimatedText;
+
+// TEST4
