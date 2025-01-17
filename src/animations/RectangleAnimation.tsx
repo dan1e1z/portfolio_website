@@ -4,12 +4,7 @@ const RectangleAnimation = ({ rotate = 0, width = 0, height = 0 }) => {
   console.log("width rectangle:", width);
   console.log("height rectangle:", height);
 
-  const padding = 16; // adjust this to the actual padding value (e.g., `p-4` means 16px padding)
-  const gap = 16; // adjust this to the actual gap value (e.g., `gap-4` means 16px gap)
-
   // Adjust the container dimensions by subtracting padding and gaps
-  const availableWidth = width - padding * 2 - gap; // 2 for the left and right padding
-  const availableHeight = height - padding * 2 - gap; // 2 for the top and bottom padding
 
   // Calculate the size of each square by dividing the available space by 2
   // const squareWidth = availableWidth / 2;

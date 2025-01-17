@@ -42,3 +42,9 @@ THOUGHTS:
 
 const lenis = new Lenis({ lerp: 0.15 });
 
+
+
+/* Example breakpoints */
+@media (max-width: 575px) { /* Small screens */ }
+@media (min-width: 576px) and (max-width: 767px) { /* Medium screens */ }
+@media (min-width: 768px) { /* Large screens */ }

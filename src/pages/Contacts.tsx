@@ -4,7 +4,9 @@ import ContactForm from "@/components/contact/ContactForm";
 import { contactInfo, socialLinks } from "@/data/contact";
 import { motion } from "framer-motion";
 import Arrow from "@/animations/Arrow";
-import OverlayLine from "@/components/OverlayLine";
+import { useRef } from "react";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const ContactPage = () => {
   const slideInVariants = {
@@ -24,9 +26,25 @@ const ContactPage = () => {
     },
   };
 
+  const containerRef = useRef(null);
+
+  const dimensions = useContainerDimensions(containerRef);
+  console.log(dimensions);
+
+  // let textSize: string = "text-3xl"; // Default value
+  let contentPosition = "m-0 p-0 flex flex-row";
+
+  if (dimensions?.width !== undefined && dimensions.width < 1072) {
+    // textSize = "text-5xl";
+    contentPosition = "flex flex-col gap-12";
+  }
+
   return (
-    <div className="h-full w-full bg-[#1c1915] p-12 items-center justify-center">
-      <div className="flex flex-row">
+    <ScrollArea
+      viewportRef={containerRef}
+      className="h-full w-full bg-[#1c1915] p-8 items-center justify-center rounded-2xl"
+    >
+      <div className={`${contentPosition}`}>
         {/* Left Column - Contact Info */}
         <div className="flex flex-col gap-12 text-[#eee9cc] ">
           <div className="flex-1">
@@ -88,12 +106,12 @@ const ContactPage = () => {
           variants={slideInVariants}
           initial="hidden"
           animate="visible"
-          className="flex-1 text-[#eee9cc]"
+          className={`flex-1 text-[#eee9cc]`}
         >
           <ContactForm />
         </motion.div>
       </div>
-    </div>
+    </ScrollArea>
   );
 };
 

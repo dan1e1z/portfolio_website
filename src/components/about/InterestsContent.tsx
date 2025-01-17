@@ -10,7 +10,7 @@ const paragraph =
 
 const InterestsContent = ({ containerRef }: InterestsContentProps) => {
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-screen w-full">
       <div className="absolute inset-0 -z-1">
         <OverlayLine
           top={{ x: "70%", y: "0%" }}
@@ -26,10 +26,10 @@ const InterestsContent = ({ containerRef }: InterestsContentProps) => {
         />
       </div>
 
-      <div className="relative z-1">
-        <h2 className="text-8xl text-[#EEE9CC] ml-4 mt-4 mb-16">Interests</h2>
-        <Character paragraph={paragraph} containerRef={containerRef} />
-      </div>
+      {/* <div className="relative z-1 flex flex-col"> */}
+      <h2 className="text-8xl text-[#EEE9CC] ml-4 mt-4 mb-16">Interests</h2>
+      <Character paragraph={paragraph} containerRef={containerRef} />
+      {/* </div> */}
     </div>
   );
 };

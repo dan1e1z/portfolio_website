@@ -1,12 +1,7 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import AboutShapes from "@/components/about/AboutShapes";
 
-interface AboutContentProps {
-  containerRef: React.RefObject<HTMLDivElement>;
-}
-
-const AboutContent = ({ containerRef }: AboutContentProps) => {
+const AboutContent = () => {
   const scrollRef = useRef(null);
 
   return (

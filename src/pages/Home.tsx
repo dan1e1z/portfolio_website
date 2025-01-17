@@ -1,24 +1,3 @@
-// import { useRef } from "react";
-// import ParticleCanvas from "@/components/home/ParticalCanvas";
-// import HomeContent from "@/components/home/HomeContent";
-// import { ScrollArea } from "@/components/ui/scroll-area";
-//
-// export default function Home() {
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   return (
-//     <ScrollArea viewportRef={containerRef} className="w-full h-full bg-page">
-//       <div className="w-full h-[30%]">
-//         <ParticleCanvas containerRef={containerRef} />
-//       </div>
-//       <div className="w-full h-[80%]">
-//         <HomeContent containerRef={containerRef} />
-//       </div>
-//     </ScrollArea>
-//   );
-// }
-
-// TEST1
-
 import { useRef } from "react";
 import ParticleCanvas from "@/components/home/ParticalCanvas";
 import HomeContent from "@/components/home/HomeContent";

@@ -1,63 +1,23 @@
-// import SplitTextAnimation from "@/animations/SplitTextAnimation";
-// import OverlayLine from "@/components/OverlayLine";
-// import AnimatedText from "@/animations/AnimatedText";
-// import Arrow from "@/animations/Arrow";
-//
-// const SkillHero = () => {
-//   return (
-//     <div>
-//       {/* Make the parent relative */}
-//       <div className="absolute w-24 top-[10%] right-[30%] rotate-90">
-//         <Arrow />
-//       </div>
-//       <div className="h-full w-[30%]">
-//         <AnimatedText text="Ḿ" />
-//       </div>
-//       <div className="h-full w-[30%]">
-//         <AnimatedText text="Ý" />
-//       </div>
-//       <div className="absolute bottom-0 left-[20%]">
-//         <SplitTextAnimation
-//           text="SKILL"
-//           direction="up"
-//           className="text-[#eee9cc] text-8xl font-neueMontreal"
-//           scalingFactor={2}
-//           overallDelay={0}
-//         />
-//         <SplitTextAnimation
-//           text="EXPERTISE"
-//           direction="down"
-//           className="text-[#eee9cc] text-8xl font-neueMontreal mt-[-0.1em]"
-//           overallDelay={0.6}
-//         />
-//       </div>
-//       <div className="absolute inset-0 -z-1">
-//         <OverlayLine
-//           top={{ x: "70%", y: "0%" }}
-//           bottom={{ x: "70%", y: "100%" }}
-//           colour="#eee9cc"
-//           thickness="1px"
-//         />
-//         <OverlayLine
-//           top={{ x: "50%", y: "100%" }}
-//           bottom={{ x: "90%", y: "0%" }}
-//           colour="#eee9cc"
-//           thickness="1px"
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-//
-// export default SkillHero;
-
-// TEST1
 import SplitTextAnimation from "@/animations/SplitTextAnimation";
 import OverlayLine from "@/components/OverlayLine";
 import AnimatedText from "@/animations/AnimatedText";
 import Arrow from "@/animations/Arrow";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
-const SkillHero = () => {
+interface SkillHeroProps {
+  containerRef: React.RefObject<HTMLDivElement>;
+}
+
+const SkillHero = ({ containerRef }: SkillHeroProps) => {
+  const dimensions = useContainerDimensions(containerRef);
+  console.log(dimensions);
+
+  let textSize = "text-8xl";
+
+  if (dimensions?.width !== undefined && dimensions.width < 708) {
+    textSize = "text-6xl";
+  }
+
   return (
     <div className="relative h-full">
       {/* Arrow */}
@@ -86,14 +46,14 @@ const SkillHero = () => {
         <SplitTextAnimation
           text="SKILL"
           direction="up"
-          className="text-[#eee9cc] text-8xl font-neueMontreal"
+          className={`text-[#eee9cc] ${textSize} font-neueMontreal`}
           scalingFactor={2}
           overallDelay={0}
         />
         <SplitTextAnimation
           text="EXPERTISE"
           direction="down"
-          className="text-[#eee9cc] text-8xl font-neueMontreal mt-[-0.1em]"
+          className={`text-[#eee9cc] ${textSize} font-neueMontreal mt-[-0.1em]`}
           overallDelay={0.6}
         />
       </div>

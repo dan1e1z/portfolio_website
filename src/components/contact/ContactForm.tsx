@@ -4,7 +4,6 @@ import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Textarea } from "@/components/ui/textarea";
-import OverlayLine from "@/components/OverlayLine";
 
 const initialFormData: FormData = {
   name: "",

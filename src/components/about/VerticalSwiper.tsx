@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const SLIDE_INTERVAL = 2500;
 
@@ -20,7 +21,33 @@ const CERTIFICATIONS = [
   },
 ] as const;
 
-const VerticalSwiper = () => {
+interface VerticalSwiperProps {
+  containerRef: React.RefObject<HTMLDivElement>;
+}
+
+const VerticalSwiper = ({ containerRef }: VerticalSwiperProps) => {
+  const dimensions = useContainerDimensions(containerRef);
+  console.log("dimensions", dimensions);
+
+  let positionStyle: string = "";
+  let firstWordTextSize: string = "text-4xl";
+  let secondWordTextSize: string = "text-2xl";
+
+  if (dimensions?.width !== undefined && dimensions.width < 600) {
+    positionStyle = "flex flex-col items-end";
+    firstWordTextSize = "hidden";
+    secondWordTextSize = "hidden";
+  } else if (dimensions?.width !== undefined && dimensions.width < 641) {
+    positionStyle = "flex flex-col items-end";
+    firstWordTextSize = "text-2xl";
+    secondWordTextSize = "text-xl";
+  } else if (dimensions?.width !== undefined && dimensions.width < 641) {
+    positionStyle = "flex flex-col items-end";
+    firstWordTextSize = "text-3xl";
+  } else if (dimensions?.width !== undefined && dimensions.width < 775) {
+    positionStyle = "flex flex-col items-end";
+  }
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -41,12 +68,12 @@ const VerticalSwiper = () => {
           animate="center"
           exit="exit"
           transition={{ duration: 1, ease: "easeInOut" }}
-          // className="flex flex-col items-end" // Added flex container for vertical stacking
+          className={`${positionStyle}`}
         >
-          <span className="text-4xl font-bold">
+          <span className={`${firstWordTextSize} font-bold`}>
             {CERTIFICATIONS[currentIndex].firstWord}{" "}
           </span>
-          <span className="text-2xl font-normal">
+          <span className={`${secondWordTextSize} font-normal`}>
             {CERTIFICATIONS[currentIndex].secondWord}
           </span>
         </motion.div>

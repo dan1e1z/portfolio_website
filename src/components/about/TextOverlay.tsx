@@ -6,13 +6,27 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { textItems } from "@/constants/aboutData";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 interface TextOverlayProps {
   scrollYProgress: MotionValue<number>;
+  containerRef: React.RefObject<HTMLDivElement>;
 }
 
-const TextOverlay: React.FC<TextOverlayProps> = ({ scrollYProgress }) => {
+const TextOverlay: React.FC<TextOverlayProps> = ({
+  scrollYProgress,
+  containerRef,
+}) => {
   const bgControls = useAnimation();
+
+  let textSize = "text-[25vh]";
+  const dimensions = useContainerDimensions(containerRef);
+
+  if (dimensions?.width !== undefined && dimensions.width < 652) {
+    textSize = "text-[15vh]";
+  } else if (dimensions?.width !== undefined && dimensions.width < 807) {
+    textSize = "text-[20vh]";
+  }
 
   useEffect(() => {
     let isSubscribed = true;
@@ -54,6 +68,7 @@ const TextOverlay: React.FC<TextOverlayProps> = ({ scrollYProgress }) => {
   return (
     <>
       {textItems.map((item, index) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const xPercent = useTransform(
           scrollYProgress,
           [0, 1],
@@ -67,7 +82,8 @@ const TextOverlay: React.FC<TextOverlayProps> = ({ scrollYProgress }) => {
             }`}
           >
             <motion.p
-              className="text-[25vh] text-[#eee9cc] m-5 z-20 font-neueMontreal"
+              // className="text-[25vh] text-[#eee9cc] m-5 z-20 font-neueMontreal"
+              className={`${textSize} text-[#eee9cc] m-5 z-20 font-neueMontreal`}
               style={{
                 lineHeight: "1",
                 x: xPercent,

@@ -1,11 +1,21 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 interface AboutSectionTitleProps {
   containerRef: React.RefObject<HTMLDivElement>;
 }
 
 const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
+  const dimensions = useContainerDimensions(containerRef);
+  let textSize = "text-[20rem]";
+
+  if (dimensions?.width !== undefined && dimensions.width < 665) {
+    textSize = "text-[13rem]";
+  } else if (dimensions?.width !== undefined && dimensions.width < 862) {
+    textSize = "text-[15rem]";
+  }
+
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const { scrollYProgress } = useScroll({
@@ -34,7 +44,8 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
       ref={scrollRef}
     >
       <motion.h2
-        className="absolute w-full text-[20rem] leading-none text-center whitespace-nowrap text-[#1c1915]"
+        // className="absolute w-full text-[20rem] leading-none text-center whitespace-nowrap text-[#1c1915]"
+        className={`absolute w-full ${textSize} leading-none text-center whitespace-nowrap text-[#1c1915]`}
         style={{
           x: xPercent,
         }}

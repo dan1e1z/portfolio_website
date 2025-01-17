@@ -283,6 +283,7 @@ import { FaGithub, FaReact, FaJava, FaPython } from "react-icons/fa";
 import { SiTailwindcss, SiTypescript, SiMongodb } from "react-icons/si";
 import { FaGolang } from "react-icons/fa6";
 import FuturisticHover from "@/animations/FuturisticHover";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const skills = [
   { name: "TypeScript", icon: SiTypescript, level: 5 },
@@ -303,13 +304,30 @@ const path = [
   "M183.2,43.7H92.1l-10,88.3c0,0,18.3-21.9,51-21.9s49.4,32.6,49.4,48.2c0,22.2-9.5,57-52.5,57s-51.4-36.7-51.4-36.7",
 ];
 
-const SkillContent = () => {
+interface SkillContentProps {
+  containerRef: React.RefObject<HTMLDivElement>;
+}
+
+const SkillContent = ({ containerRef }: SkillContentProps) => {
   const [selectedSkill, setSelectedSkill] = useState<number>(0);
   const [renderKey, setRenderKey] = useState<number>(0);
   const circles = useRef<SVGCircleElement[]>([]);
   const paths = useRef<SVGPathElement[]>([]);
   const nbOfCircles = 30;
   const radius = 20;
+
+  const dimensions = useContainerDimensions(containerRef);
+
+  let svgSize = "500";
+  let padding = "";
+
+  if (dimensions?.width !== undefined && dimensions.width < 550) {
+    svgSize = "300";
+    padding = "pl-4";
+  } else if (dimensions?.width !== undefined && dimensions.width < 708) {
+    svgSize = "400";
+    padding = "pl-4";
+  }
 
   useEffect(() => {
     const length = paths.current[selectedSkill].getTotalLength();
@@ -332,7 +350,7 @@ const SkillContent = () => {
 
   return (
     <div className="h-full w-full flex items-center justify-center gap-2">
-      <div className="cursor-pointer text-[36px]">
+      <div className={`cursor-pointer text-[36px] ${padding}`}>
         {skills.map((skill, i) => (
           <p onClick={() => handleClick(i)} key={i}>
             <FuturisticHover
@@ -344,7 +362,7 @@ const SkillContent = () => {
       </div>
       <svg
         viewBox="0 0 256 256"
-        style={{ width: "500px", filter: "url(#filter)" }}
+        style={{ width: `${svgSize}px`, filter: "url(#filter)" }}
         key={renderKey} // This forces SVG to completely re-render
       >
         <defs>

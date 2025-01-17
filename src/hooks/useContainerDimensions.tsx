@@ -1,42 +1,43 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, RefObject } from "react";
 
 type Dimensions = {
   width: number;
   height: number;
 };
 
-const useContainerDimensions = (): [
-  (node: HTMLDivElement | null) => void,
-  Dimensions | null,
-] => {
+const useContainerDimensions = (
+  ref: RefObject<HTMLDivElement>,
+): Dimensions | null => {
   const [dimensions, setDimensions] = useState<Dimensions | null>(null);
-  const [node, setNode] = useState<HTMLDivElement | null>(null);
 
   const measure = useCallback(() => {
-    if (node) {
-      const rect = node.getBoundingClientRect();
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
       setDimensions({
         width: rect.width,
         height: rect.height,
       });
     }
-  }, [node]);
+  }, [ref]);
 
   useEffect(() => {
-    if (!node) return;
+    if (!ref.current) return;
 
     const observer = new ResizeObserver(() => {
       measure();
     });
 
-    observer.observe(node);
+    observer.observe(ref.current);
+
+    // Initial measurement
+    measure();
 
     return () => {
       observer.disconnect();
     };
-  }, [node, measure]);
+  }, [ref, measure]);
 
-  return [setNode, dimensions];
+  return dimensions;
 };
 
 export default useContainerDimensions;

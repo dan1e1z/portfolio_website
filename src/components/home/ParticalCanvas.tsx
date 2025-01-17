@@ -237,10 +237,6 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ containerRef }) => {
     };
   }, [containerRef, controls]);
 
-  const toggleAutomation = (enabled: boolean) => {
-    effectRef.current?.toggleAutomatedAnimation(enabled);
-  };
-
   return (
     <motion.div
       className="w-full h-full"

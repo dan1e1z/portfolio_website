@@ -1,15 +1,3 @@
-import useContainerDimensions from "@/hooks/useContainerDimensions";
-import RectangleAnimation from "@/animations/RectangleAnimation";
-
-const AboutShapes = () => {
-  const [setContainerRef, dimensions] = useContainerDimensions();
-  console.log(dimensions);
-
-  return <div ref={setContainerRef} className="flex flex-col"></div>;
-};
-
-export default AboutShapes;
-
 // import useContainerDimensions from "@/hooks/useContainerDimensions";
 // import RectangleAnimation from "@/animations/RectangleAnimation";
 //

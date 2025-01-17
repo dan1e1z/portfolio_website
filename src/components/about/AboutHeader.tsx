@@ -1,5 +1,4 @@
 import { motion, MotionProps } from "framer-motion";
-import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const AboutHeader = () => {
   const animation: MotionProps["animate"] = {
@@ -11,11 +10,8 @@ const AboutHeader = () => {
     },
   };
 
-  const [setContainerRef, dimensions] = useContainerDimensions();
-  // console.log(dimensions);
-
   return (
-    <div ref={setContainerRef} className="">
+    <div className="">
       <div className="text-8xl font-neueMontreal text-[#EEE9CC]">
         <motion.p className="pb-36" animate={animation}>
           About

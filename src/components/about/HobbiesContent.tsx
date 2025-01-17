@@ -1,25 +1,46 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useMousePosition from "@/hooks/useMousePosition";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
+
+// const colors = [
+//   "bg-red-800",
+//   "bg-amber-600",
+//   "bg-emerald-700",
+//   "bg-sky-700",
+//   "bg-purple-700",
+//   "bg-rose-600",
+//   "bg-orange-500",
+//   "bg-teal-600",
+//   "bg-blue-600",
+//   "bg-violet-600",
+//   "bg-pink-600",
+//   "bg-yellow-500",
+//   "bg-green-600",
+//   "bg-cyan-600",
+//   "bg-indigo-600",
+//   "bg-fuchsia-600",
+//   "bg-lime-600",
+// ];
 
 const colors = [
-  "bg-red-800",
-  "bg-amber-600",
-  "bg-emerald-700",
-  "bg-sky-700",
-  "bg-purple-700",
-  "bg-rose-600",
-  "bg-orange-500",
-  "bg-teal-600",
-  "bg-blue-600",
-  "bg-violet-600",
-  "bg-pink-600",
-  "bg-yellow-500",
-  "bg-green-600",
-  "bg-cyan-600",
-  "bg-indigo-600",
-  "bg-fuchsia-600",
-  "bg-lime-600",
+  "bg-[#9C8779]",
+  "bg-[#3E2B1A]",
+  "bg-[#311908]",
+  "bg-[#7D614C]",
+  "bg-[#847E7C]",
+  "bg-[#5B402B]",
+  "bg-[#B8B5B7]",
+  "bg-[#A8A19E]",
+  "bg-[#4A4948]",
+  "bg-[#462421]",
+  "bg-[#4F2F2B]",
+  "bg-[#8E5A59]",
+  "bg-[#6B4943]",
+  "bg-[#6B423A]",
+  "bg-[#643B36]",
+  "bg-[#453F33]",
+  "bg-[#32322D]",
 ];
 
 interface HobbiesContentProps {
@@ -31,6 +52,13 @@ type PositionMap = {
 };
 
 const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
+  const dimensions = useContainerDimensions(containerRef);
+  let textSize = "text-2xl";
+
+  if (dimensions?.width !== undefined && dimensions.width < 615) {
+    textSize = "text-xl";
+  }
+
   const positions: PositionMap = {
     1: "row-start-1 col-start-1",
     2: "row-start-1 col-start-3",
@@ -75,10 +103,11 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     const start = index * stagger;
     const end = Math.min(start + stagger + 0.1, 0.95);
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const y = useTransform(scrollYProgress, [start, end], ["100vh", "0vh"], {
       clamp: true,
     });
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const opacity = useTransform(
       scrollYProgress,
       [start, Math.min(start + 0.1, 0.95)],
@@ -93,6 +122,14 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
 
   const { mouseX, mouseY } = useMousePosition(gridRef);
   const size = isHovered ? 200 : 60;
+
+  const activities = [
+    { activity: "Reading", rowStart: 1, colStart: 3 },
+    { activity: "Hiking", rowStart: 2, colStart: 3 },
+    { activity: "Photography", rowStart: 2, colStart: 7 },
+    { activity: "Chess", rowStart: 3, colStart: 2 },
+    { activity: "Gaming", rowStart: 3, colStart: 8 },
+  ];
 
   return (
     <div ref={scrollRef} className="h-[300vh] relative">
@@ -137,7 +174,8 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
             opacity: overlayOpacity,
             maskImage: "url(/Circle.svg)",
             WebkitMaskImage: "url(/Circle.svg)",
-            backgroundColor: "#FF0000",
+            backgroundColor: "#f9f871",
+            // backgroundColor: "#FF0000",
             maskRepeat: "no-repeat",
             maskSize: `${size}px`,
             WebkitMaskSize: `${size}px`,
@@ -145,47 +183,22 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
             WebkitMaskPosition: `${mouseX - size / 2}px ${mouseY - size / 2}px`,
           }}
         >
-          <div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="row-start-1 col-start-3 flex justify-center items-center text-[#eee9cc] text-2xl"
-          >
-            Reading
-          </div>
-          <div
-            className="row-start-2 col-start-3 flex justify-center items-center text-[#eee9cc] text-2xl"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Hiking
-          </div>
-          <div
-            className="row-start-2 col-start-7 flex justify-center items-center text-[#eee9cc] text-2xl"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Photography
-          </div>
-          <div
-            className="row-start-3 col-start-2 flex justify-center items-center text-[#eee9cc] text-2xl"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Chess
-          </div>
-          <div
-            className="row-start-3 col-start-8 flex justify-center items-center text-[#eee9cc] text-2xl"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Gaming
-          </div>
+          {activities.map(({ activity, rowStart, colStart }) => (
+            <div
+              // className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] text-2xl uppercase mix-blend-exclusion`}
+              className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] ${textSize} uppercase mix-blend-exclusion`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {activity}
+            </div>
+          ))}
         </motion.div>
 
         {/* Title with scroll-based opacity */}
         <motion.h2
           className="absolute top-0 left-0 mt-8 ml-4 text-[#eee9cc] font-pacifico uppercase text-6xl font-medium tracking-tight"
-          style={{ opacity: titleOpacity }}
+          style={{ opacity: titleOpacity, pointerEvents: "none" }}
         >
           Look for my <br />
           hobbies

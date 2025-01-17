@@ -10,10 +10,13 @@ import EducationContent from "@/components/about/EducationContent";
 import InterestsContent from "@/components/about/InterestsContent";
 import HobbiesContent from "@/components/about/HobbiesContent";
 import { sliderItems } from "@/constants/aboutData";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const About: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const dimensions = useContainerDimensions(containerRef);
+  console.log(dimensions);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -37,9 +40,8 @@ const About: React.FC = () => {
       if (typeof window === "undefined") return;
 
       const lenis = new Lenis({
-        wrapper: containerRef.current,
-        lerp: 0.15,
-        duration: 1.5,
+        wrapper: containerRef.current!,
+        lerp: 0.1,
         smoothWheel: true,
         syncTouch: true,
       });
@@ -61,7 +63,7 @@ const About: React.FC = () => {
 
   return (
     <ScrollArea
-      className="h-full w-full bg-[#1d1915]"
+      className="h-full w-full bg-[#1d1915] rounded-2xl"
       viewportRef={containerRef}
     >
       <div ref={scrollRef} className="h-screen w-full relative">
@@ -69,17 +71,20 @@ const About: React.FC = () => {
           <ImageSlider currentImageIndex={currentImageIndex} />
         </div>
         <div className="absolute inset-0 z-10 flex flex-col divide-y divide-[#eee9cc]">
-          <TextOverlay scrollYProgress={scrollYProgress} />
+          <TextOverlay
+            scrollYProgress={scrollYProgress}
+            containerRef={containerRef}
+          />
         </div>
       </div>
 
       <AboutSectionTitle containerRef={containerRef} />
       <div className="font-neueMontreal text-[#EEE9CC] relative">
         <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915] p-4">
-          <AboutContent containerRef={containerRef} />
+          <AboutContent />
         </div>
         <div className="border-b border-b-[#EEE9CC] bg-[#1d1915] p-4">
-          <EducationContent />
+          <EducationContent containerRef={containerRef} />
         </div>
         <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915] ">
           <InterestsContent containerRef={containerRef} />
