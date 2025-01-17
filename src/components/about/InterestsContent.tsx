@@ -36,11 +36,10 @@
 //
 // export default InterestsContent;
 
-import { lazy, Suspense, useEffect } from "react";
+// TEST1
+import { memo } from "react";
+import Character from "@/animations/Character";
 import OverlayLine from "@/components/OverlayLine";
-
-// Vite's lazy loading syntax
-const Character = lazy(() => import("@/animations/Character"));
 
 interface InterestsContentProps {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -49,23 +48,11 @@ interface InterestsContentProps {
 const paragraph =
   "I'm passionate about creating seamless digital experiences through Web Development and UI/UX Design. I'm constantly exploring the possibilities of Machine Learning and aim to contribute to the Open Source community. These interests drive my work and fuel my curiosity.";
 
-const InterestsContent = ({ containerRef }: InterestsContentProps) => {
-  // Force remount of Character component when navigating back to this page
-  useEffect(() => {
-    const cleanup = () => {
-      if (containerRef.current) {
-        containerRef.current.style.opacity = "1";
-        containerRef.current.style.filter = "none";
-      }
-    };
-
-    // Add this to handle cleanup when component unmounts
-    return cleanup;
-  }, [containerRef]);
-
+const InterestsContent = memo(({ containerRef }: InterestsContentProps) => {
   return (
     <div className="relative h-screen w-full">
-      <div className="absolute inset-0 -z-1">
+      {/* Background overlay lines */}
+      <div className="absolute inset-0" style={{ zIndex: -1 }}>
         <OverlayLine
           top={{ x: "70%", y: "0%" }}
           bottom={{ x: "70%", y: "100%" }}
@@ -79,22 +66,16 @@ const InterestsContent = ({ containerRef }: InterestsContentProps) => {
           thickness="1px"
         />
       </div>
-      <h2 className="text-8xl text-[#EEE9CC] ml-4 mt-4 mb-16">Interests</h2>
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center h-64 w-full">
-            <div className="animate-pulse bg-[#EEE9CC]/20 h-full w-full rounded" />
-          </div>
-        }
-      >
-        <Character
-          key={window.location.pathname}
-          paragraph={paragraph}
-          containerRef={containerRef}
-        />
-      </Suspense>
+
+      {/* Content */}
+      <div className="relative">
+        <h2 className="ml-4 mt-4 mb-16 text-8xl text-[#EEE9CC]">Interests</h2>
+        <Character paragraph={paragraph} containerRef={containerRef} />
+      </div>
     </div>
   );
-};
+});
+
+InterestsContent.displayName = "InterestsContent";
 
 export default InterestsContent;
