@@ -36,9 +36,10 @@
 //
 // export default InterestsContent;
 
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import OverlayLine from "@/components/OverlayLine";
 
+// Vite's lazy loading syntax
 const Character = lazy(() => import("@/animations/Character"));
 
 interface InterestsContentProps {
@@ -49,6 +50,19 @@ const paragraph =
   "I'm passionate about creating seamless digital experiences through Web Development and UI/UX Design. I'm constantly exploring the possibilities of Machine Learning and aim to contribute to the Open Source community. These interests drive my work and fuel my curiosity.";
 
 const InterestsContent = ({ containerRef }: InterestsContentProps) => {
+  // Force remount of Character component when navigating back to this page
+  useEffect(() => {
+    const cleanup = () => {
+      if (containerRef.current) {
+        containerRef.current.style.opacity = "1";
+        containerRef.current.style.filter = "none";
+      }
+    };
+
+    // Add this to handle cleanup when component unmounts
+    return cleanup;
+  }, [containerRef]);
+
   return (
     <div className="relative h-screen w-full">
       <div className="absolute inset-0 -z-1">
@@ -65,10 +79,19 @@ const InterestsContent = ({ containerRef }: InterestsContentProps) => {
           thickness="1px"
         />
       </div>
-
       <h2 className="text-8xl text-[#EEE9CC] ml-4 mt-4 mb-16">Interests</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Character paragraph={paragraph} containerRef={containerRef} />
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-64 w-full">
+            <div className="animate-pulse bg-[#EEE9CC]/20 h-full w-full rounded" />
+          </div>
+        }
+      >
+        <Character
+          key={window.location.pathname}
+          paragraph={paragraph}
+          containerRef={containerRef}
+        />
       </Suspense>
     </div>
   );

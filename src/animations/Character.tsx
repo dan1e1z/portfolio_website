@@ -249,14 +249,16 @@
 
 // TEST2
 
+// Character.tsx
 import {
   useScroll,
   useTransform,
   motion,
   useSpring,
+  useIsPresent,
   MotionValue,
 } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 interface ParagraphProps {
@@ -266,8 +268,11 @@ interface ParagraphProps {
 
 const springConfig = { stiffness: 1000, damping: 100 };
 
-export default function Character({ paragraph, containerRef }: ParagraphProps) {
+const Character = ({ paragraph, containerRef }: ParagraphProps) => {
   const scrollRef = useRef<HTMLParagraphElement>(null);
+  const isFirstRender = useRef(true);
+  const isPresent = useIsPresent();
+
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     container: containerRef,
@@ -275,22 +280,61 @@ export default function Character({ paragraph, containerRef }: ParagraphProps) {
   });
 
   const words = useMemo(() => paragraph.split(" "), [paragraph]);
-
   const dimensions = useContainerDimensions(containerRef);
 
   const textSize = useMemo(() => {
-    const width = dimensions?.width;
-    if (!width) return "text-3xl";
+    const width = dimensions?.width ?? 0;
     if (width < 517) return "text-3xl";
     if (width < 732) return "text-4xl";
     if (width < 1173) return "text-5xl";
     return "text-6xl";
   }, [dimensions?.width]);
 
+  // Reset animation when component mounts/unmounts
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      scrollYProgress.set(0);
+    }
+    isFirstRender.current = false;
+
+    return () => {
+      if (scrollYProgress.get() !== 0) {
+        scrollYProgress.set(0);
+      }
+    };
+  }, [scrollYProgress, isPresent]);
+
+  // Preload the component
+  useEffect(() => {
+    const preloadAnimation = () => {
+      if (scrollRef.current && containerRef.current) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                scrollYProgress.set(0);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        observer.observe(scrollRef.current);
+        return () => observer.disconnect();
+      }
+    };
+
+    return preloadAnimation();
+  }, [scrollYProgress, containerRef]);
+
   return (
     <motion.p
       ref={scrollRef}
       className={`relative flex ${textSize} leader-1 text-[#EEE9CC] flex-wrap justify-center`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
     >
       {words.map((word, i) => {
         const start = i / words.length;
@@ -306,7 +350,7 @@ export default function Character({ paragraph, containerRef }: ParagraphProps) {
       })}
     </motion.p>
   );
-}
+};
 
 interface WordProps {
   word: string;
@@ -319,12 +363,10 @@ const AnimatedWord = ({ word, progress, range }: WordProps) => {
     useTransform(progress, range, [0, 1]),
     springConfig,
   );
-
   const skewX = useSpring(
     useTransform(progress, range, [-20, 0]),
     springConfig,
   );
-
   const blur = useSpring(useTransform(progress, range, [8, 0]), springConfig);
 
   const chars = useMemo(() => {
@@ -371,3 +413,5 @@ const AnimatedChar = ({ children, progress, range }: CharProps) => {
     </span>
   );
 };
+
+export default Character;
