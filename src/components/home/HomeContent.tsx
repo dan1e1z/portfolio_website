@@ -233,7 +233,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ containerRef }) => {
 
     setActiveIndex(idx);
     const newHeights: RowHeights =
-      dimensions.width > 600
+      dimensions!.width > 600
         ? idx <= 2
           ? ["70%", "30%"]
           : ["30%", "70%"]
@@ -243,7 +243,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ containerRef }) => {
   };
 
   const getExpandedIndexes = (idx: number): number[] => {
-    if (dimensions.width <= 600) return [idx];
+    if (dimensions!.width <= 600) return [idx];
     if (idx === 0 || idx === 3) return [0, 3];
     if (idx === 1 || idx === 4) return [1, 4];
     return [2, 5];
