@@ -94,6 +94,7 @@ interface GridItemProps {
 const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Initialize video when component mounts
@@ -102,17 +103,24 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
 
     const video = videoRef.current;
 
-    // Start preloading metadata when expanded
-    if (isExpanded) {
+    if (isExpanded || isActive) {
+      setIsLoading(true);
       video.preload = "metadata";
       const source = document.createElement("source");
       source.src = item.videoUrl;
-      source.type = "video/mp4"; // Adjust based on your video type
+      source.type = "video/mp4";
       video.appendChild(source);
     }
 
-    const handleCanPlayThrough = () => setVideoLoaded(true);
-    const handleError = () => setHasError(true);
+    const handleCanPlayThrough = () => {
+      setVideoLoaded(true);
+      setIsLoading(false);
+    };
+
+    const handleError = () => {
+      setHasError(true);
+      setIsLoading(false);
+    };
 
     video.addEventListener("canplaythrough", handleCanPlayThrough);
     video.addEventListener("error", handleError);
@@ -120,12 +128,11 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
     return () => {
       video.removeEventListener("canplaythrough", handleCanPlayThrough);
       video.removeEventListener("error", handleError);
-      // Cleanup video resources
       video.pause();
       video.removeAttribute("src");
       video.load();
     };
-  }, [isExpanded, item.videoUrl]);
+  }, [isExpanded, isActive, item.videoUrl]);
 
   // Handle video playback
   useEffect(() => {
@@ -133,8 +140,7 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
 
     const video = videoRef.current;
 
-    if (isActive) {
-      video.preload = "auto";
+    if (isActive && videoLoaded) {
       video.play().catch((error) => {
         console.warn("Video autoplay failed:", error);
       });
@@ -142,7 +148,7 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
       video.pause();
       video.currentTime = 0;
     }
-  }, [isActive]);
+  }, [isActive, videoLoaded]);
 
   return (
     <motion.div
@@ -184,28 +190,36 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
           }}
           transition={{ duration: 1 }}
         >
+          {/* Loading Indicator - Always visible when loading */}
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-[#1c1915] z-10">
+              <span className="text-white">Loading...</span>
+            </div>
+          )}
+
+          {/* Error State */}
+          {hasError && (
+            <div className="absolute inset-0 flex items-center justify-center bg-[#1c1915] z-10">
+              <span className="text-red-500">Failed to load video</span>
+            </div>
+          )}
+
+          {/* Video Element */}
           {(isActive || isExpanded) && (
             <video
               ref={videoRef}
               loop
               muted
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
+              width="1920"
+              height="1080"
               style={{
                 transform: "translateZ(0)",
                 willChange: "transform",
               }}
             />
-          )}
-          {!videoLoaded && isActive && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white">Loading...</span>
-            </div>
-          )}
-          {hasError && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-red-500">Failed to load video</span>
-            </div>
           )}
         </motion.div>
       </motion.div>
