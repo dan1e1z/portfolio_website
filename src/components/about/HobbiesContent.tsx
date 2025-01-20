@@ -93,6 +93,8 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     offset: ["start end", "end end"],
   });
 
+  console.log("scrollYProgress", scrollYProgress);
+
   const titleOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
 
   const overlayOpacity = useTransform(scrollYProgress, [0.95, 1], [0, 0.5]);

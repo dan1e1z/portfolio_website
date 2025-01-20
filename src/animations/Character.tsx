@@ -22,12 +22,11 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
     offset: ["start 0.9", "start 0.25"],
   });
 
+  console.log("scrollYProgress", scrollYProgress);
+
   const words = paragraph.split(" ");
 
-  // const textSize = useContainerTextSize(containerRef, paragraph);
-  // console.log("textSize", textSize);
   const dimensions = useContainerDimensions(containerRef);
-  // console.log("dimensions", dimensions);
 
   let textSize: string = "text-3xl"; // Default value
 

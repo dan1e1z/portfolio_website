@@ -1,7 +1,4 @@
-// import { lazy, Suspense } from "react";
-// const Character = lazy(() => import("@/animations/Character"));
 import Character from "@/animations/Character";
-
 import OverlayLine from "@/components/OverlayLine";
 
 interface InterestsContentProps {
@@ -29,13 +26,8 @@ const InterestsContent = ({ containerRef }: InterestsContentProps) => {
         />
       </div>
 
-      {/* <div className="relative z-1 flex flex-col"> */}
       <h2 className="text-8xl text-[#EEE9CC] ml-4 mt-4 mb-16">Interests</h2>
-      {/* <Character paragraph={paragraph} containerRef={containerRef} /> */}
-      {/* <Suspense fallback={<div>Loading...</div>}> */}
       <Character paragraph={paragraph} containerRef={containerRef} />
-      {/* </Suspense> */}
-      {/* </div> */}
     </div>
   );
 };
