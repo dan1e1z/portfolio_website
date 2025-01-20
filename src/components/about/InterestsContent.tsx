@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+// import { lazy, Suspense } from "react";
 // const Character = lazy(() => import("@/animations/Character"));
 import Character from "@/animations/Character";
 
