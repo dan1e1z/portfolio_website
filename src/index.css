@@ -175,9 +175,9 @@
 
 @layer utilities {
   .bg-sequoia-light {
-    background-image: url("/SequoiaLight.png");
+    background-image: url("/SequoiaLight.webp");
   }
   .bg-sequoia-dark {
-    background-image: url("/SequoiaDark.png");
+    background-image: url("/SequoiaDark.webp");
   }
 }
