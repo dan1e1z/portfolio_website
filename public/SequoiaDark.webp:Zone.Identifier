@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://cloudconvert.com/
-HostUrl=https://eu-central.storage.cloudconvert.com/tasks/ceb1c13a-3a1a-4aa4-8d3a-cee7a92bbfa1/SequoiaDark.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20250120%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20250120T010835Z&X-Amz-Expires=86400&X-Amz-Signature=2b661e2c465f46a9fd560944e5273a01c4e783633834e4c27422b1ed0b78ceb8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22SequoiaDark.webp%22&response-content-type=image%2Fwebp&x-id=GetObject
