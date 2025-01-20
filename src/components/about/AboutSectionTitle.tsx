@@ -22,6 +22,7 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
     target: scrollRef,
     container: containerRef,
     offset: ["start start", "end start"],
+    layoutEffect: false,
   });
 
   const yPercent = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);

@@ -13,6 +13,7 @@ const SkillTransition = ({ containerRef }: SkillTransitionProps) => {
     target: scrollRef,
     offset: ["start start", "75% start"],
     container: containerRef,
+    layoutEffect: false,
   });
 
   useEffect(() => {
