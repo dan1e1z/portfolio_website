@@ -10,7 +10,7 @@ interface SkillHeroProps {
 
 const SkillHero = ({ containerRef }: SkillHeroProps) => {
   const dimensions = useContainerDimensions(containerRef);
-  console.log(dimensions);
+  // console.log(dimensions);
 
   let textSize = "text-8xl";
 

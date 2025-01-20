@@ -27,7 +27,7 @@ interface VerticalSwiperProps {
 
 const VerticalSwiper = ({ containerRef }: VerticalSwiperProps) => {
   const dimensions = useContainerDimensions(containerRef);
-  console.log("dimensions", dimensions);
+  // console.log("dimensions", dimensions);
 
   let positionStyle: string = "";
   let firstWordTextSize: string = "text-4xl";

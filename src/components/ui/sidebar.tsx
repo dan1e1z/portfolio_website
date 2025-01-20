@@ -167,7 +167,7 @@ SidebarProvider.displayName = "SidebarProvider";
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-    side?: "left" | "right";
+    side?: "left" | "right" | "bottom";
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
   }
@@ -201,6 +201,8 @@ const Sidebar = React.forwardRef<
     }
 
     if (isMobile) {
+      console.log("openMobile", openMobile);
+      console.log("isMobile here", isMobile);
       return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
           <SheetContent

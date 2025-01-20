@@ -23,13 +23,13 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
     layoutEffect: false,
   });
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      console.log("Character scrollYProgress", latest);
-    });
-
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+  // useEffect(() => {
+  //   const unsubscribe = scrollYProgress.on("change", (latest) => {
+  //     console.log("Character scrollYProgress", latest);
+  //   });
+  //
+  //   return () => unsubscribe();
+  // }, [scrollYProgress]);
 
   const words = paragraph.split(" ");
 

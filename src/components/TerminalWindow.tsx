@@ -516,7 +516,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
   };
 
   const handleSplitCommand = (dirName: string) => {
-    console.log(`split screen: ${dirName}`);
+    // console.log(`split screen: ${dirName}`);
     setIsSplit(true);
     setSplitDirectory(dirName);
     setIsTerminalVisible(false);

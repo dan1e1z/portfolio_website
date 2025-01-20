@@ -94,13 +94,13 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     layoutEffect: false, // This helps with SSR
   });
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      console.log("Hobbies scrollYProgress", latest);
-    });
-
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+  // useEffect(() => {
+  //   const unsubscribe = scrollYProgress.on("change", (latest) => {
+  //     console.log("Hobbies scrollYProgress", latest);
+  //   });
+  //
+  //   return () => unsubscribe();
+  // }, [scrollYProgress]);
 
   const titleOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
 

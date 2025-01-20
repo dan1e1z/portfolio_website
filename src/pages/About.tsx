@@ -10,13 +10,13 @@ import EducationContent from "@/components/about/EducationContent";
 import InterestsContent from "@/components/about/InterestsContent";
 import HobbiesContent from "@/components/about/HobbiesContent";
 import { sliderItems } from "@/constants/aboutData";
-import useContainerDimensions from "@/hooks/useContainerDimensions";
+// import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 const About: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const dimensions = useContainerDimensions(containerRef);
-  console.log(dimensions);
+  // const dimensions = useContainerDimensions(containerRef);
+  // console.log(dimensions);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
