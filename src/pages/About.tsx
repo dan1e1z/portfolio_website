@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense, lazy } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useScroll } from "framer-motion";
 import Lenis from "lenis";
@@ -8,8 +8,7 @@ import TextOverlay from "@/components/about/TextOverlay";
 import AboutContent from "@/components/about/AboutContent";
 import EducationContent from "@/components/about/EducationContent";
 import InterestsContent from "@/components/about/InterestsContent";
-// import HobbiesContent from "@/components/about/HobbiesContent";
-const HobbiesContent = lazy(() => import("@/components/about/HobbiesContent"));
+import HobbiesContent from "@/components/about/HobbiesContent";
 import { sliderItems } from "@/constants/aboutData";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 
@@ -91,9 +90,7 @@ const About: React.FC = () => {
           <InterestsContent containerRef={containerRef} />
         </div>
         <div className="">
-          <Suspense fallback={<div>Loading...</div>}>
-            <HobbiesContent containerRef={containerRef} />
-          </Suspense>
+          <HobbiesContent containerRef={containerRef} />
         </div>
       </div>
     </ScrollArea>

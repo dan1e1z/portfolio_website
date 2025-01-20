@@ -1,24 +1,9 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-
-// types.ts
-type MediaItem = {
-  title: string;
-  number: string;
-  videoUrl: string;
-};
+import { GRID_ITEMS } from "@/constants/homeData";
+import { MediaItem } from "@/types/home";
 
 type RowHeights = [string, string];
-
-// constants.ts
-export const GRID_ITEMS: MediaItem[] = [
-  { title: "About", number: "01", videoUrl: "/about-page-video.mp4" },
-  { title: "Projects", number: "02", videoUrl: "/projects-page-video.mp4" },
-  { title: "Contacts", number: "03", videoUrl: "/contacts-page-video.mp4" },
-  { title: "Skills", number: "04", videoUrl: "/skills-page-video.mp4" },
-  { title: "Split", number: "05", videoUrl: "/split-function-video.mp4" },
-  { title: "Fzf", number: "06", videoUrl: "/fzf-function-video.mp4" },
-];
 
 // GridItem.tsx
 interface GridItemProps {
