@@ -117,3 +117,5 @@ const Char = ({ children, progress, range }: CharProps) => {
     </span>
   );
 };
+
+//TEST1
