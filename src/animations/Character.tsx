@@ -5,7 +5,7 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 interface ParagraphProps {

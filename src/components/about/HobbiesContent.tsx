@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useMousePosition from "@/hooks/useMousePosition";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
