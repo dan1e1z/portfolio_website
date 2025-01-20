@@ -37,8 +37,6 @@ const About: React.FC = () => {
 
   useEffect(() => {
     const initLenis = async () => {
-      if (typeof window === "undefined") return;
-
       const lenis = new Lenis({
         wrapper: containerRef.current!,
         lerp: 0.1,
@@ -52,14 +50,10 @@ const About: React.FC = () => {
       }
 
       requestAnimationFrame(raf);
-
-      return () => {
-        lenis.destroy();
-      };
     };
 
     initLenis();
-  }, []);
+  }, [containerRef]);
 
   return (
     <ScrollArea
