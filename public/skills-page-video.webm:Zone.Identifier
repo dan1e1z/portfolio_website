@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://cloudconvert.com/
-HostUrl=https://eu-central.storage.cloudconvert.com/tasks/041d801d-7dcc-4f2a-aba6-b99bf29c4985/skills-page-video.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20250120%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20250120T004549Z&X-Amz-Expires=86400&X-Amz-Signature=fb211e63a34d7d67727b8e846be4db56737f4f4ceccc5b5cf6e56ec630685943&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22skills-page-video.webm%22&response-content-type=video%2Fwebm&x-id=GetObject
