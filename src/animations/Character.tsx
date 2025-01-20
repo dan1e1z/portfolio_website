@@ -5,7 +5,7 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 
 interface ParagraphProps {
@@ -20,9 +20,16 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
     target: scrollRef,
     container: containerRef,
     offset: ["start 0.9", "start 0.25"],
+    layoutEffect: false,
   });
 
-  console.log("scrollYProgress", scrollYProgress);
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      console.log("Character scrollYProgress", latest);
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   const words = paragraph.split(" ");
 

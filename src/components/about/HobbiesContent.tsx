@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useMousePosition from "@/hooks/useMousePosition";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
@@ -91,9 +91,16 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     target: scrollRef,
     container: containerRef,
     offset: ["start end", "end end"],
+    layoutEffect: false, // This helps with SSR
   });
 
-  console.log("scrollYProgress", scrollYProgress);
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      console.log("Hobbies scrollYProgress", latest);
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   const titleOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
 
