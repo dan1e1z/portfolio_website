@@ -1,15 +1,55 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import useContainerDimensions from "@/hooks/useContainerDimensions";
 
-const AboutContent = () => {
+interface AboutContentTitleProps {
+  containerRef: React.RefObject<HTMLDivElement>;
+}
+
+const AboutContent = ({ containerRef }: AboutContentTitleProps) => {
   const scrollRef = useRef(null);
+  const dimensions = useContainerDimensions(containerRef);
+
+  const getResponsiveConfig = (width: number) => {
+    if (width < 374) {
+      return {
+        fontSize: "text-xs",
+      };
+    } else if (width < 420) {
+      return {
+        fontSize: "text-sm",
+      };
+    } else if (width < 484) {
+      return {
+        fontSize: "text-base",
+      };
+    } else if (width < 530) {
+      return {
+        fontSize: "text-lg",
+      };
+    } else {
+      return {
+        fontSize: "text-xl",
+      };
+    }
+  };
+
+  const config = dimensions?.width
+    ? getResponsiveConfig(dimensions.width)
+    : getResponsiveConfig(1000);
 
   return (
     <div
       ref={scrollRef}
-      className="h-full w-full flex flex-row content-center items-center m-4"
+      // className="h-full flex  content-center items-center p-4 relative"
+      style={{
+        height: "100%",
+        width: dimensions?.width || "100%",
+        display: "flex",
+        alignItems: "center",
+      }}
     >
-      <div className="">
+      <div className="pl-4">
         <motion.h2
           className="text-8xl font-neueMontreal text-[#EEE9CC] pb-12"
           // initial={{ opacity: 0, x: -200 }}
@@ -21,27 +61,27 @@ const AboutContent = () => {
           Me
         </motion.h2>
 
-        <p className="text-muted-foreground leading-relaxed font-neueMontreal">
-          A passionate{" "}
-          <strong className="text-[#EEE9CC] text-xl">web developer</strong>{" "}
+        <p
+          className={`text-muted-foreground font-neueMontreal text-wrap ${config.fontSize}`}
+        >
+          A passionate <strong className="text-[#EEE9CC]">web developer</strong>{" "}
           specialising in creating <br />
-          <strong className="text-[#EEE9CC] text-xl">
+          <strong className="text-[#EEE9CC]">
             {" "}
             intuitive and visually appealing interfaces
           </strong>
           .<br />
           Proficient in
-          <strong className="text-[#EEE9CC] text-xl">
+          <strong className="text-[#EEE9CC]">
             {" "}
             full-stack development
           </strong>{" "}
           with expertise <br />
           in
-          <strong className="text-[#EEE9CC] text-xl">
+          <strong className="text-[#EEE9CC]">
             {" "}
             Python, TypeScript, React
-          </strong>
-          , and modern web technologies.
+          </strong>, and modern web technologies.
         </p>
       </div>
       {/* <AboutShapes /> */}

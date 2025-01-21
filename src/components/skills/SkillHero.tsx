@@ -14,7 +14,11 @@ const SkillHero = ({ containerRef }: SkillHeroProps) => {
 
   let textSize = "text-8xl";
 
-  if (dimensions?.width !== undefined && dimensions.width < 708) {
+  if (dimensions?.width !== undefined && dimensions.width < 355) {
+    textSize = "text-4xl";
+  } else if (dimensions?.width !== undefined && dimensions.width < 424) {
+    textSize = "text-5xl";
+  } else if (dimensions?.width !== undefined && dimensions.width < 708) {
     textSize = "text-6xl";
   }
 
@@ -27,12 +31,6 @@ const SkillHero = ({ containerRef }: SkillHeroProps) => {
 
       {/* Two animated text elements side by side */}
       <div className="flex h-full">
-        {/* <div className="h-full w-[30%]"> */}
-        {/*   <AnimatedText text="Ḿ" /> */}
-        {/* </div> */}
-        {/* <div className="h-full w-[30%]"> */}
-        {/*   <AnimatedText text="Ý" /> */}
-        {/* </div> */}
         <div className="h-full w-[30%]">
           <AnimatedText text="M" />
         </div>

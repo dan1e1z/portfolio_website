@@ -53,11 +53,33 @@ type PositionMap = {
 
 const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
   const dimensions = useContainerDimensions(containerRef);
-  let textSize = "text-2xl";
+  // let textSize = "text-2xl";
+  //
+  // if (dimensions?.width !== undefined && dimensions.width < 615) {
+  //   textSize = "text-xl";
+  // }
 
-  if (dimensions?.width !== undefined && dimensions.width < 615) {
-    textSize = "text-xl";
-  }
+  const getResponsiveConfig = (width: number) => {
+    if (width < 454) {
+      return {
+        titleTextSize: "text-5xl",
+      };
+    }
+    if (width < 615) {
+      return {
+        textSize: "text-xl",
+      };
+    } else {
+      return {
+        titleTextSize: "text-6xl",
+        textSize: "text-2xl",
+      };
+    }
+  };
+
+  const config = dimensions?.width
+    ? getResponsiveConfig(dimensions.width)
+    : getResponsiveConfig(1000);
 
   const positions: PositionMap = {
     1: "row-start-1 col-start-1",
@@ -195,7 +217,7 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
           {activities.map(({ activity, rowStart, colStart }) => (
             <div
               // className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] text-2xl uppercase mix-blend-exclusion`}
-              className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] ${textSize} uppercase mix-blend-exclusion`}
+              className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] ${config.textSize} uppercase mix-blend-exclusion`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -206,7 +228,7 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
 
         {/* Title with scroll-based opacity */}
         <motion.h2
-          className="absolute top-0 left-0 mt-8 ml-4 text-[#eee9cc] font-pacifico uppercase text-6xl font-medium tracking-tight"
+          className={`absolute top-0 left-0 mt-8 ml-4 text-[#eee9cc] font-pacifico uppercase ${config?.titleTextSize} font-medium tracking-tight`}
           style={{ opacity: titleOpacity, pointerEvents: "none" }}
         >
           Look for my <br />

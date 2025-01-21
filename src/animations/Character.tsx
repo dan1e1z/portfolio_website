@@ -13,6 +13,7 @@ interface ParagraphProps {
   containerRef: React.RefObject<HTMLDivElement>;
 }
 
+import { useEffect } from "react";
 export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
   const scrollRef = useRef<HTMLParagraphElement>(null);
 
@@ -35,22 +36,46 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
 
   const dimensions = useContainerDimensions(containerRef);
 
-  let textSize: string = "text-3xl"; // Default value
+  useEffect(() => {
+    console.log("dimensions width", dimensions?.width);
+  }, [dimensions?.width]);
 
-  if (dimensions?.width !== undefined && dimensions.width < 517) {
-    textSize = "text-3xl";
-  } else if (dimensions?.width !== undefined && dimensions.width < 732) {
-    textSize = "text-4xl";
-  } else if (dimensions?.width !== undefined && dimensions.width < 1173) {
-    textSize = "text-5xl";
-  } else {
-    textSize = "text-6xl";
-  }
+  const getResponsiveConfig = (width: number) => {
+    if (width < 380) {
+      return {
+        textSize: "text-xl",
+      };
+    } else if (width < 470) {
+      return {
+        textSize: "text-2xl",
+      };
+    } else if (width < 550) {
+      return {
+        textSize: "text-3xl",
+      };
+    } else if (width < 830) {
+      return {
+        textSize: "text-4xl",
+      };
+    } else if (width < 1173) {
+      return {
+        textSize: "text-5xl",
+      };
+    } else {
+      return {
+        textSize: "text-6xl",
+      };
+    }
+  };
+
+  const config = dimensions?.width
+    ? getResponsiveConfig(dimensions.width)
+    : getResponsiveConfig(1000);
 
   return (
     <motion.p
       ref={scrollRef}
-      className={` relative flex ${textSize} leader-1 text-[#EEE9CC] flex-wrap justify-center`}
+      className={` relative flex ${config.textSize} leader-1 text-[#EEE9CC] flex-wrap justify-center p-4`}
     >
       {words.map((word, i) => {
         const start = i / words.length;

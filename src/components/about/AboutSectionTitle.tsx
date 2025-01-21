@@ -8,13 +8,38 @@ interface AboutSectionTitleProps {
 
 const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
   const dimensions = useContainerDimensions(containerRef);
-  let textSize = "text-[20rem]";
 
-  if (dimensions?.width !== undefined && dimensions.width < 665) {
-    textSize = "text-[13rem]";
-  } else if (dimensions?.width !== undefined && dimensions.width < 862) {
-    textSize = "text-[15rem]";
-  }
+  const getResponsiveConfig = (width: number) => {
+    if (width < 380) {
+      return {
+        textSize: "text-[9rem]",
+      };
+    } else if (width < 454) {
+      return {
+        textSize: "text-[10rem]",
+      };
+    } else if (width < 536) {
+      return {
+        textSize: "text-[11.5rem]",
+      };
+    } else if (width < 665) {
+      return {
+        textSize: "text-[13rem]",
+      };
+    } else if (width < 862) {
+      return {
+        textSize: "text-[15rem]",
+      };
+    } else {
+      return {
+        textSize: "text-[20rem]",
+      };
+    }
+  };
+
+  const config = dimensions?.width
+    ? getResponsiveConfig(dimensions.width)
+    : getResponsiveConfig(1000);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,7 +61,7 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
 
   return (
     <motion.div
-      className="relative h-screen w-full overflow-hidden flex flex-col justify-end bg-[#eee9cc]"
+      className="relative h-screen w-full overflow-hidden flex flex-col justify-end bg-[#eee9cc] "
       style={{
         y: yPercent,
         scale,
@@ -45,8 +70,7 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
       ref={scrollRef}
     >
       <motion.h2
-        // className="absolute w-full text-[20rem] leading-none text-center whitespace-nowrap text-[#1c1915]"
-        className={`absolute w-full ${textSize} leading-none text-center whitespace-nowrap text-[#1c1915]`}
+        className={`absolute w-full ${config.textSize} leading-none text-center whitespace-nowrap text-[#1c1915]`}
         style={{
           x: xPercent,
         }}

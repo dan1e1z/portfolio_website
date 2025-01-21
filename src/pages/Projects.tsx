@@ -71,7 +71,7 @@ export default function Projects() {
             />
           ))}
         </div>
-        <div className="fixed bottom-4 right-4 z-50">
+        <div className="fixed bottom-4 right-4 z-50 hidden md:block">
           <Button
             onClick={() =>
               scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })

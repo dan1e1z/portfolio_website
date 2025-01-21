@@ -29,24 +29,64 @@ const VerticalSwiper = ({ containerRef }: VerticalSwiperProps) => {
   const dimensions = useContainerDimensions(containerRef);
   // console.log("dimensions", dimensions);
 
-  let positionStyle: string = "";
-  let firstWordTextSize: string = "text-4xl";
-  let secondWordTextSize: string = "text-2xl";
+  // let positionStyle: string = "";
+  // let firstWordTextSize: string = "text-4xl";
+  // let secondWordTextSize: string = "text-2xl";
+  //
+  // if (dimensions?.width !== undefined && dimensions.width < 600) {
+  //   positionStyle = "flex flex-col items-end";
+  //   firstWordTextSize = "hidden";
+  //   secondWordTextSize = "hidden";
+  // } else if (dimensions?.width !== undefined && dimensions.width < 641) {
+  //   positionStyle = "flex flex-col items-end";
+  //   firstWordTextSize = "text-2xl";
+  //   secondWordTextSize = "text-xl";
+  // } else if (dimensions?.width !== undefined && dimensions.width < 641) {
+  //   positionStyle = "flex flex-col items-end";
+  //   firstWordTextSize = "text-3xl";
+  // } else if (dimensions?.width !== undefined && dimensions.width < 775) {
+  //   positionStyle = "flex flex-col items-end";
+  // }
 
-  if (dimensions?.width !== undefined && dimensions.width < 600) {
-    positionStyle = "flex flex-col items-end";
-    firstWordTextSize = "hidden";
-    secondWordTextSize = "hidden";
-  } else if (dimensions?.width !== undefined && dimensions.width < 641) {
-    positionStyle = "flex flex-col items-end";
-    firstWordTextSize = "text-2xl";
-    secondWordTextSize = "text-xl";
-  } else if (dimensions?.width !== undefined && dimensions.width < 641) {
-    positionStyle = "flex flex-col items-end";
-    firstWordTextSize = "text-3xl";
-  } else if (dimensions?.width !== undefined && dimensions.width < 775) {
-    positionStyle = "flex flex-col items-end";
-  }
+  const getResponsiveConfig = (width: number) => {
+    if (width < 600) {
+      return {
+        positionStyle: "flex flex-col items-end",
+        firstWordTextSize: "hidden",
+        secondWordTextSize: "hidden",
+      };
+    } else if (width < 641) {
+      return {
+        positionStyle: "flex flex-col items-end pr-8",
+        firstWordTextSize: "text-2xl",
+        secondWordTextSize: "text-xl",
+      };
+    }
+    //     else if (width < 641) {
+    //   return {
+    //     positionStyle: "flex flex-col items-end",
+    //     firstWordTextSize: "text-2xl",
+    //     secondWordTextSize: "text-xl",
+    //   };
+    // }
+    else if (width < 775) {
+      return {
+        positionStyle: "flex flex-col items-end pr-8",
+        firstWordTextSize: "text-3xl",
+        secondWordTextSize: "text-2xl",
+      };
+    } else {
+      return {
+        positionStyle: "pr-8",
+        firstWordTextSize: "text-4xl",
+        secondWordTextSize: "text-2xl",
+      };
+    }
+  };
+
+  const config = dimensions?.width
+    ? getResponsiveConfig(dimensions.width)
+    : getResponsiveConfig(1000);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -68,12 +108,12 @@ const VerticalSwiper = ({ containerRef }: VerticalSwiperProps) => {
           animate="center"
           exit="exit"
           transition={{ duration: 1, ease: "easeInOut" }}
-          className={`${positionStyle}`}
+          className={`${config.positionStyle}`}
         >
-          <span className={`${firstWordTextSize} font-bold`}>
+          <span className={`${config.firstWordTextSize} font-bold`}>
             {CERTIFICATIONS[currentIndex].firstWord}{" "}
           </span>
-          <span className={`${secondWordTextSize} font-normal`}>
+          <span className={`${config.secondWordTextSize} font-normal`}>
             {CERTIFICATIONS[currentIndex].secondWord}
           </span>
         </motion.div>

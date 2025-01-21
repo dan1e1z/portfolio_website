@@ -47,8 +47,6 @@ const SkillTransition = ({ containerRef }: SkillTransitionProps) => {
         {/* Ensure text is above the animated grid */}
         <div className="absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-6xl text-[#eee9cc] mix-blend-exclusion font-neueMontreal">
           hello hello hello hello
-          {/* <span>HelLo</span> <span>hElLo</span> <span>HELlo</span>{" "} */}
-          {/* <span>HellO</span> */}
         </div>
 
         {/* Animated grid rows under the text */}
@@ -62,9 +60,7 @@ const SkillTransition = ({ containerRef }: SkillTransitionProps) => {
               }}
               initial={{ height: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              -
-            </motion.div>
+            ></motion.div>
           </div>
         ))}
       </div>

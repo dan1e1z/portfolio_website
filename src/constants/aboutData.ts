@@ -22,5 +22,5 @@ export const textItems: TextItem[] = [
   { text: "About", xPercent: -50 },
   { text: "Education", xPercent: 50 },
   { text: "Interests", xPercent: -20 },
-  { text: "Hobbies", xPercent: -20 },
+  { text: "Hobbies", xPercent: 20 },
 ];
