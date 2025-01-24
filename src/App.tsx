@@ -483,18 +483,14 @@ const App: React.FC = () => {
               />
 
               <SidebarInset className="flex-1 overflow-hidden">
-                <main className="relative h-full w-full bg-transparent">
+                <main className="relative h-dvh w-dvw bg-transparent">
                   <>
                     {isSplit ? (
                       renderSplitView()
                     ) : (
-                      <div className="flex flex-col h-full w-full bg-transparent">
-                        <div className="h-[90%] md:h-full">
-                          {renderRoutes()}
-                        </div>
-                        <div className="h-[10%] md:h-full">
-                          <MobileNavigation />
-                        </div>
+                      <div className="flex flex-col h-dvh w-dvw bg-transparent">
+                        {renderRoutes()}
+                        <MobileNavigation />
                       </div>
                     )}
                     <Toaster />
