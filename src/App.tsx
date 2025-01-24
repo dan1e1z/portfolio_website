@@ -484,7 +484,8 @@ const App: React.FC = () => {
 
               <SidebarInset className="flex-1 overflow-hidden">
                 {/* <main className="relative h-dvh w-dvw bg-transparent"> */}
-                <main className="relative min-h-dvh w-dvw overflow-hidden bg-transparent">
+                {/* <main className="relative min-h-dvh w-dvw overflow-hidden bg-transparent"> */}
+                <main className="relative min-h-dvh w-dvw bg-transparent">
                   <>
                     {isSplit ? (
                       renderSplitView()

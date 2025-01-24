@@ -131,7 +131,7 @@ const MobileNavigation: React.FC = () => {
   };
 
   return (
-    <div className="block md:hidden z-50 h-full w-full">
+    <div className="block md:hidden z-50">
       <div className="flex items-center justify-between p-2 bg-transparent backdrop-blur-md">
         <div className="flex space-x-6 justify-center flex-1">
           {items.map((item: MenuItem) => (
