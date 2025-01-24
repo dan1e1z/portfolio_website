@@ -251,7 +251,6 @@ import Arrow from "@/animations/Arrow";
 import { useRef, useMemo } from "react";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { DownArrow } from "@/assets/DownArrow";
 
 const ContactPage = () => {
   const slideInVariants = {

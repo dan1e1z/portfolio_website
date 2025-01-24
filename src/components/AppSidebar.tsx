@@ -389,7 +389,6 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { DesktopSidebar } from "@/components/sidebar/DesktopSidebar";
-import { MobileNavigation } from "@/components/sidebar/MobileNavigation";
 import TerminalWindow from "@/components/TerminalWindow";
 import type { AppSidebarProps } from "@/types/sidebar";
 
