@@ -488,7 +488,7 @@ const App: React.FC = () => {
                     {isSplit ? (
                       renderSplitView()
                     ) : (
-                      <div className="flex flex-col h-full w-full bg-transparent">
+                      <div className="flex flex-col h-[100dvh] w-full bg-transparent">
                         {renderRoutes()}
                         {/* Mobile Navigation Sidebar */}
                         <MobileNavigation />

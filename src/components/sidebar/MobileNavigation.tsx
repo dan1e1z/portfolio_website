@@ -81,31 +81,33 @@ const MobileNavigation: React.FC = () => {
   };
 
   return (
-    <div className="p-2 block md:hidden z-50 items center justify-between">
-      <div className="flex space-x-6 justify-center flex-1">
-        {items.map((item: MenuItem) => (
-          <Link
-            key={item.title}
-            to={item.url}
-            className={`flex flex-col items-center ${
-              location.pathname === item.url
-                ? "text-primary"
-                : "text-muted-foreground"
-            }`}
-          >
-            <item.icon className="h-6 w-6" />
-            <span className="text-xs mt-1">{item.title}</span>
-          </Link>
-        ))}
+    <div className="m-2 block md:hidden z-50 relative">
+      <div className="flex items-center justify-between">
+        <div className="flex space-x-6 justify-center flex-1">
+          {items.map((item: MenuItem) => (
+            <Link
+              key={item.title}
+              to={item.url}
+              className={`flex flex-col items-center ${
+                location.pathname === item.url
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              }`}
+            >
+              <item.icon className="h-6 w-6" />
+              <span className="text-xs mt-1">{item.title}</span>
+            </Link>
+          ))}
+        </div>
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={toggleTerminal}
+          className={`text-foreground hidden sm:block`}
+        >
+          <Terminal className="h-6 w-6" />
+        </Button>
       </div>
-      <Button
-        size="icon"
-        variant="ghost"
-        onClick={toggleTerminal}
-        className={`text-foreground hidden sm:block`}
-      >
-        <Terminal className="h-6 w-6" />
-      </Button>
     </div>
   );
 };
