@@ -491,9 +491,9 @@ const App: React.FC = () => {
                       <div className="flex flex-col h-full w-full bg-transparent">
                         <div className="h-[90%] md:h-full">
                           {renderRoutes()}
-                          <div className="h-[10%] md:h-full">
-                            <MobileNavigation />
-                          </div>
+                        </div>
+                        <div className="h-[10%] md:h-full">
+                          <MobileNavigation />
                         </div>
                       </div>
                     )}
