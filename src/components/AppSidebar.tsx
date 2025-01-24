@@ -385,7 +385,7 @@
 //   );
 // }
 
-// TEST2
+// TEST2 - WORKING
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { DesktopSidebar } from "@/components/sidebar/DesktopSidebar";
@@ -421,7 +421,6 @@ export function AppSidebar({ setIsSplit, setSplitDirectory }: AppSidebarProps) {
         isTerminalVisible={isTerminalVisible}
         toggleTerminal={toggleTerminal}
       />
-      <MobileNavigation toggleTerminal={toggleTerminal} />
 
       {isTerminalVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

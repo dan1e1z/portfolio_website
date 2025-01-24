@@ -31,42 +31,33 @@
 //   const dimensions = useContainerDimensions(containerRef);
 //   console.log(dimensions);
 //
-//   // let textSize: string = "text-3xl"; // Default value
-//   let contentPosition = "m-0 p-0 flex flex-row";
+//   const getResponsiveConfig = (width: number) => {
+//     if (width < 1072) {
+//       return {
+//         contentPosition: "flex flex-col gap-12",
+//       };
+//     } else {
+//       return {
+//         contentPosition: "flex flex-row",
+//       };
+//     }
+//   };
 //
-//   if (dimensions?.width !== undefined && dimensions.width < 1072) {
-//     // textSize = "text-5xl";
-//     contentPosition = "flex flex-col gap-12";
-//   }
+//   const config = dimensions?.width
+//     ? getResponsiveConfig(dimensions.width)
+//     : getResponsiveConfig(1000);
 //
 //   return (
 //     <ScrollArea
 //       viewportRef={containerRef}
-//       className="h-full w-full bg-[#1c1915] p-8 items-center justify-center rounded-2xl"
+//       className="h-full w-full bg-[#1c1915] rounded-2xl"
 //     >
-//       <div className={`${contentPosition}`}>
+//       <div className={`${config.contentPosition} p-6`}>
 //         {/* Left Column - Contact Info */}
 //         <div className="flex flex-col gap-12 text-[#eee9cc] ">
 //           <div className="flex-1">
-//             {/* <div className="absolute inset-0 -z-1"> */}
-//             {/*   <OverlayLine */}
-//             {/*     top={{ x: "29.5%", y: "0%" }} */}
-//             {/*     bottom={{ x: "0%", y: "40%" }} */}
-//             {/*     colour="#eee9cc" */}
-//             {/*     thickness="1px" */}
-//             {/*   /> */}
-//             {/* </div> */}
 //             <h1 className="text-6xl mb-8 font-sometimesTimes">
-//               Contact{" "}
-//               <span
-//               // style={{
-//               //   textDecorationLine: "line-through",
-//               //   textDecorationStyle: "wavy",
-//               //   textDecorationThickness: "4px",
-//               // }}
-//               >
-//                 Me
-//               </span>
+//               Contact <span>Me</span>
 //             </h1>
 //             <p className="text-lg font-neueMontreal">
 //               I am here to connect,{" "}
@@ -93,6 +84,10 @@
 //           </div>
 //         </div>
 //
+//         <div
+//           className={`${config.contentPosition === "flex flex-col gap-12" ? "absolute top-0 right-0 translate-y-[50%]" : "hidden"}`}
+//         ></div>
+//
 //         {/* Animated Spacer div */}
 //         <motion.div
 //           variants={slideInVariants}
@@ -108,7 +103,7 @@
 //           animate="visible"
 //           className={`flex-1 text-[#eee9cc]`}
 //         >
-//           <ContactForm />
+//           <ContactForm containerRef={containerRef} />
 //         </motion.div>
 //       </div>
 //     </ScrollArea>
@@ -117,22 +112,150 @@
 //
 // export default ContactPage;
 
+// TEST1
+
+// import ContactInfo from "@/components/contact/ContactInfo";
+// import SocialLinks from "@/components/contact/SocialLinks";
+// import ContactForm from "@/components/contact/ContactForm";
+// import { contactInfo, socialLinks } from "@/data/contact";
+// import { motion } from "framer-motion";
+// import Arrow from "@/animations/Arrow";
+// import { useRef } from "react";
+// import useContainerDimensions from "@/hooks/useContainerDimensions";
+// import { ScrollArea } from "@/components/ui/scroll-area";
+// import ElbowConnector from "@/assets/ElbowConnector";
+//
+// const ContactPage = () => {
+//   const slideInVariants = {
+//     hidden: {
+//       x: 100,
+//       opacity: 0,
+//     },
+//     visible: {
+//       x: 0,
+//       opacity: 1,
+//       transition: {
+//         type: "tween",
+//         ease: "easeOut",
+//         duration: 1.5,
+//         delay: 0.2,
+//       },
+//     },
+//   };
+//
+//   const containerRef = useRef(null);
+//
+//   const dimensions = useContainerDimensions(containerRef);
+//   console.log(dimensions);
+//
+//   const getResponsiveConfig = (width: number) => {
+//     if (width < 1072) {
+//       return {
+//         contentPosition: "flex flex-col gap-12",
+//       };
+//     } else {
+//       return {
+//         contentPosition: "flex flex-row",
+//       };
+//     }
+//   };
+//
+//   const config = dimensions?.width
+//     ? getResponsiveConfig(dimensions.width)
+//     : getResponsiveConfig(1000);
+//
+//   const sourceRef = useRef(null);
+//   const targetRef = useRef(null);
+//
+//   return (
+//     <ScrollArea
+//       viewportRef={containerRef}
+//       className="h-full w-full bg-[#1c1915] rounded-2xl"
+//     >
+//       <div className={`${config.contentPosition} p-6`}>
+//         {/* Left Column - Contact Info */}
+//         <div className="flex flex-col gap-12 text-[#eee9cc] ">
+//           <div className="flex-1">
+//             <h1 ref={sourceRef} className="text-6xl mb-8 font-sometimesTimes">
+//               Contact <span>Me</span>
+//             </h1>
+//             <p className="text-lg font-neueMontreal">
+//               I am here to connect,{" "}
+//               <motion.span
+//                 initial={{ opacity: 0 }}
+//                 whileInView={{
+//                   opacity: 1,
+//                   transition: { duration: 2, ease: "easeIn" },
+//                 }}
+//               >
+//                 create
+//               </motion.span>
+//               , <br />
+//               and contribute to a future fuelled <br />
+//               by passion and purpose.
+//             </p>
+//             <div className="mt-4 w-6">
+//               <Arrow />
+//             </div>
+//           </div>
+//           <div ref={targetRef} className="space-y-8">
+//             <ContactInfo contactInfo={contactInfo} />
+//             <SocialLinks socialLinks={socialLinks} />
+//           </div>
+//         </div>
+//
+//         <div
+//           className={`${config.contentPosition === "flex flex-col gap-12" ? "absolute top-0 right-0" : "hidden"}`}
+//         >
+//           <ElbowConnector
+//             sourceRef={sourceRef}
+//             targetRef={targetRef}
+//             options={{
+//               color: "eee9cc",
+//               strokeWidth: 3,
+//             }}
+//           />
+//         </div>
+//
+//         {/* Animated Spacer div */}
+//         <motion.div
+//           variants={slideInVariants}
+//           initial="hidden"
+//           animate="visible"
+//           className="w-[120px] ml-[20px] mr-[20px] border-l border-l-[#eee9cc] border-r border-r-[#eee9cc]"
+//         />
+//
+//         {/* Animated Right Column - Contact Form */}
+//         <motion.div
+//           variants={slideInVariants}
+//           initial="hidden"
+//           animate="visible"
+//           className={`flex-1 text-[#eee9cc]`}
+//         >
+//           <ContactForm containerRef={containerRef} />
+//         </motion.div>
+//       </div>
+//     </ScrollArea>
+//   );
+// };
+//
+// export default ContactPage;
+
+// TEST2
 import ContactInfo from "@/components/contact/ContactInfo";
 import SocialLinks from "@/components/contact/SocialLinks";
 import ContactForm from "@/components/contact/ContactForm";
 import { contactInfo, socialLinks } from "@/data/contact";
 import { motion } from "framer-motion";
 import Arrow from "@/animations/Arrow";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { DownArrow } from "@/assets/DownArrow";
 
 const ContactPage = () => {
   const slideInVariants = {
-    hidden: {
-      x: 100,
-      opacity: 0,
-    },
+    hidden: { x: 100, opacity: 0 },
     visible: {
       x: 0,
       opacity: 1,
@@ -146,59 +269,57 @@ const ContactPage = () => {
   };
 
   const containerRef = useRef(null);
+
   const dimensions = useContainerDimensions(containerRef);
 
-  const getResponsiveConfig = (width: number) => {
-    if (width < 375) {
-      return {
-        fontSize: "text-lg",
-        titleSize: "text-3xl",
-        gap: "gap-4",
-        padding: "p-4",
-        columnDirection: "flex-col",
-        formClass: "",
-        spacerVisibility: "hidden",
-      };
-    } else if (width < 768) {
-      return {
-        fontSize: "text-xl",
-        titleSize: "text-4xl",
-        gap: "gap-6",
-        padding: "p-6",
-        columnDirection: "flex-col",
-        formClass: "flex-1",
-        spacerVisibility: "hidden lg:block",
-      };
-    } else {
-      return {
-        fontSize: "text-2xl",
-        titleSize: "text-5xl",
-        gap: "gap-8",
-        padding: "p-8",
-        columnDirection: "flex-row",
-        formClass: "flex-1",
-        spacerVisibility: "block",
-      };
-    }
-  };
+  const config = useMemo(() => {
+    const width = dimensions?.width || 1000;
+    console.log("width", width);
 
-  const config = dimensions?.width
-    ? getResponsiveConfig(dimensions.width)
-    : getResponsiveConfig(1000); // Default configuration if dimensions aren't available
+    const contentPosition =
+      width < 1072 ? "flex flex-col gap-12" : "flex flex-row";
+
+    let arrowPlacement = "hidden";
+    if (width < 548) {
+      arrowPlacement = "hidden";
+    } else if (width < 706) {
+      arrowPlacement = "mr-[2vw]";
+    } else if (width < 868) {
+      arrowPlacement = "mr-[8vw]";
+    } else if (width < 1072) {
+      arrowPlacement = "mr-[16vw]";
+    }
+
+    return {
+      contentPosition,
+      arrowPlacement,
+    };
+  }, [dimensions?.width]);
+
+  const isColumnLayout = config.contentPosition === "flex flex-col gap-12";
 
   return (
     <ScrollArea
       viewportRef={containerRef}
-      className={`h-full w-full bg-[#1c1915] ${config.padding} items-center justify-center rounded-2xl`}
+      className="h-full w-full bg-[#1c1915] rounded-2xl relative"
     >
-      <div className={`flex ${config.columnDirection} ${config.gap}`}>
+      <div className={`${config.contentPosition} p-6 relative`}>
         {/* Left Column - Contact Info */}
-        <div className={`flex flex-col ${config.gap} text-[#eee9cc]`}>
-          <div className="flex-1">
-            <h1 className={`${config.titleSize} mb-4 font-sometimesTimes`}>
-              Contact <span>Me</span>
-            </h1>
-            <p className={`${config.fontSize} font-neueMontreal`}>
+        <div className="flex flex-col gap-12 text-[#eee9cc] relative">
+          <div className="flex-1 relative">
+            <div className="relative">
+              <h1 className="text-6xl mb-8 font-sometimesTimes">
+                Contact <span className="mr-8">Me</span>
+              </h1>
+              {isColumnLayout && (
+                <div
+                  className={`absolute w-64 rotate-90 right-0 ${config.arrowPlacement}`}
+                >
+                  <Arrow />
+                </div>
+              )}
+            </div>
+            <p className="text-lg font-neueMontreal">
               I am here to connect,{" "}
               <motion.span
                 initial={{ opacity: 0 }}
@@ -210,32 +331,30 @@ const ContactPage = () => {
                 create
               </motion.span>
               , <br />
-              and contribute to a future fuelled by passion and purpose.
+              and contribute to a future fuelled <br />
+              by passion and purpose.
             </p>
             <div className="mt-4 w-6">
               <Arrow />
             </div>
           </div>
-          <div className={`space-y-6`}>
+          <div className="space-y-8">
             <ContactInfo contactInfo={contactInfo} />
             <SocialLinks socialLinks={socialLinks} />
           </div>
         </div>
 
-        {/* Animated Spacer div */}
         <motion.div
           variants={slideInVariants}
           initial="hidden"
           animate="visible"
-          className={`${config.spacerVisibility} w-[1px] mx-4 border-l border-l-[#eee9cc]`}
+          className="w-[120px] ml-[20px] mr-[20px] border-l border-l-[#eee9cc] border-r border-r-[#eee9cc]"
         />
-
-        {/* Right Column - Contact Form */}
         <motion.div
           variants={slideInVariants}
           initial="hidden"
           animate="visible"
-          className={`text-[#eee9cc] ${config.formClass}`}
+          className="flex-1 text-[#eee9cc]"
         >
           <ContactForm containerRef={containerRef} />
         </motion.div>

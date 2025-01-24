@@ -246,13 +246,24 @@ const ContactForm = ({ containerRef }: ContactFormProps) => {
   const dimensions = useContainerDimensions(containerRef);
 
   const getResponsiveConfig = (width: number) => {
-    if (width < 375) {
+    if (width < 410) {
       return {
         textSize: "text-2xl",
         inputTextSize: "text-base",
         gap: "gap-4 pb-4",
         buttonText: "text-2xl",
         privacyText: "text-xs",
+        emailPosition: "",
+      };
+    } else if (width < 648) {
+      return {
+        textSize: "text-4xl",
+        inputTextSize: "text-lg",
+        gap: "gap-6 pb-4",
+        buttonText: "text-3xl",
+        privacyText: "text-sm",
+
+        emailPosition: "",
       };
     } else if (width < 768) {
       return {
@@ -261,6 +272,16 @@ const ContactForm = ({ containerRef }: ContactFormProps) => {
         gap: "gap-6 pb-4",
         buttonText: "text-3xl",
         privacyText: "text-sm",
+        emailPosition: "flex",
+      };
+    } else if (width < 1204) {
+      return {
+        textSize: "text-6xl",
+        inputTextSize: "text-xl",
+        gap: "gap-8",
+        buttonText: "text-4xl",
+        privacyText: "text-base",
+        emailPosition: "",
       };
     } else {
       return {
@@ -269,6 +290,7 @@ const ContactForm = ({ containerRef }: ContactFormProps) => {
         gap: "gap-8",
         buttonText: "text-4xl",
         privacyText: "text-base",
+        emailPosition: "flex",
       };
     }
   };
@@ -427,7 +449,7 @@ const ContactForm = ({ containerRef }: ContactFormProps) => {
       </div>
 
       {/* Email Field */}
-      <div className="flex">
+      <div className={`${config.emailPosition}`}>
         <span className={`${config.textSize} whitespace-nowrap mr-4`}>
           You can reach me at
         </span>

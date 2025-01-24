@@ -48,43 +48,47 @@ export default function Projects() {
     }
   }, [location.search]);
 
+  {
+    /* <div className="w-full h-full bg-[#1c1915] relative rounded-2xl"> */
+  }
   return (
-    <div className="w-full h-full bg-[#1c1915] relative rounded-lg">
-      <ScrollArea className="h-full w-full rounded-lg" viewportRef={scrollRef}>
-        <div className="sticky top-0 z-10 shadow-md p-4 bg-[#1c1915]/60 backdrop-blur-2xl rounded-lg">
-          <div className="w-full h-2 bg-[#1c1915] rounded-lg overflow-hidden">
-            <div
-              className="h-full bg-[#eee9cc] rounded-lg transition-all duration-200"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
+    <ScrollArea
+      className="h-full w-full  bg-[#1c1915] rounded-2xl"
+      viewportRef={scrollRef}
+    >
+      <div className="sticky top-0 z-10 shadow-md p-4 bg-[#1c1915]/60 backdrop-blur-2xl rounded-lg">
+        <div className="w-full h-2 bg-[#1c1915] rounded-lg overflow-hidden">
+          <div
+            className="h-full bg-[#eee9cc] rounded-lg transition-all duration-200"
+            style={{ width: `${scrollProgress}%` }}
+          />
         </div>
-        <div className="flex flex-col w-full items-stretch gap-6 p-6">
-          {projects.map((item) => (
-            <ProjectItem
-              key={item.id}
-              id={`project${item.id}`}
-              title={item.title}
-              img={item.img}
-              desc={item.desc}
-              link={item.link}
-            />
-          ))}
-        </div>
-        <div className="fixed bottom-4 right-4 z-50 hidden md:block">
-          <Button
-            onClick={() =>
-              scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })
-            }
-            className="p-2"
-            size="icon"
-            variant="outline"
-          >
-            <ArrowUp className="h-4 w-4" />
-            <span className="sr-only">Scroll to top</span>
-          </Button>
-        </div>
-      </ScrollArea>
-    </div>
+      </div>
+      <div className="flex flex-col w-full items-stretch gap-6 p-6">
+        {projects.map((item) => (
+          <ProjectItem
+            key={item.id}
+            id={`project${item.id}`}
+            title={item.title}
+            img={item.img}
+            desc={item.desc}
+            link={item.link}
+          />
+        ))}
+      </div>
+      <div className="fixed bottom-4 right-4 z-50 hidden md:block">
+        <Button
+          onClick={() =>
+            scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+          }
+          className="p-2"
+          size="icon"
+          variant="outline"
+        >
+          <ArrowUp className="h-4 w-4" />
+          <span className="sr-only">Scroll to top</span>
+        </Button>
+      </div>
+    </ScrollArea>
   );
 }

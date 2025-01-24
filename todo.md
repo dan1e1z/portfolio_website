@@ -16,15 +16,15 @@ CURRENT:
 
 
 
-
+About could be re-done, centered text
 
 MOBILE:
-- [ ] Home
-- [ ] About:
+- [x] Home
+- [x] About: 
     - [x]: Issue with smaller than 445 width TextOverlay
     - [x] complete EducationContent
-    - [ ] complete InterestsContent/Characters
-    - [ ] complete Hobbies
+    - [x] complete InterestsContent/Characters
+    - [x] complete Hobbies
 - [x] Projects
-- [ ] Contacts
+- [x] Contacts
 - [x] Skills

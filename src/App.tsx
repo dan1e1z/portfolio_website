@@ -329,7 +329,6 @@
 // };
 //
 // export default App;
-//
 
 // TEST2 - WORKING
 
@@ -352,6 +351,7 @@ import {
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { AppSidebar } from "@/components/AppSidebar";
+import MobileNavigation from "@/components/sidebar/MobileNavigation";
 
 // Lazy load page components
 const Home = lazy(() => import("@/pages/Home"));
@@ -467,8 +467,6 @@ const App: React.FC = () => {
     );
   };
 
-  // Rest of your App component remains the same...
-
   return (
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -483,16 +481,21 @@ const App: React.FC = () => {
                 setIsSplit={setIsSplit}
                 setSplitDirectory={setSplitDirectory}
               />
+
               <SidebarInset className="flex-1 overflow-hidden">
-                <main className="h-full w-full bg-transparent">
-                  {isSplit ? (
-                    renderSplitView()
-                  ) : (
-                    <div className="h-full w-full bg-transparent">
-                      {renderRoutes()}
-                    </div>
-                  )}
-                  <Toaster />
+                <main className="relative h-full w-full bg-transparent">
+                  <>
+                    {isSplit ? (
+                      renderSplitView()
+                    ) : (
+                      <div className="flex flex-col h-full w-full bg-transparent">
+                        {renderRoutes()}
+                        {/* Mobile Navigation Sidebar */}
+                        <MobileNavigation />
+                      </div>
+                    )}
+                    <Toaster />
+                  </>
                 </main>
               </SidebarInset>
             </div>
