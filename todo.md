@@ -7,6 +7,7 @@ CURRENT:
 - [x] fix about hobbies
 - [x] fix visuals of Skill Hero - COULD DO WITH SOME ADJUSTMENTS
 - [ ] fix projects image container 
+- [x] fix svg mouse position to work on phone touch
 - [ ] fix circle svg repeat on mac
 
 

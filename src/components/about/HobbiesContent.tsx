@@ -1,27 +1,9 @@
+//TEST1 - WORKING
+
 // import React, { useRef, useState } from "react";
 // import { motion, useScroll, useTransform } from "framer-motion";
 // import useMousePosition from "@/hooks/useMousePosition";
 // import useContainerDimensions from "@/hooks/useContainerDimensions";
-//
-// // const colors = [
-// //   "bg-red-800",
-// //   "bg-amber-600",
-// //   "bg-emerald-700",
-// //   "bg-sky-700",
-// //   "bg-purple-700",
-// //   "bg-rose-600",
-// //   "bg-orange-500",
-// //   "bg-teal-600",
-// //   "bg-blue-600",
-// //   "bg-violet-600",
-// //   "bg-pink-600",
-// //   "bg-yellow-500",
-// //   "bg-green-600",
-// //   "bg-cyan-600",
-// //   "bg-indigo-600",
-// //   "bg-fuchsia-600",
-// //   "bg-lime-600",
-// // ];
 //
 // const colors = [
 //   "bg-[#9C8779]",
@@ -153,7 +135,7 @@
 //     <div ref={scrollRef} className="h-[300vh] ">
 //       <div
 //         ref={gridRef}
-//         className="h-screen sticky top-0 grid place-items-center overflow-hidden"
+//         className="h-[90vh] md:h-screen sticky top-0 grid place-items-center overflow-hidden"
 //       >
 //         <div className="grid w-full h-full grid-cols-8 grid-rows-3 gap-2">
 //           {squares.map((square, index) => (
@@ -228,8 +210,6 @@
 //
 // export default HobbiesContent;
 
-//TEST1
-
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useMousePosition from "@/hooks/useMousePosition";
@@ -270,11 +250,13 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     if (width < 454) {
       return {
         titleTextSize: "text-5xl",
+        textSize: "text-base",
       };
     }
     if (width < 615) {
       return {
         textSize: "text-xl",
+        titleTextSize: "text-6xl",
       };
     } else {
       return {
@@ -320,11 +302,10 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     target: scrollRef,
     container: containerRef,
     offset: ["start end", "end end"],
-    layoutEffect: false, // This helps with SSR
+    layoutEffect: false,
   });
 
   const titleOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
-
   const overlayOpacity = useTransform(scrollYProgress, [0.95, 1], [0, 0.5]);
 
   const squares = colors.map((color, index) => {
@@ -361,11 +342,17 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     { activity: "Gaming", rowStart: 3, colStart: 8 },
   ];
 
+  // Inline SVG for mask to ensure cross-browser compatibility
+  const maskSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="50" fill="black"/></svg>`;
+
   return (
-    <div ref={scrollRef} className="h-[300vh] ">
+    <div ref={scrollRef} className="h-[300vh]">
       <div
         ref={gridRef}
         className="h-[90vh] md:h-screen sticky top-0 grid place-items-center overflow-hidden"
+        // Prevent default touch behaviors
+        onTouchStart={(e) => e.preventDefault()}
+        onTouchMove={(e) => e.preventDefault()}
       >
         <div className="grid w-full h-full grid-cols-8 grid-rows-3 gap-2">
           {squares.map((square, index) => (
@@ -402,10 +389,9 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
           className="absolute grid w-full h-full grid-cols-8 grid-rows-3 gap-2"
           style={{
             opacity: overlayOpacity,
-            maskImage: "url(/Circle.svg)",
-            WebkitMaskImage: "url(/Circle.svg)",
+            maskImage: `url("${maskSvg}")`,
+            WebkitMaskImage: `url("${maskSvg}")`,
             backgroundColor: "#f9f871",
-            // backgroundColor: "#FF0000",
             maskRepeat: "no-repeat",
             maskSize: `${size}px`,
             WebkitMaskSize: `${size}px`,
@@ -415,10 +401,12 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
         >
           {activities.map(({ activity, rowStart, colStart }) => (
             <div
-              // className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] text-2xl uppercase mix-blend-exclusion`}
+              key={activity}
               className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] ${config.textSize} uppercase mix-blend-exclusion`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
+              onTouchStart={() => setIsHovered(true)}
+              onTouchEnd={() => setIsHovered(false)}
             >
               {activity}
             </div>
