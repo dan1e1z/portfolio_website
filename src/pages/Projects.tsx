@@ -171,7 +171,7 @@ export default function Projects() {
             />
           </div>
         </div>
-        <div className="flex flex-col w-full h-full gap-6 p-6">
+        <div className="flex flex-col w-full gap-6 p-6">
           {projects.map((item) => (
             <ProjectItem
               key={item.id}
