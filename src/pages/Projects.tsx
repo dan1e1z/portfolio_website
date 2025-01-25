@@ -48,9 +48,6 @@ export default function Projects() {
     }
   }, [location.search]);
 
-  {
-    /* <div className="w-full h-full bg-[#1c1915] relative rounded-2xl"> */
-  }
   return (
     <ScrollArea
       className="h-full w-full  bg-[#1c1915] md:rounded-2xl"

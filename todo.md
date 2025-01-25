@@ -3,11 +3,12 @@
 <!-- TODO: -->
 
 CURRENT:
-- [ ] add touch to Home Particles
-- [ ] fix about hobbies
-- [ ] fix circle svg repeat on mac
+- [x] add touch to Home Particles
+- [x] fix about hobbies
+- [x] fix visuals of Skill Hero - COULD DO WITH SOME ADJUSTMENTS
 - [ ] fix projects image container 
-- [ ] fix visuals of Skill Hero
+- [ ] fix circle svg repeat on mac
 
 
 - [ ] finish fzf and file system
+- [ ] check if you disable page move on mobile

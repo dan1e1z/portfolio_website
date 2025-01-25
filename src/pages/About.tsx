@@ -60,7 +60,7 @@ const About: React.FC = () => {
       className="h-full w-full bg-[#1d1915] md:rounded-2xl"
       viewportRef={containerRef}
     >
-      <div ref={scrollRef} className="h-screen relative">
+      <div ref={scrollRef} className="h-[90.5vh] md:h-screen relative">
         <div className="relative h-full overflow-hidden">
           <ImageSlider currentImageIndex={currentImageIndex} />
         </div>
@@ -74,13 +74,13 @@ const About: React.FC = () => {
 
       <AboutSectionTitle containerRef={containerRef} />
       <div className="font-neueMontreal text-[#EEE9CC] relative">
-        <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
+        <div className="h-[90dvh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
           <AboutContent containerRef={containerRef} />
         </div>
         <div className="border-b border-b-[#EEE9CC] bg-[#1d1915]">
           <EducationContent containerRef={containerRef} />
         </div>
-        <div className="h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
+        <div className="h-[90vh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
           <InterestsContent containerRef={containerRef} />
         </div>
         <div className="">
