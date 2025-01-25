@@ -153,9 +153,11 @@ const App: React.FC = () => {
                     {isSplit ? (
                       renderSplitView()
                     ) : (
-                      <div className="flex flex-col h-full w-full bg-transparent">
-                        {renderRoutes()}
-                        <MobileNavigation />
+                      <div className="flex flex-col h-dvh w-dvw bg-transparent">
+                        <div className="h-[90dvh]">{renderRoutes()}</div>
+                        <div className="h-[10dvh]">
+                          <MobileNavigation />
+                        </div>
                       </div>
                     )}
                     <Toaster />
