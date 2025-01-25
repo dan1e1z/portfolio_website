@@ -12,7 +12,8 @@ export const MobileThemeToggle: React.FC<MobileThemeToggleProps> = ({
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className={`flex items-center justify-center space-x-4 ${className}`}>
+    // <div className={`flex items-center justify-center space-x-4 ${className}`}>
+    <div className={`${className}`}>
       {/* Light Mode Toggle */}
       <div className="flex items-center space-x-2">
         <span className="text-xs">Light</span>
@@ -28,7 +29,7 @@ export const MobileThemeToggle: React.FC<MobileThemeToggleProps> = ({
       </div>
 
       {/* Dark Mode Toggle */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-[9px]">
         <span className="text-xs">Dark</span>
         <button
           onClick={() => setTheme("dark")}
