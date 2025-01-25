@@ -300,7 +300,7 @@ const ContactPage = () => {
   return (
     <ScrollArea
       viewportRef={containerRef}
-      className="h-full w-full bg-[#1c1915] rounded-2xl relative"
+      className="h-full w-full bg-[#1c1915] md:rounded-2xl relative"
     >
       <div className={`${config.contentPosition} p-6 relative`}>
         {/* Left Column - Contact Info */}

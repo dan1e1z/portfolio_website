@@ -53,7 +53,7 @@ export default function Projects() {
   }
   return (
     <ScrollArea
-      className="h-full w-full  bg-[#1c1915] rounded-2xl"
+      className="h-full w-full  bg-[#1c1915] md:rounded-2xl"
       viewportRef={scrollRef}
     >
       <div className="sticky top-0 z-10 shadow-md p-4 bg-[#1c1915]/60 backdrop-blur-2xl rounded-lg">

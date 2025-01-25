@@ -117,18 +117,12 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Terminal } from "lucide-react";
 import type { MenuItem } from "@/types/sidebar";
 import { items } from "@/data/menu";
+import { MobileThemeToggle } from "@/components/MobileThemeToggle";
 
 const MobileNavigation: React.FC = () => {
   const location = useLocation();
-  const [isTerminalOpen, setIsTerminalOpen] = React.useState(false);
-
-  const toggleTerminal = () => {
-    setIsTerminalOpen(!isTerminalOpen);
-  };
 
   return (
     <div className="block md:hidden z-50">
@@ -148,15 +142,8 @@ const MobileNavigation: React.FC = () => {
               <span className="text-xs mt-1">{item.title}</span>
             </Link>
           ))}
+          <MobileThemeToggle />
         </div>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={toggleTerminal}
-          className="text-foreground hidden sm:block"
-        >
-          <Terminal className="h-6 w-6" />
-        </Button>
       </div>
     </div>
   );

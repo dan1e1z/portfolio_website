@@ -486,12 +486,12 @@ const App: React.FC = () => {
                 {/* <main className="relative h-dvh w-dvw bg-transparent"> */}
                 {/* <main className="relative min-h-dvh w-dvw overflow-hidden bg-transparent"> */}
                 {/* <main className="relative min-h-dvh w-dvw bg-transparent"> */}
-                <main className="relative h-full w-full bg-transparent">
+                <main className="h-full w-full bg-transparent">
                   <>
                     {isSplit ? (
                       renderSplitView()
                     ) : (
-                      <div className="flex flex-col h-dvh w-dvw bg-transparent">
+                      <div className="flex flex-col h-full w-full bg-transparent">
                         {renderRoutes()}
                         <MobileNavigation />
                       </div>
