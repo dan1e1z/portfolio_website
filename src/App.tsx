@@ -313,11 +313,11 @@ const App: React.FC = () => {
     <Router>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SidebarProvider>
-          <div className="bg-sequoia-light dark:bg-sequoia-dark bg-cover min-h-screen h-svh w-full">
+          <div className="bg-sequoia-light dark:bg-sequoia-dark bg-cover h-dvh w-full">
             {/* Background overlay */}
             <div className="absolute inset-0 bg-sidebar opacity-80" />
             {/* Content */}
-            <div className="relative z-10 flex min-h-screen h-svh w-full backdrop-blur-2xl">
+            <div className="relative z-10 flex h-svh w-full backdrop-blur-2xl">
               <KeyPressNavigation />
               <AppSidebar
                 setIsSplit={setIsSplit}
@@ -330,7 +330,7 @@ const App: React.FC = () => {
                     {isSplit ? (
                       renderSplitView()
                     ) : (
-                      <div className="flex flex-col min-h-screen h-svh w-full bg-transparent">
+                      <div className="flex flex-col h-svh w-full bg-transparent">
                         <div className="flex-grow overflow-auto">
                           {renderRoutes()}
                         </div>
