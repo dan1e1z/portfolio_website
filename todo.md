@@ -1,30 +1,13 @@
-<!-- FIX: -->
 
 
 <!-- TODO: -->
 
-
 CURRENT:
-- [ ] add mobile sidebar as footer
-- [ ] adjust responsiveness of text for mobile screen
-- [ ] tweak file system
-- [ ] fix fzf search
-- [ ] remove unnecessary code
-
-- [ ] Skills: re-look at hello hello transition
-- [ ] About: re-look at hero section
+- [ ] add touch to Home Particles
+- [ ] fix about hobbies
+- [ ] fix circle svg repeat on mac
+- [ ] fix projects image container 
+- [ ] fix visuals of Skill Hero
 
 
-
-About could be re-done, centered text
-
-MOBILE:
-- [x] Home
-- [x] About: 
-    - [x]: Issue with smaller than 445 width TextOverlay
-    - [x] complete EducationContent
-    - [x] complete InterestsContent/Characters
-    - [x] complete Hobbies
-- [x] Projects
-- [x] Contacts
-- [x] Skills
+- [ ] finish fzf and file system

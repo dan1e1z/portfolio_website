@@ -99,10 +99,24 @@ class Effect {
     this.automatedAnimation = false;
     this.animate = null;
 
+    // Add event listeners for mouse and touch
     this.containerRef.current?.addEventListener(
       "mousemove",
       this.handleMouseMove,
     );
+    this.containerRef.current?.addEventListener(
+      "touchmove",
+      this.handleTouchMove,
+    );
+    this.containerRef.current?.addEventListener(
+      "touchstart",
+      this.handleTouchStart,
+    );
+    this.containerRef.current?.addEventListener(
+      "touchend",
+      this.handleTouchEnd,
+    );
+
     this.init();
   }
 
@@ -116,6 +130,28 @@ class Effect {
 
     this.mouse.x = (event.clientX - rect.left + scrollLeft) * DPR;
     this.mouse.y = (event.clientY - rect.top + scrollTop) * DPR;
+  };
+
+  handleTouchMove = (event: TouchEvent) => {
+    if (!this.containerRef.current) return;
+
+    const rect = this.containerRef.current.getBoundingClientRect();
+    const scrollLeft = this.containerRef.current.scrollLeft || 0;
+    const scrollTop = this.containerRef.current.scrollTop || 0;
+    const DPR = window.devicePixelRatio || 1;
+
+    const touch = event.touches[0];
+    this.mouse.x = (touch.clientX - rect.left + scrollLeft) * DPR;
+    this.mouse.y = (touch.clientY - rect.top + scrollTop) * DPR;
+  };
+
+  handleTouchStart = (event: TouchEvent) => {
+    this.handleTouchMove(event);
+  };
+
+  handleTouchEnd = () => {
+    this.mouse.x = 0;
+    this.mouse.y = 0;
   };
 
   init() {
@@ -144,6 +180,18 @@ class Effect {
     this.containerRef.current?.removeEventListener(
       "mousemove",
       this.handleMouseMove,
+    );
+    this.containerRef.current?.removeEventListener(
+      "touchmove",
+      this.handleTouchMove,
+    );
+    this.containerRef.current?.removeEventListener(
+      "touchstart",
+      this.handleTouchStart,
+    );
+    this.containerRef.current?.removeEventListener(
+      "touchend",
+      this.handleTouchEnd,
     );
   }
 }
@@ -204,7 +252,6 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ containerRef }) => {
       return { width: canvas.width, height: canvas.height };
     };
 
-    // Initial setup
     const { width, height } = updateCanvasSize();
     const effect = new Effect(width, height, ctx, containerRef);
     effectRef.current = effect;
@@ -220,12 +267,11 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ containerRef }) => {
     animate();
     controls.start({ opacity: 1 });
 
-    // ResizeObserver to handle container size changes
     const resizeObserver = new ResizeObserver(() => {
       const { width, height } = updateCanvasSize();
       effect.width = width;
       effect.height = height;
-      effect.particlesArray = []; // Reinitialise particles
+      effect.particlesArray = [];
       effect.init();
     });
 
