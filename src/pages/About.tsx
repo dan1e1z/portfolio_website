@@ -57,10 +57,11 @@ const About: React.FC = () => {
 
   return (
     <ScrollArea
-      className="h-full w-full bg-[#1d1915] md:rounded-2xl"
+      // className="h-full w-full bg-[#1d1915] md:rounded-2xl"
+      className="bg-[#1d1915] md:rounded-2xl"
       viewportRef={containerRef}
     >
-      <div ref={scrollRef} className="h-[90.5vh] md:h-screen relative">
+      <div ref={scrollRef} className="h-[90.5dvh] md:h-screen relative">
         <div className="relative h-full overflow-hidden">
           <ImageSlider currentImageIndex={currentImageIndex} />
         </div>

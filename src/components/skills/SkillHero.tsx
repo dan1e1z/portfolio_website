@@ -103,6 +103,7 @@ const SkillHero = ({ containerRef }: SkillHeroProps) => {
   }
 
   return (
+    // <div className="relative h-full">
     <div className="relative h-full">
       {/* Arrow */}
       <div className="absolute w-24 top-[10%] right-[30%] rotate-90">

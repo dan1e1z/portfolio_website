@@ -61,7 +61,7 @@ const AboutSectionTitle = ({ containerRef }: AboutSectionTitleProps) => {
 
   return (
     <motion.div
-      className="relative h-screen w-full overflow-hidden flex flex-col justify-end bg-[#eee9cc] "
+      className="relative h-[90dvh] md:h-screen w-full overflow-hidden flex flex-col justify-end bg-[#eee9cc] "
       style={{
         y: yPercent,
         scale,
