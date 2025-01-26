@@ -1,6 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+// import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Lenis from "lenis";
+// import Lenis from "lenis";
 
 interface SkillTransitionProps {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -16,26 +17,26 @@ const SkillTransition = ({ containerRef }: SkillTransitionProps) => {
     layoutEffect: false,
   });
 
-  useEffect(() => {
-    const initLenis = async () => {
-      const lenis = new Lenis({
-        wrapper: containerRef.current!,
-        lerp: 0.15,
-        duration: 1.5,
-        smoothWheel: true,
-        syncTouch: true,
-      });
-
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    };
-
-    initLenis();
-  }, [containerRef]);
+  // useEffect(() => {
+  //   const initLenis = async () => {
+  //     const lenis = new Lenis({
+  //       wrapper: containerRef.current!,
+  //       lerp: 0.15,
+  //       duration: 1.5,
+  //       smoothWheel: true,
+  //       syncTouch: true,
+  //     });
+  //
+  //     function raf(time: number) {
+  //       lenis.raf(time);
+  //       requestAnimationFrame(raf);
+  //     }
+  //
+  //     requestAnimationFrame(raf);
+  //   };
+  //
+  //   initLenis();
+  // }, [containerRef]);
 
   // Transform scroll progress to fill height (for animation)
   const fillHeight = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
