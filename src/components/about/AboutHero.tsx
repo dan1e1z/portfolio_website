@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useScroll } from "framer-motion";
-import Lenis from "lenis";
+// import Lenis from "lenis";
 import ImageSlider from "@/components/about/ImageSlider";
 import TextOverlay from "@/components/about/TextOverlay";
 import { sliderItems } from "@/constants/aboutData";
@@ -30,26 +30,26 @@ const AboutHero = ({ containerRef }: AboutHeroProps) => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const initLenis = async () => {
-      if (!containerRef.current) return;
-      const lenis = new Lenis({
-        wrapper: containerRef.current!,
-        lerp: 0.1,
-        smoothWheel: true,
-        syncTouch: true,
-      });
-
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    };
-
-    initLenis();
-  }, [containerRef]);
+  // useEffect(() => {
+  //   const initLenis = async () => {
+  //     if (!containerRef.current) return;
+  //     const lenis = new Lenis({
+  //       wrapper: containerRef.current!,
+  //       lerp: 0.1,
+  //       smoothWheel: true,
+  //       syncTouch: true,
+  //     });
+  //
+  //     function raf(time: number) {
+  //       lenis.raf(time);
+  //       requestAnimationFrame(raf);
+  //     }
+  //
+  //     requestAnimationFrame(raf);
+  //   };
+  //
+  //   initLenis();
+  // }, [containerRef]);
   return (
     <>
       <div ref={scrollRef} className="h-[90.5dvh] md:h-screen relative">
