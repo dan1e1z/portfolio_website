@@ -32,6 +32,7 @@ const AboutHero = ({ containerRef }: AboutHeroProps) => {
 
   useEffect(() => {
     const initLenis = async () => {
+      if (!containerRef.current) return;
       const lenis = new Lenis({
         wrapper: containerRef.current!,
         lerp: 0.1,

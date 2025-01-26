@@ -244,11 +244,6 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ containerRef }) => {
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height * 0.85}px`;
 
-      console.log("Container Dimensions Changed:", {
-        width: rect.width,
-        height: rect.height,
-      });
-
       return { width: canvas.width, height: canvas.height };
     };
 

@@ -29,7 +29,6 @@ const ContactPage = () => {
 
   const config = useMemo(() => {
     const width = dimensions?.width || 1000;
-    console.log("width", width);
 
     const contentPosition =
       width < 1072 ? "flex flex-col gap-12" : "flex flex-row";

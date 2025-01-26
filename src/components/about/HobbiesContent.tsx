@@ -135,7 +135,7 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
         <div ref={scrollRef} className="h-[300vh]">
           <div
             ref={gridRef}
-            className="h-[90vh] md:h-screen sticky top-0 grid place-items-center overflow-hidden"
+            className="h-[90dvh] md:h-screen sticky top-0 grid place-items-center overflow-hidden"
           >
             <div className="grid w-full h-full grid-cols-8 grid-rows-3 gap-2">
               {squares.map((square, index) => (
@@ -182,9 +182,9 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
                 WebkitMaskPosition: `${mouseX - size / 2}px ${mouseY - size / 2}px`,
               }}
             >
-              {activities.map(({ activity, rowStart, colStart }) => (
+              {activities.map(({ activity, rowStart, colStart }, index) => (
                 <div
-                  // className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] text-2xl uppercase mix-blend-exclusion`}
+                  key={`activity-${index}`}
                   className={`row-start-${rowStart} col-start-${colStart} flex justify-center items-center text-[#eee9cc] ${config.textSize} uppercase mix-blend-exclusion`}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}

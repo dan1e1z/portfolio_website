@@ -13,7 +13,6 @@ interface ParagraphProps {
   containerRef: React.RefObject<HTMLDivElement>;
 }
 
-import { useEffect } from "react";
 export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
   const scrollRef = useRef<HTMLParagraphElement>(null);
 
@@ -24,21 +23,8 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
     layoutEffect: false,
   });
 
-  // useEffect(() => {
-  //   const unsubscribe = scrollYProgress.on("change", (latest) => {
-  //     console.log("Character scrollYProgress", latest);
-  //   });
-  //
-  //   return () => unsubscribe();
-  // }, [scrollYProgress]);
-
   const words = paragraph.split(" ");
-
   const dimensions = useContainerDimensions(containerRef);
-
-  useEffect(() => {
-    console.log("dimensions width", dimensions?.width);
-  }, [dimensions?.width]);
 
   const getResponsiveConfig = (width: number) => {
     if (width < 380) {

@@ -1,29 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
-import { FaGithub, FaReact, FaJava, FaPython } from "react-icons/fa";
-import { SiTailwindcss, SiTypescript, SiMongodb } from "react-icons/si";
-import { FaGolang } from "react-icons/fa6";
 import FuturisticHover from "@/animations/FuturisticHover";
 import useContainerDimensions from "@/hooks/useContainerDimensions";
-
-const skills = [
-  { name: "TypeScript", icon: SiTypescript, level: 5 },
-  { name: "React", icon: FaReact, level: 5 },
-  { name: "Tailwind CSS", icon: SiTailwindcss, level: 4 },
-  { name: "MongoDB", icon: SiMongodb, level: 3 },
-  { name: "Python", icon: FaPython, level: 4 },
-  { name: "Git", icon: FaGithub, level: 4 },
-  { name: "Java", icon: FaJava, level: 3 },
-  { name: "Go", icon: FaGolang, level: 2 },
-];
-
-const path = [
-  "M87.9,79.2c1.1-0.4,53.7-39.2,54.9-39.1v180.5",
-  "M81.7,85.7c-1.4-67,112.3-55.1,90.2,11.6c-12.6,32-70.6,83.7-88.8,113.7h105.8",
-  "M74.8,178.5c3,39.4,63.9,46.7,88.6,23.7c34.3-35.1,5.4-75.8-41.7-77c29.9,5.5,68.7-43.1,36.5-73.7 c-23.4-21.5-76.5-11.1-78.6,25",
-  "M161.9,220.8 161.9,41 72.6,170.9 208.2,170.9",
-  "M183.2,43.7H92.1l-10,88.3c0,0,18.3-21.9,51-21.9s49.4,32.6,49.4,48.2c0,22.2-9.5,57-52.5,57s-51.4-36.7-51.4-36.7",
-];
+import { skills, path } from "@/data/skills";
 
 interface SkillContentProps {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -151,12 +130,12 @@ const SkillContent = ({ containerRef }: SkillContentProps) => {
             className={`cursor-pointer ${config.fontSize} ${config.textContainerClass}`}
           >
             {skills.map((skill, i) => (
-              <p onClick={() => handleClick(i)} key={i}>
+              <div onClick={() => handleClick(i)} key={i}>
                 <FuturisticHover
                   text={skill.name}
                   className={`text-[#1c1915] tracking-wide font-mono ${config.skillNameClass}`}
                 />
-              </p>
+              </div>
             ))}
           </div>
           <div className="flex flex-col items-center relative">
