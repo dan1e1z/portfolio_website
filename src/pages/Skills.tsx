@@ -14,8 +14,8 @@ const Skills = () => {
   return (
     <ScrollArea
       viewportRef={containerRef}
-      // className="w-full h-full bg-[#1c1915] md:rounded-2xl"
-      className=" bg-[#1c1915] md:rounded-2xl"
+      className="w-full h-full bg-[#1c1915] md:rounded-2xl"
+      // className=" bg-[#1c1915] md:rounded-2xl"
     >
       <div className="relative w-full h-[90dvh] md:h-screen border-b border-b-[#eee9cc]">
         <SkillHero containerRef={containerRef} />
