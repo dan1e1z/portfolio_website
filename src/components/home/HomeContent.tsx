@@ -62,7 +62,7 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
               loop
               muted
               playsInline
-              className="w-full h-full object-contain"
+              className="w-full h-full"
             />
           )}
         </motion.div>
