@@ -16,14 +16,14 @@ export const contactInfo: ContactInfo[] = [
 export const socialLinks: SocialLink[] = [
   {
     name: "Instagram",
-    url: "https://www.instagram.com/yardgroup_/",
+    url: "https://www.instagram.com/daniel_lindsayshad/",
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/company/yard-agency/",
+    url: "https://www.linkedin.com/in/daniel-lindsay-shad-148073224/",
   },
   {
     name: "GitHub",
-    url: "https://github.com/yard-agency/",
+    url: "https://github.com/dan1e1z/",
   },
 ];
