@@ -555,10 +555,12 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
 
   const handleGoCommand = (dirName: string) => {
     const fileFound = findFileWithIndex(dirName);
+    console.log("currentDirectory", currentDirectory);
 
     if (fileFound?.file?.type === "file") {
+      console.log();
       navigate(
-        `/projects/?project=project${fileFound.index}&timestamp=${Date.now()}`,
+        `/${currentDirectory.name}/?${currentDirectory.name}=${currentDirectory.name}${fileFound.index}&timestamp=${Date.now()}`,
       );
       setIsTerminalVisible(false);
     } else if (fileFound?.file?.type === "directory") {

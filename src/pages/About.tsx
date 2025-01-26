@@ -11,6 +11,8 @@ import InterestsContent from "@/components/about/InterestsContent";
 import HobbiesContent from "@/components/about/HobbiesContent";
 import { sliderItems } from "@/constants/aboutData";
 // import useContainerDimensions from "@/hooks/useContainerDimensions";
+import { useScrollNavigation } from "@/hooks/useScrollNavigation";
+import { aboutSections } from "@/data/about";
 
 const About: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -18,6 +20,8 @@ const About: React.FC = () => {
   // const dimensions = useContainerDimensions(containerRef);
   // console.log(dimensions);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useScrollNavigation(scrollRef, aboutSections, "about");
 
   const { scrollYProgress } = useScroll({
     container: containerRef,
@@ -75,16 +79,22 @@ const About: React.FC = () => {
 
       <AboutSectionTitle containerRef={containerRef} />
       <div className="font-neueMontreal text-[#EEE9CC] relative">
-        <div className="h-[90dvh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
+        <div
+          className="h-[90dvh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]"
+          id="about1"
+        >
           <AboutContent containerRef={containerRef} />
         </div>
-        <div className="border-b border-b-[#EEE9CC] bg-[#1d1915]">
+        <div className="border-b border-b-[#EEE9CC] bg-[#1d1915]" id="about2">
           <EducationContent containerRef={containerRef} />
         </div>
-        <div className="h-[90vh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]">
+        <div
+          className="h-[90vh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]"
+          id="about3"
+        >
           <InterestsContent containerRef={containerRef} />
         </div>
-        <div className="">
+        <div className="" id="about4">
           <HobbiesContent containerRef={containerRef} />
         </div>
       </div>
@@ -93,5 +103,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
-//TEST1

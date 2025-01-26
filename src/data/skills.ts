@@ -40,3 +40,10 @@ export const skills = [
     level: "Beginner",
   },
 ];
+
+export const skillSection = [
+  {
+    id: 1,
+    title: "Skills",
+  },
+];
