@@ -88,7 +88,7 @@ const HobbiesContent = ({ containerRef }: HobbiesContentProps) => {
     target: scrollRef,
     container: containerRef,
     offset: ["start end", "end end"],
-    layoutEffect: false, // This helps with SSR
+    layoutEffect: false,
   });
 
   const titleOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);

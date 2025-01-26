@@ -18,6 +18,7 @@ const AboutHero = ({ containerRef }: AboutHeroProps) => {
     container: containerRef,
     target: scrollRef,
     offset: ["start start", "end start"],
+    layoutEffect: false,
   });
 
   useEffect(() => {
