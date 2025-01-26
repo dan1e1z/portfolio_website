@@ -279,7 +279,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Directory, FileSystemItem } from "@/type";
 import { X, ChevronUp, ChevronDown } from "lucide-react";
-import Fuse from "fuse.js";
+import Fuse, { FuseResult } from "fuse.js";
 import { useNavigate } from "react-router-dom";
 
 const SEARCH_CONFIG = {
@@ -331,7 +331,7 @@ export const checkSequentialMatch = (
 };
 
 export const sortSearchResults = (
-  results: Fuse.FuseResult<FileSystemItem>[],
+  results: FuseResult<FileSystemItem>[],
   searchQuery: string,
 ) =>
   results
