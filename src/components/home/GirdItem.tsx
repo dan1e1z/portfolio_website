@@ -11,15 +11,62 @@
 //
 // const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
 //   const [videoLoaded, setVideoLoaded] = useState(false);
+//   const [hasError, setHasError] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
 //   const videoRef = useRef<HTMLVideoElement>(null);
 //
+//   // Initialize video when component mounts
 //   useEffect(() => {
-//     if (isActive && !videoLoaded && videoRef.current) {
-//       videoRef.current.src = item.videoUrl;
-//       videoRef.current.preload = "auto";
-//       videoRef.current.oncanplaythrough = () => setVideoLoaded(true);
+//     if (!videoRef.current) return;
+//
+//     const video = videoRef.current;
+//
+//     if (isExpanded || isActive) {
+//       setIsLoading(true);
+//       video.preload = "metadata";
+//       const source = document.createElement("source");
+//       source.src = item.videoUrl;
+//       source.type = "video/mp4";
+//       video.appendChild(source);
 //     }
-//   }, [isActive, videoLoaded, item.videoUrl]);
+//
+//     const handleCanPlayThrough = () => {
+//       setVideoLoaded(true);
+//       setIsLoading(false);
+//     };
+//
+//     const handleError = () => {
+//       setHasError(true);
+//       setIsLoading(false);
+//     };
+//
+//     video.addEventListener("canplaythrough", handleCanPlayThrough);
+//     video.addEventListener("error", handleError);
+//
+//     return () => {
+//       video.removeEventListener("canplaythrough", handleCanPlayThrough);
+//       video.removeEventListener("error", handleError);
+//       video.pause();
+//       video.removeAttribute("src");
+//       video.load();
+//     };
+//   }, [isExpanded, isActive, item.videoUrl]);
+//
+//   // Handle video playback
+//   useEffect(() => {
+//     if (!videoRef.current) return;
+//
+//     const video = videoRef.current;
+//
+//     if (isActive && videoLoaded) {
+//       video.play().catch((error) => {
+//         console.warn("Video autoplay failed:", error);
+//       });
+//     } else {
+//       video.pause();
+//       video.currentTime = 0;
+//     }
+//   }, [isActive, videoLoaded]);
 //
 //   return (
 //     <motion.div
@@ -61,14 +108,35 @@
 //           }}
 //           transition={{ duration: 1 }}
 //         >
-//           {isActive && (
+//           {/* Loading Indicator - Always visible when loading */}
+//           {isLoading && (
+//             <div className="absolute inset-0 flex items-center justify-center bg-[#1c1915] z-10">
+//               <span className="text-white">Loading...</span>
+//             </div>
+//           )}
+//
+//           {/* Error State */}
+//           {hasError && (
+//             <div className="absolute inset-0 flex items-center justify-center bg-[#1c1915] z-10">
+//               <span className="text-red-500">Failed to load video</span>
+//             </div>
+//           )}
+//
+//           {/* Video Element */}
+//           {(isActive || isExpanded) && (
 //             <video
 //               ref={videoRef}
-//               autoPlay
 //               loop
 //               muted
 //               playsInline
+//               preload="metadata"
 //               className="w-full h-full object-cover"
+//               width="1920"
+//               height="1080"
+//               style={{
+//                 transform: "translateZ(0)",
+//                 willChange: "transform",
+//               }}
 //             />
 //           )}
 //         </motion.div>
@@ -82,7 +150,7 @@
 // TEST1
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { MediaItem } from "@/types/home";
+import type { MediaItem } from "@/types/home";
 
 interface GridItemProps {
   item: MediaItem;
@@ -206,20 +274,20 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
 
           {/* Video Element */}
           {(isActive || isExpanded) && (
-            <video
-              ref={videoRef}
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              className="w-full h-full object-cover"
-              width="1920"
-              height="1080"
-              style={{
-                transform: "translateZ(0)",
-                willChange: "transform",
-              }}
-            />
+            <div className="relative w-full h-full overflow-hidden">
+              <video
+                ref={videoRef}
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+                style={{
+                  transform: "translate(-50%, -50%)",
+                  willChange: "transform",
+                }}
+              />
+            </div>
           )}
         </motion.div>
       </motion.div>

@@ -11,3 +11,5 @@ CURRENT:
 
 - [ ] finish fzf and file system
 - [ ] check if you disable page move on mobile
+
+fix lagging on skill page when scrolling

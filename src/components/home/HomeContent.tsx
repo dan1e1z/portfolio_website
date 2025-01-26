@@ -62,7 +62,7 @@ const GridItem = ({ item, isActive, isExpanded, onClick }: GridItemProps) => {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           )}
         </motion.div>
@@ -185,3 +185,5 @@ const HomeContent: React.FC<HomeContentProps> = ({ containerRef }) => {
 };
 
 export default HomeContent;
+
+// TEST1
