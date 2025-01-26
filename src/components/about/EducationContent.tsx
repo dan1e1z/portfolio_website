@@ -41,24 +41,28 @@ const EducationContent: React.FC<EducationContentProps> = ({
     : getResponsiveConfig(1000);
 
   return (
-    <div
-      // className="relative w-full"
-
-      style={{
-        width: dimensions?.width || "100%",
-        position: "relative",
-      }}
-    >
-      <h2 className={`${config.titleFontSize} text-[#EEE9CC] mb-4`}>
-        Education
-      </h2>
-      <p className="text-[#EEE9CC]">
-        <span className={`${config.spanOneFontSize}`}>Bachelor</span> of{" "}
-        <span className={`${config.spanTwoFontSize}`}>Science</span> in{" "}
-        <span className={`${config.spanThreeFontSize}`}>Computer Science</span>
-      </p>
-      <VerticalSwiper containerRef={containerRef} />
-    </div>
+    <>
+      <div className="border-b border-b-[#EEE9CC] bg-[#1d1915]" id="about2">
+        <div
+          style={{
+            width: dimensions?.width || "100%",
+            position: "relative",
+          }}
+        >
+          <h2 className={`${config.titleFontSize} text-[#EEE9CC] mb-4`}>
+            Education
+          </h2>
+          <p className="text-[#EEE9CC]">
+            <span className={`${config.spanOneFontSize}`}>Bachelor</span> of{" "}
+            <span className={`${config.spanTwoFontSize}`}>Science</span> in{" "}
+            <span className={`${config.spanThreeFontSize}`}>
+              Computer Science
+            </span>
+          </p>
+          <VerticalSwiper containerRef={containerRef} />
+        </div>
+      </div>
+    </>
   );
 };
 

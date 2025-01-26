@@ -18,6 +18,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { AppSidebar } from "@/components/AppSidebar";
 import MobileNavigation from "@/components/sidebar/MobileNavigation";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 // Lazy load page components
 const Home = lazy(() => import("@/pages/Home"));
@@ -39,13 +40,6 @@ const PAGE_COMPONENTS: PageComponentMap = {
   contacts: Contacts,
   skills: Skills,
 };
-
-// Loading component for Suspense fallback
-const LoadingSpinner = () => (
-  <div className="flex h-full w-full items-center justify-center">
-    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
-  </div>
-);
 
 const KeyPressNavigation: React.FC = () => {
   const navigate = useNavigate();

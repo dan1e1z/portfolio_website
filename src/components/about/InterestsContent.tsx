@@ -28,41 +28,46 @@ const InterestsContent = ({ containerRef }: InterestsContentProps) => {
     ? getResponsiveConfig(dimensions.width)
     : getResponsiveConfig(1000);
   return (
-    <div
-      style={{
-        height: "100%",
-        width: dimensions?.width || "100%",
-        position: "relative",
-      }}
-    >
-      {/* <div className="relative "> */}
-      <div className="absolute inset-0 -z-1">
-        <OverlayLine
-          top={{ x: "70%", y: "0%" }}
-          bottom={{ x: "70%", y: "100%" }}
-          colour="#eee9cc"
-          thickness="1px"
-        />
-        <OverlayLine
-          top={{ x: "70%", y: "0%" }}
-          bottom={{ x: "0%", y: "100%" }}
-          colour="#eee9cc"
-          thickness="1px"
-        />
-        {/* </div> */}
-        <div className="">
-          <h2
-            className={`${config.titleSize} text-[#EEE9CC] ml-4 mt-4 mr-4 mb-12`}
-          >
-            Interests
-          </h2>
-          <Character paragraph={paragraph} containerRef={containerRef} />
+    <>
+      <div
+        className="h-[90vh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]"
+        id="about3"
+      >
+        <div
+          style={{
+            height: "100%",
+            width: dimensions?.width || "100%",
+            position: "relative",
+          }}
+        >
+          {/* <div className="relative "> */}
+          <div className="absolute inset-0 -z-1">
+            <OverlayLine
+              top={{ x: "70%", y: "0%" }}
+              bottom={{ x: "70%", y: "100%" }}
+              colour="#eee9cc"
+              thickness="1px"
+            />
+            <OverlayLine
+              top={{ x: "70%", y: "0%" }}
+              bottom={{ x: "0%", y: "100%" }}
+              colour="#eee9cc"
+              thickness="1px"
+            />
+            {/* </div> */}
+            <div className="">
+              <h2
+                className={`${config.titleSize} text-[#EEE9CC] ml-4 mt-4 mr-4 mb-12`}
+              >
+                Interests
+              </h2>
+              <Character paragraph={paragraph} containerRef={containerRef} />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default InterestsContent;
-
-//TEST1

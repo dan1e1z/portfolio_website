@@ -39,53 +39,55 @@ const AboutContent = ({ containerRef }: AboutContentTitleProps) => {
     : getResponsiveConfig(1000);
 
   return (
-    <div
-      ref={scrollRef}
-      // className="h-full flex  content-center items-center p-4 relative"
-      style={{
-        height: "100%",
-        width: dimensions?.width || "100%",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div className="pl-4">
-        <motion.h2
-          className="text-8xl font-neueMontreal text-[#EEE9CC] pb-12"
-          // initial={{ opacity: 0, x: -200 }}
-          // whileInView={{ opacity: 1, x: 0 }}
-          // transition={{ duration: 0.9, ease: "easeIn", delay: 0.3 }}
+    <>
+      <div
+        className="h-[90dvh] md:h-screen border-b border-b-[#EEE9CC] bg-[#1d1915]"
+        id="about1"
+      >
+        <div
+          ref={scrollRef}
+          style={{
+            height: "100%",
+            width: dimensions?.width || "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
         >
-          About
-          <br />
-          Me
-        </motion.h2>
+          <div className="pl-4">
+            <motion.h2 className="text-8xl font-neueMontreal text-[#EEE9CC] pb-12">
+              About
+              <br />
+              Me
+            </motion.h2>
 
-        <p
-          className={`text-muted-foreground font-neueMontreal text-wrap ${config.fontSize}`}
-        >
-          A passionate <strong className="text-[#EEE9CC]">web developer</strong>{" "}
-          specialising in creating <br />
-          <strong className="text-[#EEE9CC]">
-            {" "}
-            intuitive and visually appealing interfaces
-          </strong>
-          .<br />
-          Proficient in
-          <strong className="text-[#EEE9CC]">
-            {" "}
-            full-stack development
-          </strong>{" "}
-          with expertise <br />
-          in
-          <strong className="text-[#EEE9CC]">
-            {" "}
-            Python, TypeScript, React
-          </strong>, and modern web technologies.
-        </p>
+            <p
+              className={`text-muted-foreground font-neueMontreal text-wrap ${config.fontSize}`}
+            >
+              A passionate{" "}
+              <strong className="text-[#EEE9CC]">web developer</strong>{" "}
+              specialising in creating <br />
+              <strong className="text-[#EEE9CC]">
+                {" "}
+                intuitive and visually appealing interfaces
+              </strong>
+              .<br />
+              Proficient in
+              <strong className="text-[#EEE9CC]">
+                {" "}
+                full-stack development
+              </strong>{" "}
+              with expertise <br />
+              in
+              <strong className="text-[#EEE9CC]">
+                {" "}
+                Python, TypeScript, React
+              </strong>
+              , and modern web technologies.
+            </p>
+          </div>
+        </div>
       </div>
-      {/* <AboutShapes /> */}
-    </div>
+    </>
   );
 };
 
