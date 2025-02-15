@@ -19,7 +19,8 @@ export default function Paragraph({ paragraph, containerRef }: ParagraphProps) {
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     container: containerRef,
-    offset: ["start 0.9", "start 0.25"],
+    // offset: ["start 0.9", "start 0.25"],
+    offset: ["start end", "end center"],
     layoutEffect: false,
   });
 
