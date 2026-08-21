@@ -6,7 +6,7 @@ const Projects = lazy(() => import("@/pages/Projects"));
 const Contacts = lazy(() => import("@/pages/Contacts"));
 const Skills = lazy(() => import("@/pages/Skills"));
 
-const CHAPTERS = [
+export const CHAPTERS = [
     { id: "home", label: "Home", number: "00", Page: Home },
     { id: "about", label: "About", number: "01", Page: About },
     { id: "projects", label: "Projects", number: "02", Page: Projects },
@@ -16,10 +16,10 @@ const CHAPTERS = [
 
 const PortfolioCanvas = () => {
     return (
-        <div className="w-full h-full">
-            <div>
+        <div className="">
+            <div className="">
                 {CHAPTERS.map(({ id, Page }) => (
-                    <section key={id} id={id} className="">
+                    <section key={id} id={id} className="flex flex-col w-full min-h-screen min-h-dvh">
                         <Page />
                     </section>
                 ))}
