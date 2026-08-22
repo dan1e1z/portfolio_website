@@ -16,15 +16,15 @@ export const CHAPTERS = [
 
 const PortfolioCanvas = () => {
     return (
-        <div className="">
-            <div className="">
+        <div className="w-full">
+            <div className="w-full">
                 {CHAPTERS.map(({ id, Page }) => (
-                    <section key={id} id={id} className="flex flex-col w-full min-h-screen min-h-dvh">
+                    <section key={id} id={id} className="flex w-full min-h-dvh flex-col">
                         <Page />
                     </section>
                 ))}
             </div>
-        </div >
+        </div>
     )
 }
 
